@@ -1,0 +1,37 @@
+### Managed by Puppet ###
+
+# Fake server declaration to enforce running agent without
+# separate server declaration in /etc/zabbix/zabbix_agent.d/server.conf
+Server=<%= scope.lookupvar('plugin_zabbix::params::server_ip') %>,<%= scope.lookupvar('plugin_zabbix::monitoring::server_ips').join(',') %>
+ServerActive=<%= scope.lookupvar('plugin_zabbix::params::server_ip') %>
+
+Hostname=<%= @fqdn %>
+
+ListenPort=<%= if scope.lookupvar('plugin_zabbix::params::zabbix_ports')['backend_agent'].nil?; scope.lookupvar('plugin_zabbix::params::zabbix_ports')['agent']; else scope.lookupvar('plugin_zabbix::params::zabbix_ports')['backend_agent']; end %>
+
+#ListenIP=<%= scope.lookupvar('plugin_zabbix::params::agent_listen_ip') %>
+
+#SourceIP=<%= scope.lookupvar('plugin_zabbix::params::agent_source_ip') %>
+
+StartAgents=5
+
+#RefreshActiveChecks=120
+
+#DisableActive=1
+
+#EnableRemoteCommands=1
+
+DebugLevel=3
+
+PidFile=<%= scope.lookupvar('plugin_zabbix::params::agent_pid_file') %>
+
+LogFile=<%= scope.lookupvar('plugin_zabbix::params::agent_log_file') %>
+
+LogFileSize=0
+
+Timeout=10
+
+<% if scope.lookupvar('plugin_zabbix::params::has_userparameters') %>
+Include=<%= scope.lookupvar('plugin_zabbix::params::agent_include') %>
+<% end %>
+
