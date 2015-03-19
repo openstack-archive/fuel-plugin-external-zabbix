@@ -1,0 +1,106 @@
+#
+#    Copyright 2015 Mirantis, Inc.
+#
+#    Licensed under the Apache License, Version 2.0 (the "License"); you may
+#    not use this file except in compliance with the License. You may obtain
+#    a copy of the License at
+#
+#         http://www.apache.org/licenses/LICENSE-2.0
+#
+#    Unless required by applicable law or agreed to in writing, software
+#    distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+#    WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+#    License for the specific language governing permissions and limitations
+#    under the License.
+#
+class plugin_zabbix::params {
+
+  include plugin_zabbix::params::openstack
+
+  $zabbix_ports = {
+    server         => '10051',
+    backend_server => '10052',
+    agent          => '10049',
+    backend_agent  => '10050',
+    api            => '80',
+  }
+
+  case $::operatingsystem {
+    'Ubuntu', 'Debian': {
+      $agent_pkg                = 'zabbix-agent'
+      $server_pkg               = 'zabbix-server-mysql'
+      $frontend_pkg             = 'zabbix-frontend-php'
+
+      $agent_service            = 'zabbix-agent'
+      $server_service           = 'zabbix-server'
+
+      $agent_log_file           = '/var/log/zabbix/zabbix_agentd.log'
+      $server_log_file          = '/var/log/zabbix-server/zabbix_server.log'
+
+      $prepare_schema_cmd       = 'cat /usr/share/zabbix-server-mysql/schema.sql /usr/share/zabbix-server-mysql/images.sql > /tmp/zabbix/schema.sql'
+
+      $frontend_service         = 'apache2'
+      $frontend_service_config  = '/etc/zabbix/apache.conf'
+      $frontend_config          = '/etc/zabbix/web/zabbix.conf.php'
+    }
+    'CentOS', 'RedHat': {
+
+      $agent_pkg                = 'zabbix-agent'
+      $server_pkg               = 'zabbix-server-mysql'
+      $frontend_pkg             = 'zabbix-web-mysql'
+
+      $agent_service            = 'zabbix-agent'
+      $server_service           = 'zabbix-server'
+
+      $agent_log_file           = '/var/log/zabbix/zabbix_agentd.log'
+      $server_log_file          = '/var/log/zabbix/zabbix_server.log'
+
+      $prepare_schema_cmd       = 'cat /usr/share/doc/zabbix-server-mysql-`zabbix_server -V | awk \'/v[0-9].[0-9].[0-9]/{print substr($3, 2)}\'`/create/schema.sql /usr/share/doc/zabbix-server-mysql-`zabbix_server -V | awk \'/v[0-9].[0-9].[0-9]/{print substr($3, 2)}\'`/create/images.sql > /tmp/zabbix/schema.sql'
+
+      $frontend_service         = 'httpd'
+      $frontend_service_config  = '/etc/httpd/conf.d/zabbix.conf'
+      $frontend_config          = '/etc/zabbix/web/zabbix.conf.php'
+    }
+    default: {
+      fail("unsuported osfamily ${::osfamily}, currently Debian and Redhat are the only supported platforms")
+    }
+  }
+
+  $agent_listen_ip           = $::internal_address
+  $agent_source_ip           = $::internal_address
+
+  $agent_config_template     = 'plugin_zabbix/zabbix_agentd.conf.erb'
+  $agent_config              = '/etc/zabbix/zabbix_agentd.conf'
+  $agent_pid_file            = '/var/run/zabbix/zabbix_agentd.pid'
+
+  $agent_include             = '/etc/zabbix/zabbix_agentd.d'
+  $agent_scripts             = '/etc/zabbix/scripts'
+  $has_userparameters        = true
+
+  #server parameters
+  $server_config             = '/etc/zabbix/zabbix_server.conf'
+  $server_scripts            = '/etc/zabbix/externalscripts'
+  $server_config_template    = 'plugin_zabbix/zabbix_server.conf.erb'
+  $server_node_id            = 0
+  $server_ensure             = present
+
+  #frontend parameters
+  $frontend                  = true
+  $frontend_ensure           = present
+  $frontend_base             = '/zabbix'
+  $frontend_config_template  = 'plugin_zabbix/zabbix.conf.php.erb'
+
+  #common parameters
+  $db_type                   = 'MYSQL'
+  $db_port                   = '3306'
+  $db_name                   = 'zabbix'
+  $db_user                   = 'zabbix'
+
+  #zabbix hosts params
+  $host_name                 = $::fqdn
+  $host_ip                   = $::internal_address
+  $host_groups               = ['ManagedByPuppet', 'Controllers', 'Computes']
+  $host_groups_base          = ['ManagedByPuppet', 'Linux servers']
+  $host_groups_controller    = ['Controllers']
+  $host_groups_compute       = ['Computes']
+}
