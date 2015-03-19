@@ -1,0 +1,33 @@
+# Plugin name
+name: zabbix_monitoring
+title: Zabbix for Fuel
+# Plugin version
+version: 1.0.0
+# Description
+description: Enables Zabbix Monitoring. For information how to access Zabbix UI refer to Zabbix plugin User Guide. Zabbix URL schema is http://<VIP>/zabbix
+# Required fuel version
+fuel_version: ['6.1']
+# Groups
+groups: ['monitoring']
+# Licenses
+licenses: ['Apache License, Version 2.0']
+# Homepage
+homepage: 'https://github.com/stackforge/fuel-plugin-external-zabbix'
+# Authors
+authors: ['Dmitry Klenov <dklenov@mirantis.com>', 'Piotr Misiak <pmisiak@mirantis.com>', 'Szymon Banka <sbanka@mirantis.com>', 'Alexander Zatserklyany <azatserklyany@mirantis.com>']
+
+# The plugin is compatible with releases in the list
+releases:
+  - os: ubuntu
+    version: 2014.2-6.1
+    mode: ['ha']
+    deployment_scripts_path: deployment_scripts/
+    repository_path: repositories/ubuntu
+  - os: centos
+    version: 2014.2-6.1
+    mode: ['ha']
+    deployment_scripts_path: deployment_scripts/
+    repository_path: repositories/centos
+
+# Version of plugin package
+package_version: '2.0.0'
