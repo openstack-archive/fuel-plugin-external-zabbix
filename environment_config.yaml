@@ -1,0 +1,19 @@
+attributes:
+  username:
+    value: "admin"
+    label: "username"
+    description: "Username for Zabbix Administrator"
+    weight: 10
+    type: "text"
+  password:
+    value: "zabbix"
+    label: "password"
+    description: "Password for Zabbix Administrator"
+    weight: 20
+    type: "password"
+  db_password:
+    value: "fae2oom_aeR6"
+    label: "database password"
+    description: "Password for Zabbix Database"
+    weight: 30
+    type: "password"

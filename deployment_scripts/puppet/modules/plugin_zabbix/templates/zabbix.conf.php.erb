@@ -1,0 +1,18 @@
+<?php
+// Zabbix GUI configuration file
+global $DB;
+
+$DB["TYPE"]                     = '<%= scope.lookupvar('plugin_zabbix::params::db_type') %>';
+$DB["SERVER"]                   = '<%= scope.lookupvar('plugin_zabbix::params::db_ip') %>';
+$DB["PORT"]                     = '<%= scope.lookupvar('plugin_zabbix::params::db_port') %>';
+$DB["DATABASE"]                 = '<%= scope.lookupvar('plugin_zabbix::params::db_name') %>';
+$DB["USER"]                     = '<%= scope.lookupvar('plugin_zabbix::params::db_user') %>';
+$DB["PASSWORD"]                 = '<%= scope.lookupvar('plugin_zabbix::params::db_password') %>';
+// SCHEMA is relevant only for IBM_DB2 database
+$DB["SCHEMA"]                   = '';
+
+$ZBX_SERVER                     = '<%= scope.lookupvar('plugin_zabbix::params::server_ip') %>';
+$ZBX_SERVER_PORT                = '<%= scope.lookupvar('plugin_zabbix::params::zabbix_ports')['server'] %>';
+$ZBX_SERVER_NAME                = '<%= scope.lookupvar('plugin_zabbix::params::server_name') %>';
+
+$IMAGE_FORMAT_DEFAULT   = IMAGE_FORMAT_PNG;
