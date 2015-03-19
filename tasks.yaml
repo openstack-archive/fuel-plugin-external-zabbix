@@ -1,0 +1,21 @@
+- role: ['controller']
+  stage: post_deployment
+  type: puppet
+  parameters:
+    puppet_manifest: puppet/manifests/server.pp
+    puppet_modules: puppet/modules:/etc/puppet/modules
+    timeout: 1200
+- role: ['controller']
+  stage: post_deployment
+  type: puppet
+  parameters:
+    puppet_manifest: puppet/manifests/server_config.pp
+    puppet_modules: puppet/modules:/etc/puppet/modules
+    timeout: 600
+- role: '*'
+  stage: post_deployment
+  type: puppet
+  parameters:
+    puppet_manifest: puppet/manifests/agent.pp
+    puppet_modules: puppet/modules:/etc/puppet/modules
+    timeout: 600
