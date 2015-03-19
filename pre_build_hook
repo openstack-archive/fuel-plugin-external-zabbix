@@ -1,0 +1,34 @@
+#!/bin/bash
+set -eux
+
+ROOT="$(dirname `readlink -f $0`)"
+RPM_REPO="${ROOT}"/repositories/centos/
+DEB_REPO="${ROOT}"/repositories/ubuntu/
+mkdir -p $RPM_REPO
+mkdir -p $DEB_REPO
+
+# Downloads needed RPM or DEB packages
+function download {
+    case "$1" in
+        deb) REPO=$DEB_REPO;;
+        rpm) REPO=$RPM_REPO;;
+    esac
+    shift
+
+    while [ $# -gt 0 ]; do
+        FILE=$(basename "$1")
+        wget -qO - $1 > "$REPO/$FILE"
+        shift
+    done
+}
+
+download deb http://repo.zabbix.com/zabbix/2.4/ubuntu/pool/main/z/zabbix/zabbix-agent_2.4.4-1+trusty_amd64.deb \
+             http://repo.zabbix.com/zabbix/2.4/ubuntu/pool/main/z/zabbix/zabbix-frontend-php_2.4.4-1+trusty_all.deb \
+             http://repo.zabbix.com/zabbix/2.4/ubuntu/pool/main/z/zabbix/zabbix-server-mysql_2.4.4-1+trusty_amd64.deb
+
+download rpm http://repo.zabbix.com/zabbix/2.4/rhel/6/x86_64/zabbix-agent-2.4.4-1.el6.x86_64.rpm \
+             http://repo.zabbix.com/zabbix/2.4/rhel/6/x86_64/zabbix-server-2.4.4-1.el6.x86_64.rpm \
+             http://repo.zabbix.com/zabbix/2.4/rhel/6/x86_64/zabbix-server-mysql-2.4.4-1.el6.x86_64.rpm \
+             http://repo.zabbix.com/zabbix/2.4/rhel/6/x86_64/zabbix-web-2.4.4-1.el6.noarch.rpm \
+             http://repo.zabbix.com/zabbix/2.4/rhel/6/x86_64/zabbix-web-mysql-2.4.4-1.el6.noarch.rpm \
+             http://mirror.centos.org/centos/6/os/x86_64/Packages/iptstate-2.2.2-4.el6.x86_64.rpm

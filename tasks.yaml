@@ -1,0 +1,28 @@
+- role: ['primary-controller']
+  stage: post_deployment/8100
+  type: puppet
+  parameters:
+    puppet_manifest: puppet/manifests/primary_controller.pp
+    puppet_modules: puppet/modules:/etc/puppet/modules
+    timeout: 1200
+- role: ['controller']
+  stage: post_deployment/8101
+  type: puppet
+  parameters:
+    puppet_manifest: puppet/manifests/controller.pp
+    puppet_modules: puppet/modules:/etc/puppet/modules
+    timeout: 1200
+- role: ['primary-controller']
+  stage: post_deployment/8102
+  type: puppet
+  parameters:
+    puppet_manifest: puppet/manifests/zabbix_server_config.pp
+    puppet_modules: puppet/modules:/etc/puppet/modules
+    timeout: 600
+- role: '*'
+  stage: post_deployment/8103
+  type: puppet
+  parameters:
+    puppet_manifest: puppet/manifests/agent.pp
+    puppet_modules: puppet/modules:/etc/puppet/modules
+    timeout: 600
