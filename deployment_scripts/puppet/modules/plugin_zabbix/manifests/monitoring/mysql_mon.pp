@@ -28,9 +28,9 @@ class plugin_zabbix::monitoring::mysql_mon {
     plugin_zabbix::agent::userparameter {
       'mysql.status':
         key     => 'mysql.status[*]',
-        command => 'echo "show global status where Variable_name=\'$1\';" | mysql -N | awk \'{print $$2}\'';
+        command => 'echo "show global status where Variable_name=\'$1\';" | mysql --defaults-extra-file=/var/lib/zabbix/.my.cnf -N | awk \'{print $$2}\'';
       'mysql.ping':
-        command => 'mysqladmin ping | grep -c alive';
+        command => 'mysqladmin --defaults-extra-file=/var/lib/zabbix/.my.cnf ping | grep -c alive';
       'mysql.version':
         command => 'mysql -V';
     }
