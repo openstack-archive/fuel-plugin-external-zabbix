@@ -67,7 +67,8 @@ class RabbitmqAPI(object):
         response = self.get_http('queues')
         for queue in response:
             queues_without_consumers += 1
-            if queue['consumers'] > 0:
+            if ('consumers' in queue and
+                    queue['consumers'] > 0):
                 queues_without_consumers -= 1
         self.logger.critical(queues_without_consumers)
 
