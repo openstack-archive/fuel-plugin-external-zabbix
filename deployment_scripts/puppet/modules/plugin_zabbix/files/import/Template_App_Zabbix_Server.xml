@@ -62,7 +62,7 @@
                     <valuemap/>
                 </item>
                 <item>
-                    <name>Zabbix $2 write cache, % free</name>
+                    <name>Zabbix history write cache, % free</name>
                     <type>5</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
@@ -101,7 +101,7 @@
                     <valuemap/>
                 </item>
                 <item>
-                    <name>Zabbix $2 write cache, % free</name>
+                    <name>Zabbix text write cache, % free</name>
                     <type>5</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
@@ -140,7 +140,7 @@
                     <valuemap/>
                 </item>
                 <item>
-                    <name>Zabbix $2 write cache, % free</name>
+                    <name>Zabbix trend write cache, % free</name>
                     <type>5</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
@@ -179,7 +179,7 @@
                     <valuemap/>
                 </item>
                 <item>
-                    <name>Zabbix $4 $2 processes, in %</name>
+                    <name>Zabbix busy self-monitoring processes, in %</name>
                     <type>5</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
@@ -218,7 +218,7 @@
                     <valuemap/>
                 </item>
                 <item>
-                    <name>Zabbix $4 $2 processes, in %</name>
+                    <name>Zabbix busy proxy poller processes, in %</name>
                     <type>5</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
@@ -257,7 +257,7 @@
                     <valuemap/>
                 </item>
                 <item>
-                    <name>Zabbix $4 $2 processes, in %</name>
+                    <name>Zabbix busy snmp trapper processes, in %</name>
                     <type>5</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
@@ -296,7 +296,7 @@
                     <valuemap/>
                 </item>
                 <item>
-                    <name>Zabbix $4 $2 processes, in %</name>
+                    <name>Zabbix busy unreachable poller processes, in %</name>
                     <type>5</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
@@ -335,7 +335,7 @@
                     <valuemap/>
                 </item>
                 <item>
-                    <name>Zabbix $4 $2 processes, in %</name>
+                    <name>Zabbix busy alerter processes, in %</name>
                     <type>5</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
@@ -374,7 +374,7 @@
                     <valuemap/>
                 </item>
                 <item>
-                    <name>Zabbix $4 $2 processes, in %</name>
+                    <name>Zabbix busy trapper processes, in %</name>
                     <type>5</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
@@ -413,7 +413,7 @@
                     <valuemap/>
                 </item>
                 <item>
-                    <name>Zabbix $4 $2 processes, in %</name>
+                    <name>Zabbix busy timer processes, in %</name>
                     <type>5</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
@@ -452,7 +452,7 @@
                     <valuemap/>
                 </item>
                 <item>
-                    <name>Zabbix $4 $2 processes, in %</name>
+                    <name>Zabbix busy poller processes, in %</name>
                     <type>5</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
@@ -491,7 +491,7 @@
                     <valuemap/>
                 </item>
                 <item>
-                    <name>Zabbix $4 $2 processes, in %</name>
+                    <name>Zabbix busy escalator processes, in %</name>
                     <type>5</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
@@ -530,7 +530,7 @@
                     <valuemap/>
                 </item>
                 <item>
-                    <name>Zabbix $4 $2 processes, in %</name>
+                    <name>Zabbix busy discoverer processes, in %</name>
                     <type>5</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
@@ -569,7 +569,7 @@
                     <valuemap/>
                 </item>
                 <item>
-                    <name>Zabbix $4 $2 processes, in %</name>
+                    <name>Zabbix busy db watchdog processes, in %</name>
                     <type>5</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
@@ -608,7 +608,7 @@
                     <valuemap/>
                 </item>
                 <item>
-                    <name>Zabbix $4 $2 processes, in %</name>
+                    <name>Zabbix busy configuration syncer processes, in %</name>
                     <type>5</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
@@ -647,7 +647,7 @@
                     <valuemap/>
                 </item>
                 <item>
-                    <name>Zabbix $4 $2 processes, in %</name>
+                    <name>Zabbix busy node watcher processes, in %</name>
                     <type>5</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
@@ -686,7 +686,7 @@
                     <valuemap/>
                 </item>
                 <item>
-                    <name>Zabbix $4 $2 processes, in %</name>
+                    <name>Zabbix busy history syncer processes, in %</name>
                     <type>5</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
@@ -725,7 +725,7 @@
                     <valuemap/>
                 </item>
                 <item>
-                    <name>Zabbix $4 $2 processes, in %</name>
+                    <name>Zabbix busy http poller processes, in %</name>
                     <type>5</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
@@ -764,7 +764,7 @@
                     <valuemap/>
                 </item>
                 <item>
-                    <name>Zabbix $4 $2 processes, in %</name>
+                    <name>Zabbix busy housekeeper processes, in %</name>
                     <type>5</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
@@ -803,7 +803,7 @@
                     <valuemap/>
                 </item>
                 <item>
-                    <name>Zabbix $4 $2 processes, in %</name>
+                    <name>Zabbix busy ipmi poller processes, in %</name>
                     <type>5</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
@@ -842,7 +842,7 @@
                     <valuemap/>
                 </item>
                 <item>
-                    <name>Zabbix $4 $2 processes, in %</name>
+                    <name>Zabbix busy java poller processes, in %</name>
                     <type>5</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
@@ -881,7 +881,7 @@
                     <valuemap/>
                 </item>
                 <item>
-                    <name>Zabbix $4 $2 processes, in %</name>
+                    <name>Zabbix busy icmp pinger processes, in %</name>
                     <type>5</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
@@ -998,7 +998,7 @@
                     <valuemap/>
                 </item>
                 <item>
-                    <name>Zabbix queue over $2</name>
+                    <name>Zabbix queue over 10m</name>
                     <type>5</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
