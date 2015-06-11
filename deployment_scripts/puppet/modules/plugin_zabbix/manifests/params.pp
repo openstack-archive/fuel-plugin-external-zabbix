@@ -44,6 +44,7 @@ class plugin_zabbix::params {
       $frontend_service         = 'apache2'
       $frontend_service_config  = '/etc/zabbix/apache.conf'
       $frontend_config          = '/etc/zabbix/web/zabbix.conf.php'
+      $php_config               = '/etc/php5/apache2/php.ini'
     }
     'CentOS', 'RedHat': {
 
@@ -62,6 +63,7 @@ class plugin_zabbix::params {
       $frontend_service         = 'httpd'
       $frontend_service_config  = '/etc/httpd/conf.d/zabbix.conf'
       $frontend_config          = '/etc/zabbix/web/zabbix.conf.php'
+      $php_config               = '/etc/php.ini'
     }
     default: {
       fail("unsuported osfamily ${::osfamily}, currently Debian and Redhat are the only supported platforms")

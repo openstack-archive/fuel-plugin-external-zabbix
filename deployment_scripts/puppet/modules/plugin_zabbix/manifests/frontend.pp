@@ -43,12 +43,20 @@ class plugin_zabbix::frontend {
     require   => Package[$plugin_zabbix::params::frontend_pkg],
   }
 
+  file_line { 'set expose_php to off':
+    path      => $plugin_zabbix::params::php_config,
+    match     => 'expose_php =',
+    line      => 'expose_php = Off',
+    notify    => Service[$plugin_zabbix::params::frontend_service],
+    require   => Package[$plugin_zabbix::params::frontend_pkg],
+  }
+
   # disable worker MPM, use prefork MPM which is required by mod_php:
   case $::osfamily {
     'RedHat': {
-      # default line: "HTTPD=/usr/sbin/httpd -W"
-      # target line: "HTTPD=/usr/sbin/httpd"
-      # we need to remove -W argument (disable mpm_worker)
+      # default line: "HTTPD=/usr/sbin/httpd.worker"
+      # target line:  "HTTPD=/usr/sbin/httpd"
+      # we need to remove .worker suffix (to disable mpm_worker)
       # match parameter must match the common part of default and target lines
       file_line { 'httpd_mpm_prefork':
         path    => '/etc/sysconfig/httpd',
