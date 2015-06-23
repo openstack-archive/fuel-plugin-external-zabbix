@@ -1,0 +1,11 @@
+Verified+2: Jenkins
+Code-Review+1: Bartosz Kupidura <bkupidura@mirantis.com>
+Code-Review+2: Szymon Banka <sbanka@mirantis.com>
+Workflow+1: Szymon Banka <sbanka@mirantis.com>
+Code-Review+1: Tatyana Dubyk <tdubyk@mirantis.com>
+Code-Review+1: Irina <ipovolotskaya@mirantis.com>
+Submitted-by: Jenkins
+Submitted-at: Tue, 23 Jun 2015 12:54:41 +0000
+Reviewed-on: https://review.openstack.org/194591
+Project: stackforge/fuel-plugin-external-zabbix
+Branch: refs/heads/master
