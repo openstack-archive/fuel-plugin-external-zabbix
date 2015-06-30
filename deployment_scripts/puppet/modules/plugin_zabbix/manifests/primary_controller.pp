@@ -47,13 +47,6 @@ class plugin_zabbix::primary_controller {
     ],
   }
 
-  service { "${plugin_zabbix::params::server_service}-started":
-    ensure    => running,
-    name      => "p_${plugin_zabbix::params::server_service}",
-    enable    => true,
-    provider  => 'pacemaker',
-  }
-
   File[$plugin_zabbix::params::server_config] -> File['zabbix-server-ocf'] -> Cs_resource["p_${plugin_zabbix::params::server_service}"]
   Service["${plugin_zabbix::params::server_service}-init-stopped"] -> Cs_resource["p_${plugin_zabbix::params::server_service}"]
   Cs_resource["p_${plugin_zabbix::params::server_service}"] -> Cs_colocation['vip_management-with-zabbix-server']

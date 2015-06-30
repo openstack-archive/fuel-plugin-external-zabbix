@@ -67,13 +67,24 @@ class plugin_zabbix::frontend {
       }
     }
     'Debian': {
-      file { '/etc/apache2/mods-enabled/worker.conf':
-        ensure  => absent,
+
+      exec { 'disable-apache-worker':
+        command => 'a2dismod worker',
+        path    => ['/usr/sbin', '/usr/bin', '/sbin', '/bin'],
         notify  => Service[$plugin_zabbix::params::frontend_service],
         require => Package[$plugin_zabbix::params::frontend_pkg],
       }
-      file { '/etc/apache2/mods-enabled/worker.load':
-        ensure  => absent,
+
+      exec { 'enable-apache-prefork':
+        command => 'a2enmod mpm_prefork',
+        path    => ['/usr/sbin', '/usr/bin', '/sbin', '/bin'],
+        notify  => Service[$plugin_zabbix::params::frontend_service],
+        require => Package[$plugin_zabbix::params::frontend_pkg],
+      }
+
+      exec { 'enable-apache-php5':
+        command => 'a2enmod php5',
+        path    => ['/usr/sbin', '/usr/bin', '/sbin', '/bin'],
         notify  => Service[$plugin_zabbix::params::frontend_service],
         require => Package[$plugin_zabbix::params::frontend_pkg],
       }

@@ -56,17 +56,11 @@ class plugin_zabbix::db::mysql(
     require     => File['/tmp/zabbix/parts/data_clean.sql'],
   }
 
-  plugin_zabbix::db::mysql_db { $plugin_zabbix::params::db_name:
-    user     => $plugin_zabbix::params::db_user,
-    password => $db_password,
-    host     => $db_ip,
-    require  => Exec['prepare-schema-2'],
-  }
-
   exec{ "${plugin_zabbix::params::db_name}-import":
-    command   => "/usr/bin/mysql ${plugin_zabbix::params::db_name} < /tmp/zabbix/schema.sql && touch /tmp/zabbix/imported",
-    creates   => '/tmp/zabbix/imported',
-    logoutput => true,
-    require   => Database[$plugin_zabbix::params::db_name],
+    command     => "/usr/bin/mysql ${plugin_zabbix::params::db_name} < /tmp/zabbix/schema.sql",
+    logoutput   => true,
+    refreshonly => true,
+    subscribe   => Database[$plugin_zabbix::params::db_name],
+    require     => Exec['prepare-schema-2'],
   }
 }

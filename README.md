@@ -67,7 +67,8 @@ This is the first release of the plugin.
 Contributors
 ------------
 
-Dmitry Klenov <dklenov@mirantis.com> (PM)  
-Piotr Misiak <pmisiak@mirantis.com> (developer)  
-Szymon Bańka <sbanka@mirantis.com> (developer)  
-Alexander Zatserklyany <azatserklyany@mirantis.com> (QA engineer)  
+Dmitry Klenov <dklenov@mirantis.com> (PM)
+Piotr Misiak <pmisiak@mirantis.com> (developer)
+Szymon Bańka <sbanka@mirantis.com> (developer)
+Bartosz Kupidura <bkupidura@mirantis.com> (developer)
+Alexander Zatserklyany <azatserklyany@mirantis.com> (QA engineer)
