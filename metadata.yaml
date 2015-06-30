@@ -14,7 +14,7 @@ licenses: ['Apache License, Version 2.0']
 # Homepage
 homepage: 'https://github.com/stackforge/fuel-plugin-external-zabbix'
 # Authors
-authors: ['Dmitry Klenov <dklenov@mirantis.com>', 'Piotr Misiak <pmisiak@mirantis.com>', 'Szymon Banka <sbanka@mirantis.com>', 'Alexander Zatserklyany <azatserklyany@mirantis.com>']
+authors: ['Dmitry Klenov <dklenov@mirantis.com>', 'Piotr Misiak <pmisiak@mirantis.com>', 'Szymon Banka <sbanka@mirantis.com>', 'Bartosz Kupidura <bkupidura@mirantis.com>', 'Alexander Zatserklyany <azatserklyany@mirantis.com>']
 
 # The plugin is compatible with releases in the list
 releases:

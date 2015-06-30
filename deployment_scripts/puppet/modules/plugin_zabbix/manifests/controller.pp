@@ -66,8 +66,14 @@ class plugin_zabbix::controller {
     enable      => false,
     require     => File[$plugin_zabbix::params::server_config],
   }
+  service { "${plugin_zabbix::params::server_service}-started":
+    ensure    => running,
+    name      => "p_${plugin_zabbix::params::server_service}",
+    enable    => true,
+    provider  => 'pacemaker',
+  }
 
-  File['zabbix-server-ocf'] -> Service["${plugin_zabbix::params::server_service}-init-stopped"]
+  File['zabbix-server-ocf'] -> Service["${plugin_zabbix::params::server_service}-init-stopped"] -> Service["${plugin_zabbix::params::server_service}-started"]
 
   cron { 'zabbix db_clean':
     ensure      => 'present',
@@ -75,6 +81,13 @@ class plugin_zabbix::controller {
     command     => "${plugin_zabbix::params::server_scripts}/db_clean.sh",
     user        => 'root',
     minute      => '*/5',
+  }
+
+  plugin_zabbix::db::mysql_db { $plugin_zabbix::params::db_name:
+    user     => $plugin_zabbix::params::db_user,
+    password => $plugin_zabbix::params::db_password,
+    host     => $plugin_zabbix::params::db_ip,
+    #require  => Exec['prepare-schema-2'],
   }
 
   if $plugin_zabbix::params::frontend {
