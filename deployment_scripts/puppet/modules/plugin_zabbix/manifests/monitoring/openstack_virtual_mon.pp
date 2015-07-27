@@ -25,6 +25,8 @@ class plugin_zabbix::monitoring::openstack_virtual_mon {
         command => '/etc/zabbix/scripts/query_db.py instance_error';
       'db.services.offline.nova.query':
         command => '/etc/zabbix/scripts/query_db.py services_offline_nova';
+      'db.services.offline.neutron.query':
+        command => '/etc/zabbix/scripts/query_db.py services_offline_neutron';
       'db.instance.count.query':
         command => '/etc/zabbix/scripts/query_db.py instance_count';
       'db.cpu.total.query':

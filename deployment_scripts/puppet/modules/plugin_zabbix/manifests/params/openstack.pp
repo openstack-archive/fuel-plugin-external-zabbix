@@ -27,6 +27,7 @@ class plugin_zabbix::params::openstack {
   $access_hash           = hiera('access')
   $keystone_hash         = hiera('keystone')
   $nova_hash             = hiera('nova')
+  $neutron_hash          = hiera('neutron_config')
   $cinder_hash           = hiera('cinder')
   $rabbit_hash           = hiera('rabbit')
 
@@ -35,6 +36,7 @@ class plugin_zabbix::params::openstack {
   $access_tenant         = $access_hash['tenant']
   $keystone_db_password  = $keystone_hash['db_password']
   $nova_db_password      = $nova_hash['db_password']
+  $neutron_db_password   = $neutron_hash['database']['passwd']
   $cinder_db_password    = $cinder_hash['db_password']
   $rabbit_password       = $rabbit_hash['password']
   $rabbitmq_service_name = 'rabbitmq-server'
