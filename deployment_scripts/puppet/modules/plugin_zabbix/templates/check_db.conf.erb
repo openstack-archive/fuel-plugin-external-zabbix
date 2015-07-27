@@ -35,3 +35,7 @@ ram_used_query=select ifnull(sum(memory_mb), 0) from instances where deleted=0 a
 #Count offline services - cinder
 services_offline_cinder_connection=mysql://cinder:<%= scope.lookupvar('plugin_zabbix::params::openstack::cinder_db_password') %>@<%= scope.lookupvar('plugin_zabbix::params::openstack::db_vip') %>/cinder
 services_offline_cinder_query=select count(*) from services where disabled=0 and deleted=0 and timestampdiff(SECOND,updated_at,utc_timestamp())>60
+
+#Count offline services - neutron
+services_offline_neutron_connection=mysql://neutron:<%= scope.lookupvar('plugin_zabbix::params::openstack::neutron_db_password') %>@<%= scope.lookupvar('plugin_zabbix::params::openstack::db_vip') %>/neutron
+services_offline_neutron_query=select count(*) from agents where admin_state_up=1 and timestampdiff(SECOND,heartbeat_timestamp,utc_timestamp())>60
