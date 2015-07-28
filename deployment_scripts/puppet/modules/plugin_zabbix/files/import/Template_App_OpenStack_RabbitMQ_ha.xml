@@ -421,6 +421,36 @@
     </templates>
     <triggers>
         <trigger>
+            <expression>{Template App OpenStack HA RabbitMQ:rabbitmq.unmirror.queues.last(0)}>0</expression>
+            <name>RabbitMQ queues are not mirrored</name>
+            <url/>
+            <status>0</status>
+            <priority>3</priority>
+            <description/>
+            <type>0</type>
+            <dependencies/>
+        </trigger>
+        <trigger>
+            <expression>{Template App OpenStack HA RabbitMQ:rabbitmq.queues.without.consumers.last(0)}>0</expression>
+            <name>RabbitMQ queues consumers missing</name>
+            <url/>
+            <status>0</status>
+            <priority>3</priority>
+            <description/>
+            <type>0</type>
+            <dependencies/>
+        </trigger>
+        <trigger>
+            <expression>{Template App OpenStack HA RabbitMQ:rabbitmq.missing.nodes.last(0)}>0</expression>
+            <name>RabbitMQ nodes missing from cluster</name>
+            <url/>
+            <status>0</status>
+            <priority>3</priority>
+            <description/>
+            <type>0</type>
+            <dependencies/>
+        </trigger>
+        <trigger>
             <expression>{Template App OpenStack HA RabbitMQ:net.tcp.port[,4369].last(0)}=0</expression>
             <name>RabbitMQ EPMD service is down on {HOST.NAME}</name>
             <url/>
