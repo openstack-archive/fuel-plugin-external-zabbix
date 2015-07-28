@@ -81,16 +81,21 @@ class RabbitmqAPI(object):
         self.logger.critical(missing_nodes)
 
     def get_unmirror_queues(self):
+        response = self.get_http('nodes')
+        if (len(response) < 2):
+            self.logger.critical(0)
+            return
+
         response = self.get_http('queues')
         unmirror_queues = 0
         for queue in response:
-            if 'x-ha-policy' in queue['arguments']:
+            if ('policy' in queue and
+                queue['policy'] == 'ha-all'):
                 unmirror_queues += 1
-            if ('synchronised_slave_nodes' in queue and
+                if ('synchronised_slave_nodes' in queue and
                     len(queue['synchronised_slave_nodes']) > 0):
-                unmirror_queues -= 1
+                    unmirror_queues -= 1
         self.logger.critical(unmirror_queues)
-
 
 def usage():
     print("check_rabbit.py usage:\n \
