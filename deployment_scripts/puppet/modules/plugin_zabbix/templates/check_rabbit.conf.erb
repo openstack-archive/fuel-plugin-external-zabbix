@@ -1,5 +1,5 @@
 [rabbitmq]
-log_level=DEBUG
+log_level=CRITICAL
 user=<%= scope.lookupvar('plugin_zabbix::params::openstack::rabbit_user') %>
 password=<%= scope.lookupvar('plugin_zabbix::params::openstack::rabbit_password') %>
 host=http://<%= scope.lookupvar('plugin_zabbix::params::host_ip') %>:15672

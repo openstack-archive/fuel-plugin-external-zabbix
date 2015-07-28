@@ -16,6 +16,7 @@
 class plugin_zabbix::monitoring::rabbitmq_mon {
 
   include plugin_zabbix::params
+  $service_name = 'rabbitmq-server'
 
   #RabbitMQ server
   if defined_in_state(Class['Rabbitmq']) {
@@ -31,6 +32,14 @@ class plugin_zabbix::monitoring::rabbitmq_mon {
       path        => ['/usr/sbin', '/usr/bin', '/sbin', '/bin' ],
       unless      => 'rabbitmq-plugins list -m -E rabbitmq_management | grep -q rabbitmq_management',
       environment => 'HOME=/root',
+      notify      => Service['rabbitmq-server'],
+    }
+
+    service { 'rabbitmq-server':
+      ensure   => 'running',
+      name     => "p_${service_name}",
+      enable   => true,
+      provider => 'pacemaker',
     }
 
     firewall {'992 rabbitmq management':
