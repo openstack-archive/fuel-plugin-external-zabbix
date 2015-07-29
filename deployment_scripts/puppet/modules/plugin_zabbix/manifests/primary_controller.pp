@@ -38,18 +38,8 @@ class plugin_zabbix::primary_controller {
     },
   }
 
-  cs_colocation { 'vip_management-with-zabbix-server':
-    ensure     => present,
-    score      => 'INFINITY',
-    primitives => [
-        'vip__management',
-        "p_${plugin_zabbix::params::server_service}"
-    ],
-  }
-
   File[$plugin_zabbix::params::server_config] -> File['zabbix-server-ocf'] -> Cs_resource["p_${plugin_zabbix::params::server_service}"]
   Service["${plugin_zabbix::params::server_service}-init-stopped"] -> Cs_resource["p_${plugin_zabbix::params::server_service}"]
-  Cs_resource["p_${plugin_zabbix::params::server_service}"] -> Cs_colocation['vip_management-with-zabbix-server']
   Cs_resource["p_${plugin_zabbix::params::server_service}"] -> Service["${plugin_zabbix::params::server_service}-started"]
 
 }
