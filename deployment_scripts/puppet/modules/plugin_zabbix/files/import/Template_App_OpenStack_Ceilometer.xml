@@ -70,7 +70,7 @@
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>crm.node.check[p_openstack-ceilometer-agent-central]</key>
+                    <key>crm.node.check[p_ceilometer-agent-central]</key>
                     <delay>30</delay>
                     <history>90</history>
                     <trends>365</trends>
@@ -154,7 +154,7 @@
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>crm.node.check[p_openstack-ceilometer-alarm-evaluator]</key>
+                    <key>crm.node.check[p_ceilometer-alarm-evaluator]</key>
                     <delay>30</delay>
                     <history>90</history>
                     <trends>365</trends>
@@ -367,7 +367,7 @@
     </templates>
     <triggers>
         <trigger>
-            <expression>{Template App OpenStack Ceilometer:proc.num[python,ceilometer,,ceilometer-agent-central].last(0)}=0 &amp; {Template App OpenStack Ceilometer:crm.node.check[p_openstack-ceilometer-agent-central].last(0)}=1</expression>
+            <expression>{Template App OpenStack Ceilometer:proc.num[python,ceilometer,,ceilometer-agent-central].last(0)}=0 &amp; {Template App OpenStack Ceilometer:crm.node.check[p_ceilometer-agent-central].last(0)}=1</expression>
             <name>Ceilometer Alarm Agent Central service is down on {HOST.NAME}</name>
             <url/>
             <status>0</status>
@@ -377,7 +377,7 @@
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template App OpenStack Ceilometer:proc.num[python,ceilometer,,ceilometer-alarm-evaluator].last(0)}=0 &amp; {Template App OpenStack Ceilometer:crm.node.check[p_openstack-ceilometer-alarm-evaluator].last(0)}=1</expression>
+            <expression>{Template App OpenStack Ceilometer:proc.num[python,ceilometer,,ceilometer-alarm-evaluator].last(0)}=0 &amp; {Template App OpenStack Ceilometer:crm.node.check[p_ceilometer-alarm-evaluator].last(0)}=1</expression>
             <name>Ceilometer Alarm Alarm Evaluator service is down on {HOST.NAME}</name>
             <url/>
             <status>0</status>
