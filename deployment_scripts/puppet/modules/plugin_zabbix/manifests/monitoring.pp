@@ -21,6 +21,12 @@ class plugin_zabbix::monitoring(
 
   $api_hash = $plugin_zabbix::params::api_hash
 
+  if !defined(Package['snmp-mibs-downloader']) {
+    package { 'snmp-mibs-downloader':
+      ensure => 'present',
+    }
+  }
+
   if is_ip_address($::public_address) {
     plugin_zabbix_usermacro { "${plugin_zabbix::params::host_name} IP_PUBLIC":
       host  => $plugin_zabbix::params::host_name,
