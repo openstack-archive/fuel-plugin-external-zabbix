@@ -29,43 +29,43 @@ class plugin_zabbix::params {
 
   case $::operatingsystem {
     'Ubuntu', 'Debian': {
-      $agent_pkg                = 'zabbix-agent'
-      $server_pkg               = 'zabbix-server-mysql'
-      $frontend_pkg             = 'zabbix-frontend-php'
+      $agent_pkg                  = 'zabbix-agent'
+      $server_pkg                 = 'zabbix-server-mysql'
+      $frontend_pkg               = 'zabbix-frontend-php'
 
-      $agent_service            = 'zabbix-agent'
-      $server_service           = 'zabbix-server'
+      $agent_service              = 'zabbix-agent'
+      $server_service             = 'zabbix-server'
 
-      $agent_log_file           = '/var/log/zabbix/zabbix_agentd.log'
-      $server_log_file          = '/var/log/zabbix/zabbix_server.log'
+      $agent_log_file             = '/var/log/zabbix/zabbix_agentd.log'
+      $server_log_file            = '/var/log/zabbix/zabbix_server.log'
 
-      $prepare_schema_cmd       = 'cat /usr/share/zabbix-server-mysql/schema.sql /usr/share/zabbix-server-mysql/images.sql > /tmp/zabbix/schema.sql'
+      $prepare_schema_cmd         = 'cat /usr/share/zabbix-server-mysql/schema.sql /usr/share/zabbix-server-mysql/images.sql > /tmp/zabbix/schema.sql'
 
-      $frontend_service         = 'apache2'
-      $frontend_service_config  = '/etc/zabbix/apache.conf'
-      $frontend_config          = '/etc/zabbix/web/zabbix.conf.php'
-      $php_config               = '/etc/php5/apache2/php.ini'
-      $php_mysql_pkg            = 'php5-mysql'
+      $frontend_service           = 'apache2'
+      $frontend_service_config    = '/etc/zabbix/apache.conf'
+      $frontend_config            = '/etc/zabbix/web/zabbix.conf.php'
+      $php_config                 = '/etc/php5/apache2/php.ini'
+      $php_mysql_pkg              = 'php5-mysql'
     }
     'CentOS', 'RedHat': {
 
-      $agent_pkg                = 'zabbix-agent'
-      $server_pkg               = 'zabbix-server-mysql'
-      $frontend_pkg             = 'zabbix-web-mysql'
+      $agent_pkg                  = 'zabbix-agent'
+      $server_pkg                 = 'zabbix-server-mysql'
+      $frontend_pkg               = 'zabbix-web-mysql'
 
-      $agent_service            = 'zabbix-agent'
-      $server_service           = 'zabbix-server'
+      $agent_service              = 'zabbix-agent'
+      $server_service             = 'zabbix-server'
 
-      $agent_log_file           = '/var/log/zabbix/zabbix_agentd.log'
-      $server_log_file          = '/var/log/zabbix/zabbix_server.log'
+      $agent_log_file             = '/var/log/zabbix/zabbix_agentd.log'
+      $server_log_file            = '/var/log/zabbix/zabbix_server.log'
 
-      $prepare_schema_cmd       = 'cat /usr/share/doc/zabbix-server-mysql-`zabbix_server -V | awk \'/v[0-9].[0-9].[0-9]/{print substr($3, 2)}\'`/create/schema.sql /usr/share/doc/zabbix-server-mysql-`zabbix_server -V | awk \'/v[0-9].[0-9].[0-9]/{print substr($3, 2)}\'`/create/images.sql > /tmp/zabbix/schema.sql'
+      $prepare_schema_cmd         = 'cat /usr/share/doc/zabbix-server-mysql-`zabbix_server -V | awk \'/v[0-9].[0-9].[0-9]/{print substr($3, 2)}\'`/create/schema.sql /usr/share/doc/zabbix-server-mysql-`zabbix_server -V | awk \'/v[0-9].[0-9].[0-9]/{print substr($3, 2)}\'`/create/images.sql > /tmp/zabbix/schema.sql'
 
-      $frontend_service         = 'httpd'
-      $frontend_service_config  = '/etc/httpd/conf.d/zabbix.conf'
-      $frontend_config          = '/etc/zabbix/web/zabbix.conf.php'
-      $php_config               = '/etc/php.ini'
-      $php_mysql_pkg            = 'php-mysql'
+      $frontend_service           = 'httpd'
+      $frontend_service_config    = '/etc/httpd/conf.d/zabbix.conf'
+      $frontend_config            = '/etc/zabbix/web/zabbix.conf.php'
+      $php_config                 = '/etc/php.ini'
+      $php_mysql_pkg              = 'php-mysql'
     }
     default: {
       fail("unsuported osfamily ${::osfamily}, currently Debian and Redhat are the only supported platforms")
@@ -130,12 +130,14 @@ class plugin_zabbix::params {
   #zabbix hosts params
   $host_name                         = $::fqdn
   $host_ip                           = $::internal_address
-  $host_groups                       = ['ManagedByPuppet', 'Controllers', 'Computes', 'Ceph Cluster', 'Ceph MONs', 'Ceph OSDs']
+  $all_host_groups                   = ['ManagedByPuppet', 'Controllers', 'Computes', 'Ceph Cluster', 'Ceph MONs', 'Ceph OSDs']
   $host_groups_base                  = ['ManagedByPuppet', 'Linux servers']
   $host_groups_controller            = ['Controllers']
+  $host_groups_ceph_controller       = ['Ceph MONs']
   $host_groups_compute               = ['Computes']
-  $host_groups_ceph_controller       = ['Controllers', 'Ceph MONs', 'Ceph Cluster']
-  $host_groups_ceph_osd              = ['Ceph OSDs', 'Ceph Cluster']
+  $host_groups_ceph                  = ['Ceph Cluster']
+  $host_groups_ceph_osd              = ['Ceph OSDs']
+
 
   #zabbix admin
   $zabbix_admin_username             = $zabbix_hash['username']
