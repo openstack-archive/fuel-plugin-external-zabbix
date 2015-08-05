@@ -18,6 +18,9 @@ class plugin_zabbix::agent(
 ) {
 
   include plugin_zabbix::params
+  $role     = hiera(role)
+  $settings = hiera(storage)
+  $use_ceph = $settings['volumes_ceph']
 
   $zabbix_agent_port = $plugin_zabbix::params::zabbix_ports['backend_agent'] ? { unset=>$plugin_zabbix::params::zabbix_ports['agent'], default=>$plugin_zabbix::params::zabbix_ports['backend_agent'] }
 
@@ -50,9 +53,15 @@ class plugin_zabbix::agent(
   }
 
   if defined_in_state(Class['openstack::controller']){
-    $groups = union($plugin_zabbix::params::host_groups_base, $plugin_zabbix::params::host_groups_controller)
+    if $use_ceph == true {
+      $groups = union($plugin_zabbix::params::host_groups_base, $plugin_zabbix::params::host_groups_ceph_controller)
+    } else {
+      $groups = union($plugin_zabbix::params::host_groups_base, $plugin_zabbix::params::host_groups_controller)
+    }
   } elsif defined_in_state(Class['openstack::compute']) {
     $groups = union($plugin_zabbix::params::host_groups_base, $plugin_zabbix::params::host_groups_compute)
+  } elsif $role == 'ceph-osd' {
+    $groups = union($plugin_zabbix::params::host_groups_base, $plugin_zabbix::params::host_groups_ceph_osd)
   } else {
     $groups = $plugin_zabbix::params::host_groups_base
   }
