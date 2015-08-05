@@ -82,6 +82,9 @@ class plugin_zabbix::params {
   $agent_include             = '/etc/zabbix/zabbix_agentd.d'
   $agent_scripts             = '/etc/zabbix/scripts'
   $has_userparameters        = true
+  $agent_start_agents        = '10'
+  $agent_log_file_size       = '1024'
+  $agent_timeout             = '30'
 
   #server parameters
   $vip_name                  = 'zbx_vip_mgmt'
