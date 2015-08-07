@@ -48,7 +48,7 @@ StartPollers=10
 # Listen port for trapper. Default port number is 10051. This parameter
 # must be between 1024 and 32767
 
-ListenPort=<%= if scope.lookupvar('plugin_zabbix::params::zabbix_ports')['backend_server'].nil?; scope.lookupvar('plugin_zabbix::params::zabbix_ports')['server']; else scope.lookupvar('plugin_zabbix::params::zabbix_ports')['backend_server']; end %>
+ListenPort=<%= scope.lookupvar('plugin_zabbix::params::zabbix_ports')['server'] %>
 
 # Source IP address for outgouing connections
 #SourceIP=
@@ -56,7 +56,7 @@ ListenPort=<%= if scope.lookupvar('plugin_zabbix::params::zabbix_ports')['backen
 # Listen interface for trapper. Trapper will listen all network interfaces
 # if this parameter is missing.
 
-#ListenIP=127.0.0.1
+ListenIP=<%= scope.lookupvar('plugin_zabbix::params::server_ip') %>
 
 # How often ZABBIX will perform housekeeping procedure
 # (in hours)

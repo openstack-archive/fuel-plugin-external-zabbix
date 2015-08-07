@@ -1,0 +1,7 @@
+- id: "zabbix"
+  default_mapping: "management"
+  properties:
+    subnet: true
+    gateway: false
+    vip:
+      - name: "zabbix_vip_management"

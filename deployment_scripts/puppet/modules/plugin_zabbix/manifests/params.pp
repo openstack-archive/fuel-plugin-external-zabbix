@@ -18,10 +18,10 @@ class plugin_zabbix::params {
   include plugin_zabbix::params::openstack
 
   $zabbix_hash = hiera('zabbix_monitoring')
+  $network_metadata = hiera('network_metadata')
 
   $zabbix_ports = {
     server         => '10051',
-    backend_server => '10052',
     agent          => '10049',
     backend_agent  => '10050',
     api            => '80',
@@ -82,7 +82,7 @@ class plugin_zabbix::params {
   $has_userparameters        = true
 
   #server parameters
-  $server_ip                 = hiera('management_vip')
+  $server_ip                 = $network_metadata['vips']['zabbix_vip_management']['ipaddr']
   $server_config             = '/etc/zabbix/zabbix_server.conf'
   $server_scripts            = '/etc/zabbix/externalscripts'
   $server_config_template    = 'plugin_zabbix/zabbix_server.conf.erb'

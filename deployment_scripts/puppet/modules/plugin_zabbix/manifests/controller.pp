@@ -72,7 +72,14 @@ class plugin_zabbix::controller {
     enable    => true,
     provider  => 'pacemaker',
   }
+  service { "vip__${plugin_zabbix::params::server_service}-started":
+    ensure    => running,
+    name      => "vip__${plugin_zabbix::params::server_service}",
+    enable    => true,
+    provider  => 'pacemaker',
+  }
 
+  Service["vip__${plugin_zabbix::params::server_service}-started"] -> Service["${plugin_zabbix::params::server_service}-started"]
   File['zabbix-server-ocf'] -> Service["${plugin_zabbix::params::server_service}-init-stopped"] -> Service["${plugin_zabbix::params::server_service}-started"]
 
   cron { 'zabbix db_clean':
@@ -98,12 +105,16 @@ class plugin_zabbix::controller {
 
   include plugin_zabbix::ha::haproxy
 
-  $zabbix_server_port = $plugin_zabbix::params::zabbix_ports['backend_server'] ? { unset=>$plugin_zabbix::params::zabbix_ports['server'], default=>$plugin_zabbix::params::zabbix_ports['backend_server'] }
+  firewall { '998 zabbix agent vip':
+    proto     => 'tcp',
+    action    => 'accept',
+    port      => $plugin_zabbix::params::zabbix_ports['agent'],
+  }
 
-  firewall { '997 zabbix server':
-    proto       => 'tcp',
-    action      => 'accept',
-    port        => $zabbix_server_port,
+  firewall { '998 zabbix server vip':
+    proto     => 'tcp',
+    action    => 'accept',
+    port      => $plugin_zabbix::params::zabbix_ports['server'],
   }
 
 }

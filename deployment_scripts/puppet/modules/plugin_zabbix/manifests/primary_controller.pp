@@ -24,7 +24,28 @@ class plugin_zabbix::primary_controller {
     before      => [ Class['plugin_zabbix::frontend'], Cs_resource["p_${plugin_zabbix::params::server_service}"] ],
   }
 
+  cs_resource { "vip__${plugin_zabbix::params::server_service}":
+    before          => Cs_group["group__${plugin_zabbix::params::server_service}"],
+    primitive_class => 'ocf',
+    provided_by     => 'heartbeat',
+    primitive_type  => 'IPaddr2',
+    operations      => {
+      'monitor' => { 'interval' => '3', 'timeout' => '30' },
+      'start'   => { 'interval' => '0', 'timeout' => '30' },
+      'stop'    => { 'interval' => '0', 'timeout' => '30' },
+    },
+    metadata        => {
+      'migration-threshold' => '3',
+      'failure-timeout'     => '60',
+      'resource-stickiness' => '1',
+    },
+    parameters      => {
+      'ip'                  => $plugin_zabbix::params::server_ip,
+    },
+  }
+
   cs_resource { "p_${plugin_zabbix::params::server_service}":
+    before          => Cs_group["group__${plugin_zabbix::params::server_service}"],
     primitive_class => 'ocf',
     provided_by     => $plugin_zabbix::params::ocf_scripts_provider,
     primitive_type  => $plugin_zabbix::params::server_service,
@@ -38,8 +59,13 @@ class plugin_zabbix::primary_controller {
     },
   }
 
+  cs_group { "group__${plugin_zabbix::params::server_service}":
+    primitives => ["vip__${plugin_zabbix::params::server_service}", "p_${plugin_zabbix::params::server_service}"],
+  }
+
   File[$plugin_zabbix::params::server_config] -> File['zabbix-server-ocf'] -> Cs_resource["p_${plugin_zabbix::params::server_service}"]
   Service["${plugin_zabbix::params::server_service}-init-stopped"] -> Cs_resource["p_${plugin_zabbix::params::server_service}"]
-  Cs_resource["p_${plugin_zabbix::params::server_service}"] -> Service["${plugin_zabbix::params::server_service}-started"]
+  Cs_group["group__${plugin_zabbix::params::server_service}"] -> Service["${plugin_zabbix::params::server_service}-started"]
+  Cs_resource["vip__${plugin_zabbix::params::server_service}"] -> Cs_resource["p_${plugin_zabbix::params::server_service}"]
 
 }
