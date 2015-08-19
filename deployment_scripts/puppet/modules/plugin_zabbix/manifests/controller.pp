@@ -72,14 +72,7 @@ class plugin_zabbix::controller {
     enable    => true,
     provider  => 'pacemaker',
   }
-  service { "vip__${plugin_zabbix::params::server_service}-started":
-    ensure    => running,
-    name      => "vip__${plugin_zabbix::params::server_service}",
-    enable    => true,
-    provider  => 'pacemaker',
-  }
 
-  Service["vip__${plugin_zabbix::params::server_service}-started"] -> Service["${plugin_zabbix::params::server_service}-started"]
   File['zabbix-server-ocf'] -> Service["${plugin_zabbix::params::server_service}-init-stopped"] -> Service["${plugin_zabbix::params::server_service}-started"]
 
   cron { 'zabbix db_clean':
