@@ -16,6 +16,7 @@
 class plugin_zabbix::controller {
 
   include plugin_zabbix::params
+  $host = regsubst($plugin_zabbix::params::db_ip,'^(\d+\.\d+\.\d+\.)\d+','\1%')
 
   file { '/etc/dbconfig-common':
     ensure    => directory,
@@ -72,14 +73,7 @@ class plugin_zabbix::controller {
     enable    => true,
     provider  => 'pacemaker',
   }
-  service { "vip__${plugin_zabbix::params::server_service}-started":
-    ensure    => running,
-    name      => "vip__${plugin_zabbix::params::server_service}",
-    enable    => true,
-    provider  => 'pacemaker',
-  }
 
-  Service["vip__${plugin_zabbix::params::server_service}-started"] -> Service["${plugin_zabbix::params::server_service}-started"]
   File['zabbix-server-ocf'] -> Service["${plugin_zabbix::params::server_service}-init-stopped"] -> Service["${plugin_zabbix::params::server_service}-started"]
 
   cron { 'zabbix db_clean':
@@ -93,7 +87,7 @@ class plugin_zabbix::controller {
   plugin_zabbix::db::mysql_db { $plugin_zabbix::params::db_name:
     user     => $plugin_zabbix::params::db_user,
     password => $plugin_zabbix::params::db_password,
-    host     => $plugin_zabbix::params::db_ip,
+    host     => $host,
   }
 
   if $plugin_zabbix::params::frontend {

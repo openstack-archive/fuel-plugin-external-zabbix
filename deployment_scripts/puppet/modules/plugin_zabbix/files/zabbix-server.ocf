@@ -30,6 +30,7 @@
 #   OCF_RESKEY_user
 #   OCF_RESKEY_pid
 #   OCF_RESKEY_additional_parameters
+#   OCF_RESKEY_namespace
 #######################################################################
 # Initialization:
 
@@ -44,9 +45,11 @@ SERVICE_NAME="Zabbix-server"
 
 OCF_RESKEY_binary_default="/usr/sbin/zabbix_server"
 OCF_RESKEY_pid_default="/var/run/zabbix/zabbix_server.pid"
+OCF_RESKEY_namespace_default="haproxy"
 
 : ${OCF_RESKEY_binary=${OCF_RESKEY_binary_default}}
 : ${OCF_RESKEY_pid=${OCF_RESKEY_pid_default}}
+: ${OCF_RESKEY_namespace=${OCF_RESKEY_namespace_default}}
 
 #######################################################################
 
@@ -93,6 +96,14 @@ The pid file to use for this process
 </longdesc>
 <shortdesc lang="en">zabbix-server pid file</shortdesc>
 <content type="string" default="${OCF_RESKEY_pid_default}" />
+</parameter>
+
+<parameter name="namespace" unique="0" required="0">
+<longdesc lang="en">
+The namespace in which this process should be run
+</longdesc>
+<shortdesc lang="en">zabbix-server namespace</shortdesc>
+<content type="string" default="${OCF_RESKEY_namespace_default}" />
 </parameter>
 
 </parameters>
@@ -165,7 +176,7 @@ service_start() {
         return $OCF_SUCCESS
     fi
 
-    ${OCF_RESKEY_binary}
+    ip netns exec ${OCF_RESKEY_namespace} ${OCF_RESKEY_binary}
 
     # Spin waiting for the server to come up.
     # Let the CRM/LRM time us out if required

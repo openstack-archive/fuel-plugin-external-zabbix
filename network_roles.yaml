@@ -5,3 +5,4 @@
     gateway: false
     vip:
       - name: "zabbix_vip_management"
+        namespace: "haproxy"
