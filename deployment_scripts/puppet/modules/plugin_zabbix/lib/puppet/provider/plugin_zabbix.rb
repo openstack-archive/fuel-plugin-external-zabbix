@@ -40,6 +40,8 @@ class Puppet::Provider::Plugin_zabbix < Puppet::Provider
   end
 
   def self.make_request(api, body)
+    http.use_ssl = uri.scheme == 'https'
+    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
     uri = URI.parse(api["endpoint"])
     http = Net::HTTP.new(uri.host, uri.port)
     request = Net::HTTP::Post.new(uri.request_uri)
