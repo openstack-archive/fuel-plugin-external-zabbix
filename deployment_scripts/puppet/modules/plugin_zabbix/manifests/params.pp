@@ -19,6 +19,7 @@ class plugin_zabbix::params {
 
   $zabbix_hash = hiera('zabbix_monitoring')
   $network_metadata = hiera('network_metadata')
+  $ssl = hiera('public_ssl')
 
   $zabbix_ports = {
     server         => '10051',
@@ -119,7 +120,12 @@ class plugin_zabbix::params {
   $zabbix_admin_password_md5 = md5($zabbix_hash['password'])
 
   #api
-  $api_url = "http://${server_ip}:${zabbix_ports['api']}${frontend_base}/api_jsonrpc.php"
+  if ssl[horizon] == 'true' {
+    $api_url = "https://${server_ip}:${zabbix_ports['api']}${frontend_base}/api_jsonrpc.php"
+  }else{
+    $api_url = "http://${server_ip}:${zabbix_ports['api']}${frontend_base}/api_jsonrpc.php"
+  }
+
   $api_hash = { endpoint => $api_url,
                 username => $zabbix_admin_username,
                 password => $zabbix_admin_password, }
