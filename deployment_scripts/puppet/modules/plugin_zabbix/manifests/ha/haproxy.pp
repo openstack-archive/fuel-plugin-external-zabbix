@@ -20,6 +20,7 @@ class plugin_zabbix::ha::haproxy {
   Haproxy::Listen         { use_include => true }
 
   $public_vip = hiera('public_vip')
+  $ssl = hiera('public_ssl')
   $zabbix_vip = $plugin_zabbix::params::server_ip
   $nodes_hash = hiera('nodes')
   $primary_controller_nodes = filter_nodes($nodes_hash,'role','primary-controller')
@@ -48,11 +49,20 @@ class plugin_zabbix::ha::haproxy {
     balancermember_options => 'check inter 5000 rise 2 fall 3',
   }
 
-  file_line { 'add binding to management VIP for horizon and zabbix':
-    path   => '/etc/haproxy/conf.d/015-horizon.cfg',
-    after  => 'listen horizon',
-    line   => "  bind ${zabbix_vip}:80",
-    before => Exec['haproxy reload'],
+  if ssl[horizon] == true {
+    file_line { 'add binding to management VIP for horizon and zabbix via ssl':
+      path   => '/etc/haproxy/conf.d/017-horizon-ssl.cfg',
+      after  => 'listen horizon-ssl',
+      line   => "  bind ${zabbix_vip}:443 ssl crt /var/lib/astute/haproxy/public_haproxy.pem",
+      before => Exec['haproxy reload'],
+    }
+  }else{
+    file_line { 'add binding to management VIP for horizon and zabbix':
+      path   => '/etc/haproxy/conf.d/015-horizon.cfg',
+      after  => 'listen horizon',
+      line   => "  bind ${zabbix_vip}:80",
+      before => Exec['haproxy reload'],
+    }
   }
 
   exec { 'haproxy reload':
