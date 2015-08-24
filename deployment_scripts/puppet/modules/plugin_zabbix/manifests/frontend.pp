@@ -43,6 +43,14 @@ class plugin_zabbix::frontend {
     require   => Package[$plugin_zabbix::params::frontend_pkg],
   }
 
+  file_line { 'php memory_limit':
+    path      => $plugin_zabbix::params::frontend_service_config,
+    line      => '    php_value memory_limit 256M',
+    match     => 'php_value memory_limit',
+    notify    => Service[$plugin_zabbix::params::frontend_service],
+    require   => Package[$plugin_zabbix::params::frontend_pkg],
+  }
+
   file_line { 'set expose_php to off':
     path      => $plugin_zabbix::params::php_config,
     match     => 'expose_php =',
