@@ -82,7 +82,7 @@ class plugin_zabbix::params {
   $has_userparameters        = true
 
   #server parameters
-  $vip_name                  = 'zabbix_vip_management'
+  $vip_name                  = 'zbx_vip_mgmt'
   $server_ip                 = $network_metadata['vips'][$vip_name]['ipaddr']
   $server_config             = '/etc/zabbix/zabbix_server.conf'
   $server_scripts            = '/etc/zabbix/externalscripts'
