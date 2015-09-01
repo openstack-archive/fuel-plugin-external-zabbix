@@ -26,6 +26,14 @@ class plugin_zabbix::frontend {
 
   package { $plugin_zabbix::params::frontend_pkg:
     ensure    => present,
+    require   => [
+      File['/etc/dbconfig-common/zabbix-server-mysql.conf'],
+      Package[$plugin_zabbix::params::php_mysql_pkg]
+    ],
+  }
+
+  package { $plugin_zabbix::params::php_mysql_pkg:
+    ensure    => present
   }
 
   file { $plugin_zabbix::params::frontend_config:
