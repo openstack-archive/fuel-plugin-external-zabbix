@@ -34,7 +34,14 @@ class plugin_zabbix::controller {
 
   package { $plugin_zabbix::params::server_pkg:
     ensure    => present,
-    require   => File['/etc/dbconfig-common/zabbix-server-mysql.conf'],
+    require   => [
+      File['/etc/dbconfig-common/zabbix-server-mysql.conf'],
+      Package[$plugin_zabbix::params::php_mysql_pkg]
+    ],
+  }
+
+  package { $plugin_zabbix::params::php_mysql_pkg:
+    ensure    => present
   }
 
   file { $plugin_zabbix::params::server_config:
