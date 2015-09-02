@@ -45,6 +45,7 @@ class plugin_zabbix::params {
       $frontend_service_config  = '/etc/zabbix/apache.conf'
       $frontend_config          = '/etc/zabbix/web/zabbix.conf.php'
       $php_config               = '/etc/php5/apache2/php.ini'
+      $php_mysql_pkg            = 'php5-mysql'
     }
     'CentOS', 'RedHat': {
 
@@ -64,6 +65,7 @@ class plugin_zabbix::params {
       $frontend_service_config  = '/etc/httpd/conf.d/zabbix.conf'
       $frontend_config          = '/etc/zabbix/web/zabbix.conf.php'
       $php_config               = '/etc/php.ini'
+      $php_mysql_pkg            = 'php-mysql'
     }
     default: {
       fail("unsuported osfamily ${::osfamily}, currently Debian and Redhat are the only supported platforms")
