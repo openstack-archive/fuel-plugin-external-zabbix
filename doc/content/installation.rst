@@ -22,6 +22,9 @@ To install Zabbix plugin, follow these steps:
     # cd /tmp
     # fuel plugins --install zabbix_monitoring-2.0-2.0.0-1.noarch.rpm
 
+    Plugin requires access to distribution repository, external or local
+    mirror, in order to download necessary packages for proper installation.
+
 #. Check if the plugin was installed successfully::
 
     # fuel plugins
