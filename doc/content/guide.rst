@@ -29,6 +29,18 @@ Environment configuration
    `Mirantis OpenStack User Guide <http://docs.mirantis.com/openstack/fuel
    /fuel-7.0/user-guide.html#create-a-new-openstack-environment>`_.
 
+#. If you are using Fuel network-template you should add new roles mapping
+   named 'zabbix'. Here is a sample::
+
+    network_scheme:
+        mgmt:
+            endpoints:
+            - br-mgmt
+            roles:
+                zabbix: br-mgmt
+
+   For details see :ref:`templates-networking-ops`.
+
 Zabbix frontend UI
 =========================
 
