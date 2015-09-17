@@ -24,6 +24,7 @@ INSERT INTO `usrgrp` (`usrgrpid`, `name`, `gui_access`, `users_status`, `debug_m
 INSERT INTO `usrgrp` (`usrgrpid`, `name`, `gui_access`, `users_status`, `debug_mode`) VALUES (9,'Disabled',0,1,0);
 INSERT INTO `usrgrp` (`usrgrpid`, `name`, `gui_access`, `users_status`, `debug_mode`) VALUES (11,'Enabled debug mode',0,0,1);
 INSERT INTO `usrgrp` (`usrgrpid`, `name`, `gui_access`, `users_status`, `debug_mode`) VALUES (12,'No access to the frontend',2,0,0);
+INSERT INTO `users_groups` (`id`, `usrgrpid`, `userid`) VALUES (1,9,2);
 INSERT INTO `scripts` (`scriptid`, `name`, `command`, `host_access`, `usrgrpid`, `groupid`, `description`, `confirmation`, `type`, `execute_on`) VALUES (1,'Ping','/bin/ping -c 3 {HOST.CONN} 2>&1',2,NULL,NULL,'','',0,1);
 INSERT INTO `scripts` (`scriptid`, `name`, `command`, `host_access`, `usrgrpid`, `groupid`, `description`, `confirmation`, `type`, `execute_on`) VALUES (2,'Traceroute','/bin/traceroute {HOST.CONN} 2>&1',2,NULL,NULL,'','',0,1);
 INSERT INTO `actions` (`actionid`, `name`, `eventsource`, `evaltype`, `status`, `esc_period`, `def_shortdata`, `def_longdata`, `recovery_msg`, `r_shortdata`, `r_longdata`) VALUES (2,'Auto discovery. Linux servers.',1,0,1,0,'','',0,'','');
