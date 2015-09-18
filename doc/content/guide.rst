@@ -39,7 +39,8 @@ Environment configuration
             roles:
                 zabbix: br-mgmt
 
-   For details see :ref:`templates-networking-ops`.
+   For details see `Using Networking Templates <https://github.com/stackforge
+   /fuel-docs/blob/master/pages/operations/templates-networking-ops.rst>`_.
 
 Zabbix frontend UI
 =========================
