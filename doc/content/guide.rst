@@ -39,7 +39,8 @@ Environment configuration
             roles:
                 zabbix: br-mgmt
 
-   For details see :ref:`templates-networking-ops`.
+   For details see `Using Networking Templates <https://docs.mirantis.com
+   /openstack/fuel/fuel-7.0/operations.html#using-networking-templates>`_.
 
 Zabbix frontend UI
 =========================
