@@ -21,8 +21,9 @@ Environment configuration
       :width: 50%
 
    You could see default passwords by clicking on the eye icon. It is highly
-   recommended to change default passwords for Zabbix Administrator and
-   Zabbix Database.
+   recommended to change default passwords for Zabbix Administrator,
+   Zabbix Database and Monitoring user. User 'monitoring' will be added in
+   Openstack for zabbix API checks.
 
 #. Adjust other environment settings to your requirements and deploy the
    environment. For more information, see

@@ -46,7 +46,7 @@ class plugin_zabbix::monitoring::openstack_virtual_mon {
       'vip.keystone.api.status':
         command => "/etc/zabbix/scripts/check_api.py keystone http ${::plugin_zabbix::params::openstack::keystone_vip} 5000";
       'vip.keystone.service.api.status':
-        command => "/etc/zabbix/scripts/check_api.py keystone_service http ${::plugin_zabbix::params::openstack::keystone_vip} 35357";
+        command => "/etc/zabbix/scripts/check_api.py keystone_service http ${::plugin_zabbix::params::openstack::keystone_vip} 5000";
       'vip.cinder.api.status':
         command => "/etc/zabbix/scripts/check_api.py cinder http ${::plugin_zabbix::params::openstack::cinder_vip} 8776";
     }
