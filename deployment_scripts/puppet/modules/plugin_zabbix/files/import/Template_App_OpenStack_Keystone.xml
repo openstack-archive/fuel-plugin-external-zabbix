@@ -187,7 +187,7 @@
     </templates>
     <triggers>
         <trigger>
-            <expression>{Template App OpenStack Keystone:net.tcp.service[http,{$IP_MANAGEMENT},35357].last(0)}=0</expression>
+            <expression>{Template App OpenStack Keystone:net.tcp.service[http,{$IP_MANAGEMENT},5000].last(0)}=0</expression>
             <name>Keystone Admin API Server service is down on {HOST.NAME}</name>
             <url/>
             <status>0</status>

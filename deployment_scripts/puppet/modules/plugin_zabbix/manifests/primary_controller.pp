@@ -17,6 +17,18 @@ class plugin_zabbix::primary_controller {
 
   include plugin_zabbix::controller
 
+    ensure_resource('keystone_user', 'monitoring', {
+      'ensure'   => 'present',
+      'enabled'  => true,
+      'password' => $plugin_zabbix::params::openstack::monitoring_password,
+      'email'    => 'monitoring@localhost',
+    }) #->
+    
+    ensure_resource('keystone_user_role', 'monitoring@services', {
+      ensure => present,
+      roles  => '_member_',
+    })
+
   class { 'plugin_zabbix::db':
     db_ip       => $plugin_zabbix::params::db_ip,
     db_password => $plugin_zabbix::params::db_password,
@@ -46,5 +58,4 @@ class plugin_zabbix::primary_controller {
   File[$plugin_zabbix::params::server_config] -> File['zabbix-server-ocf'] -> Cs_resource["p_${plugin_zabbix::params::server_service}"]
   Service["${plugin_zabbix::params::server_service}-init-stopped"] -> Cs_resource["p_${plugin_zabbix::params::server_service}"]
   Cs_group["group__${plugin_zabbix::params::server_service}"] -> Service["${plugin_zabbix::params::server_service}-started"]
-
 }
