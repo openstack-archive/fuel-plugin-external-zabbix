@@ -33,7 +33,7 @@ class plugin_zabbix::monitoring::keystone_mon {
       'keystone.api.status':
         command => "/etc/zabbix/scripts/check_api.py keystone http ${::internal_address} 5000";
       'keystone.service.api.status':
-        command => "/etc/zabbix/scripts/check_api.py keystone_service http ${::internal_address} 35357";
+        command => "/etc/zabbix/scripts/check_api.py keystone_service http ${::internal_address} 5000";
     }
   }
 }

@@ -23,6 +23,8 @@ class plugin_zabbix::params::openstack {
   $glance_vip            = hiera('management_vip')
   $cinder_vip            = hiera('management_vip')
   $rabbit_vip            = hiera('management_vip')
+  $zabbix_hash           = hiera('zabbix_monitoring')
+
 
   $access_hash           = hiera('access')
   $keystone_hash         = hiera('keystone')
@@ -31,9 +33,9 @@ class plugin_zabbix::params::openstack {
   $cinder_hash           = hiera('cinder')
   $rabbit_hash           = hiera('rabbit')
 
-  $access_user           = $access_hash['user']
-  $access_password       = $access_hash['password']
-  $access_tenant         = $access_hash['tenant']
+  $access_user           = 'monitoring'
+  $access_password       = $zabbix_hash['monitoring_password']
+  $access_tenant         = 'services'
   $keystone_db_password  = $keystone_hash['db_password']
   $nova_db_password      = $nova_hash['db_password']
   $neutron_db_password   = $neutron_hash['database']['passwd']
