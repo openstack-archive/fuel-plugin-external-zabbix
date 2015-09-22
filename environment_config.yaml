@@ -17,3 +17,9 @@ attributes:
     description: "Password for Zabbix Database"
     weight: 30
     type: "password"
+  monitoring_password:
+    value: "Og1aaQivaiv1"
+    label: "monitoring password"
+    description: "Password for Monitoring user"
+    weight: 30
+    type: "password"

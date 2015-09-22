@@ -21,26 +21,14 @@ Environment configuration
       :width: 50%
 
    You could see default passwords by clicking on the eye icon. It is highly
-   recommended to change default passwords for Zabbix Administrator and
-   Zabbix Database.
+   recommended to change default passwords for Zabbix Administrator,
+   Zabbix Database and Monitoring user. User 'monitoring' will be added in
+   Openstack for zabbix API checks.
 
 #. Adjust other environment settings to your requirements and deploy the
    environment. For more information, see
    `Mirantis OpenStack User Guide <http://docs.mirantis.com/openstack/fuel
    /fuel-7.0/user-guide.html#create-a-new-openstack-environment>`_.
-
-#. If you are using Fuel network-template you should add new roles mapping
-   named 'zabbix'. Here is a sample::
-
-    network_scheme:
-        mgmt:
-            endpoints:
-            - br-mgmt
-            roles:
-                zabbix: br-mgmt
-
-   For details see `Using Networking Templates <https://docs.mirantis.com
-   /openstack/fuel/fuel-7.0/operations.html#using-networking-templates>`_.
 
 Zabbix frontend UI
 =========================
