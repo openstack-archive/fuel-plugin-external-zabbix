@@ -1,8 +1,8 @@
 [api]
 log_level=CRITICAL
-user=<%= scope.lookupvar('plugin_zabbix::params::openstack::access_user') %>
+user=monitoring
 password=<%= scope.lookupvar('plugin_zabbix::params::openstack::access_password') %>
-tenant=<%= scope.lookupvar('plugin_zabbix::params::openstack::access_tenant') %>
+tenant=services
 keystone_endpoints=http://<%= scope.lookupvar('plugin_zabbix::params::openstack::keystone_vip') %>:5000/v2.0
 nova_os_map=v2/%(tenant_id)s/flavors
 glance_map=v1/images
