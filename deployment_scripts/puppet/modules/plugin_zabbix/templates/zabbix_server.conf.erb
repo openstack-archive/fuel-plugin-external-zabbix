@@ -51,7 +51,7 @@ StartPollers=10
 ListenPort=<%= scope.lookupvar('plugin_zabbix::params::zabbix_ports')['server'] %>
 
 # Source IP address for outgouing connections
-#SourceIP=
+SourceIP=<%= scope.lookupvar('plugin_zabbix::params::server_ip') %>
 
 # Listen interface for trapper. Trapper will listen all network interfaces
 # if this parameter is missing.
