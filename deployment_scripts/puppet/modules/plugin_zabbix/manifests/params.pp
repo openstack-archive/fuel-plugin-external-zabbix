@@ -93,6 +93,7 @@ class plugin_zabbix::params {
   $server_ensure             = present
   $ocf_scripts_dir           = '/usr/lib/ocf/resource.d'
   $ocf_scripts_provider      = 'fuel'
+  $cache_size                = '16M'
 
   #frontend parameters
   $frontend                  = true
