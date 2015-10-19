@@ -36,7 +36,7 @@ class plugin_zabbix::primary_controller {
   }
 
   cs_resource { "p_${plugin_zabbix::params::server_service}":
-    before          => Cs_group["group__${plugin_zabbix::params::server_service}"],
+    before          => Cs_rsc_colocation['vip-with-zabbix'],
     primitive_class => 'ocf',
     provided_by     => $plugin_zabbix::params::ocf_scripts_provider,
     primitive_type  => $plugin_zabbix::params::server_service,
@@ -50,11 +50,13 @@ class plugin_zabbix::primary_controller {
     },
   }
 
-  cs_group { "group__${plugin_zabbix::params::server_service}":
+  cs_rsc_colocation { 'vip-with-zabbix':
+    ensure     => present,
+    score      => 'INFINITY',
     primitives => ["vip__${plugin_zabbix::params::vip_name}", "p_${plugin_zabbix::params::server_service}"],
   }
 
   File[$plugin_zabbix::params::server_config] -> File['zabbix-server-ocf'] -> Cs_resource["p_${plugin_zabbix::params::server_service}"]
   Service["${plugin_zabbix::params::server_service}-init-stopped"] -> Cs_resource["p_${plugin_zabbix::params::server_service}"]
-  Cs_group["group__${plugin_zabbix::params::server_service}"] -> Service["${plugin_zabbix::params::server_service}-started"]
+  Cs_rsc_colocation['vip-with-zabbix'] -> Service["${plugin_zabbix::params::server_service}-started"]
 }
