@@ -13,7 +13,7 @@
 # Number of pre-forked instances of pollers
 # Default value is 5
 # This parameter must be between 0 and 255
-StartPollers=10
+StartPollers=<% scope.lookupvar('plugin_zabbix::params::server_start_pollers') %>
 
 # Number of pre-forked instances of IPMI pollers
 # Default value is 0
@@ -23,12 +23,12 @@ StartPollers=10
 # Number of pre-forked instances of pollers for unreachable hosts
 # Default value is 1
 # This parameter must be between 0 and 255
-#StartPollersUnreachable=1
+StartPollersUnreachable=<% scope.lookupvar('plugin_zabbix::params::server_start_pollers_unreachable') %>
 
 # Number of pre-forked instances of trappers
 # Default value is 5
 # This parameter must be between 0 and 255
-#StartTrappers=5
+StartTrappers=<% scope.lookupvar('plugin_zabbix::params::server_start_trappers') %>
 
 # Number of pre-forked instances of ICMP pingers
 # Default value is 1
@@ -162,3 +162,24 @@ DBPassword=<%= scope.lookupvar('plugin_zabbix::params::db_password') %>
 # Connect to MySQL using Unix socket?
 
 #DBSocket=/var/run/mysqld/mysqld.sock
+
+## Set Caching Options
+
+# How often Zabbix will perform update of configuration cache, in seconds.
+# Default 60
+CacheUpdateFrequency=<%= scope.lookupvar('plugin_zabbix::params::server_cache_update_frequency') %>
+# Size of history cache, in bytes.
+# Shared memory size for storing history data. Default 8M
+HistoryCacheSize=<%= scope.lookupvar('plugin_zabbix::params::server_history_cache_size') %>
+
+# Size of trend cache, in bytes.
+# Shared memory size for storing trends data. Default 4M
+TrendCacheSize=<%= scope.lookupvar('plugin_zabbix::params::server_trend_cache_size') %>
+
+# Size of text history cache, in bytes.
+# Shared memory size for storing character, text or log history data. Default 16M
+HistoryTextCacheSize=<%= scope.lookupvar('plugin_zabbix::params::server_history_text_cache_size') %>
+
+# How long a database query may take before being logged (in milliseconds).
+# Default 0: don't log slow queries
+LogSlowQueries=<%= scope.lookupvar('plugin_zabbix::params::server_log_slow_queries') %>

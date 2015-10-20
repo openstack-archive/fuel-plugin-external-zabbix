@@ -72,58 +72,75 @@ class plugin_zabbix::params {
     }
   }
 
-  $agent_listen_ip           = $::internal_address
-  $agent_source_ip           = $::internal_address
+  $agent_listen_ip                   = $::internal_address
+  $agent_source_ip                   = $::internal_address
 
-  $agent_config_template     = 'plugin_zabbix/zabbix_agentd.conf.erb'
-  $agent_config              = '/etc/zabbix/zabbix_agentd.conf'
-  $agent_pid_file            = '/var/run/zabbix/zabbix_agentd.pid'
+  $agent_config_template             = 'plugin_zabbix/zabbix_agentd.conf.erb'
+  $agent_config                      = '/etc/zabbix/zabbix_agentd.conf'
+  $agent_pid_file                    = '/var/run/zabbix/zabbix_agentd.pid'
 
-  $agent_include             = '/etc/zabbix/zabbix_agentd.d'
-  $agent_scripts             = '/etc/zabbix/scripts'
-  $has_userparameters        = true
-  $agent_start_agents        = '10'
-  $agent_log_file_size       = '1024'
-  $agent_timeout             = '30'
+  $agent_include                     = '/etc/zabbix/zabbix_agentd.d'
+  $agent_scripts                     = '/etc/zabbix/scripts'
+  $has_userparameters                = true
+  $agent_start_agents                = '10'
+  $agent_log_file_size               = '1024'
+  $agent_timeout                     = '30'
 
   #server parameters
-  $vip_name                  = 'zbx_vip_mgmt'
-  $server_ip                 = $network_metadata['vips'][$vip_name]['ipaddr']
-  $server_config             = '/etc/zabbix/zabbix_server.conf'
-  $server_scripts            = '/etc/zabbix/externalscripts'
-  $server_config_template    = 'plugin_zabbix/zabbix_server.conf.erb'
-  $server_node_id            = 0
-  $server_ensure             = present
-  $ocf_scripts_dir           = '/usr/lib/ocf/resource.d'
-  $ocf_scripts_provider      = 'fuel'
-  $server_cache_size         = '16M'
+  $vip_name                          = 'zbx_vip_mgmt'
+  $server_ip                         = $network_metadata['vips'][$vip_name]['ipaddr']
+  $server_config                     = '/etc/zabbix/zabbix_server.conf'
+  $server_scripts                    = '/etc/zabbix/externalscripts'
+  $server_config_template            = 'plugin_zabbix/zabbix_server.conf.erb'
+  $server_node_id                    = 0
+  $server_ensure                     = present
+  $ocf_scripts_dir                   = '/usr/lib/ocf/resource.d'
+  $ocf_scripts_provider              = 'fuel'
+  $server_start_pollers              = '30'
+  $server_start_pollers_unreachable  = '30'
+  $server_start_trappers             = '15'
+  $server_cache_update_frequency     = '60'
+  if $::memoryfree_mb >= 8 {
+    $server_cache_size                 = '32M'
+    $server_history_cache_size         = '128M'
+    $server_trend_cache_size           = '512M'
+    $server_history_text_cache_size    = '128M'
+  } else { # use minimal configuration
+    $server_cache_size                 = '16M'
+    $server_history_cache_size         = '8M'
+    $server_trend_cache_size           = '4M'
+    $server_history_text_cache_size    = '16M'
+  }
+  $server_log_slow_queries           = '1000'
 
   #frontend parameters
-  $frontend                  = true
-  $frontend_ensure           = present
-  $frontend_base             = '/zabbix'
-  $frontend_config_template  = 'plugin_zabbix/zabbix.conf.php.erb'
+  $frontend                          = true
+  $frontend_ensure                   = present
+  $frontend_base                     = '/zabbix'
+  $frontend_config_template          = 'plugin_zabbix/zabbix.conf.php.erb'
 
   #common parameters
-  $db_type                   = 'MYSQL'
-  $db_ip                     = hiera('management_vip')
-  $db_port                   = '3306'
-  $db_name                   = 'zabbix'
-  $db_user                   = 'zabbix'
-  $db_password               = $zabbix_hash['db_password']
+  $db_type                           = 'MYSQL'
+  $db_ip                             = hiera('management_vip')
+  $db_port                           = '3306'
+  $db_name                           = 'zabbix'
+  $db_user                           = 'zabbix'
+  $db_password                       = $zabbix_hash['db_password']
 
   #zabbix hosts params
-  $host_name                 = $::fqdn
-  $host_ip                   = $::internal_address
-  $host_groups               = ['ManagedByPuppet', 'Controllers', 'Computes']
-  $host_groups_base          = ['ManagedByPuppet', 'Linux servers']
-  $host_groups_controller    = ['Controllers']
-  $host_groups_compute       = ['Computes']
+  $host_name                         = $::fqdn
+  $host_ip                           = $::internal_address
+  $host_groups                       = ['ManagedByPuppet', 'Controllers', 'Computes', 'Ceph Cluster', 'Ceph MONs', 'Ceph OSDs']
+  $host_groups_base                  = ['ManagedByPuppet', 'Linux servers']
+  $host_groups_controller            = ['Controllers']
+  $host_groups_compute               = ['Computes']
+  $host_groups_ceph_controller       = ['Controllers', 'Ceph MONs', 'Ceph Cluster']
+  $host_groups_ceph_osd              = ['Ceph OSDs', 'Ceph Cluster']
 
   #zabbix admin
-  $zabbix_admin_username     = $zabbix_hash['username']
-  $zabbix_admin_password     = $zabbix_hash['password']
-  $zabbix_admin_password_md5 = md5($zabbix_hash['password'])
+  $zabbix_admin_username             = $zabbix_hash['username']
+  $zabbix_admin_password             = $zabbix_hash['password']
+  $zabbix_admin_password_md5         = md5($zabbix_hash['password'])
 
   #api
   if $ssl[horizon] == true {
