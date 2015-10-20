@@ -55,8 +55,7 @@ class Puppet::Provider::Plugin_zabbix < Puppet::Provider
     result
   end
 
-  def self.api_request(api, body)
-    retries = 10
+  def self.api_request(api, body, retries=10)
     cooldown = 1
     Puppet.info("Trying to make a request to zabbix server, will try #{retries} times with #{cooldown} seconds between tries")
     retries.times do |r|
@@ -71,8 +70,8 @@ class Puppet::Provider::Plugin_zabbix < Puppet::Provider
         return result["result"]
 
       rescue => e
-          if r == retries
-            Puppet.error("Out of retries to make a request to zabbix server (#{retries})")
+          if r == retries - 1
+            Puppet.warning("Out of retries to make a request to zabbix server (#{retries})")
             raise e
           else
             Puppet.warning("Could not make request to zabbix: #{e}, sleeping #{cooldown*r} (retry (##{r}/#{retries}))")

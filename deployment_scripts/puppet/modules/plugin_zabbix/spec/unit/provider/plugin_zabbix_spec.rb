@@ -27,12 +27,12 @@ describe Puppet::Provider::Plugin_zabbix do
       mock = {'error' => {'code' => 0,
                           'message' => 'test error',
                           'data' => 'not a real error'}}
-      Puppet::Provider::Plugin_zabbix.expects(:make_request).returns(mock)
+      Puppet::Provider::Plugin_zabbix.expects(:make_request).at_least(2).returns(mock)
       fake_api = {'endpoint' => 'http://localhost',
                   'username' => 'Admin',
                   'password' => 'zabbix'}
       expect {
-        cls.api_request(fake_api, {})
+        cls.api_request(fake_api, {}, 2)
       }.to raise_error(Puppet::Error, /Zabbix API returned/)
     end
 
