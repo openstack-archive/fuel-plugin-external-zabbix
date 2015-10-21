@@ -13,7 +13,7 @@ ListenPort=<%= if scope.lookupvar('plugin_zabbix::params::zabbix_ports')['backen
 
 #SourceIP=<%= scope.lookupvar('plugin_zabbix::params::agent_source_ip') %>
 
-StartAgents=5
+StartAgents=<%= scope.lookupvar('plugin_zabbix::params::agent_start_agents') %>
 
 #RefreshActiveChecks=120
 
@@ -27,9 +27,9 @@ PidFile=<%= scope.lookupvar('plugin_zabbix::params::agent_pid_file') %>
 
 LogFile=<%= scope.lookupvar('plugin_zabbix::params::agent_log_file') %>
 
-LogFileSize=0
+LogFileSize=<%= scope.lookupvar('plugin_zabbix::params::agent_log_file_size') %>
 
-Timeout=10
+Timeout=<%= scope.lookupvar('plugin_zabbix::params::agent_timeout') %>
 
 <% if scope.lookupvar('plugin_zabbix::params::has_userparameters') %>
 Include=<%= scope.lookupvar('plugin_zabbix::params::agent_include') %>
