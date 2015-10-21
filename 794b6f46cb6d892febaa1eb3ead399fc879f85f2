@@ -1,0 +1,8 @@
+Verified+2: Jenkins
+Code-Review+2: Swann Croiset <scroiset@mirantis.com>
+Workflow+1: Swann Croiset <scroiset@mirantis.com>
+Submitted-by: Jenkins
+Submitted-at: Wed, 21 Oct 2015 11:15:38 +0000
+Reviewed-on: https://review.openstack.org/237988
+Project: openstack/fuel-plugin-external-zabbix
+Branch: refs/heads/master
