@@ -13,7 +13,7 @@
 # Number of pre-forked instances of pollers
 # Default value is 5
 # This parameter must be between 0 and 255
-StartPollers=<% scope.lookupvar('plugin_zabbix::params::server_start_pollers') %>
+StartPollers=<%= scope.lookupvar('plugin_zabbix::params::server_start_pollers') %>
 
 # Number of pre-forked instances of IPMI pollers
 # Default value is 0
@@ -23,12 +23,12 @@ StartPollers=<% scope.lookupvar('plugin_zabbix::params::server_start_pollers') %
 # Number of pre-forked instances of pollers for unreachable hosts
 # Default value is 1
 # This parameter must be between 0 and 255
-StartPollersUnreachable=<% scope.lookupvar('plugin_zabbix::params::server_start_pollers_unreachable') %>
+StartPollersUnreachable=<%= scope.lookupvar('plugin_zabbix::params::server_start_pollers_unreachable') %>
 
 # Number of pre-forked instances of trappers
 # Default value is 5
 # This parameter must be between 0 and 255
-StartTrappers=<% scope.lookupvar('plugin_zabbix::params::server_start_trappers') %>
+StartTrappers=<%= scope.lookupvar('plugin_zabbix::params::server_start_trappers') %>
 
 # Number of pre-forked instances of ICMP pingers
 # Default value is 1
