@@ -19,7 +19,7 @@ class plugin_zabbix::server::config {
 
   $api_hash = $plugin_zabbix::params::api_hash
 
-  plugin_zabbix_hostgroup { $plugin_zabbix::params::host_groups:
+  plugin_zabbix_hostgroup { $plugin_zabbix::params::all_host_groups:
     ensure   => present,
     api      => $api_hash,
   }
@@ -182,6 +182,21 @@ class plugin_zabbix::server::config {
   plugin_zabbix_configuration_import { 'Template_App_OpenStack_Ceph.xml Import':
     ensure   => present,
     xml_file => '/etc/zabbix/import/Template_App_OpenStack_Ceph.xml',
+    api      => $api_hash,
+  }
+  plugin_zabbix_configuration_import { 'Template_App_OpenStack_Ceph_Cluster.xml Import':
+    ensure   => present,
+    xml_file => '/etc/zabbix/import/Template_App_OpenStack_Ceph_Cluster.xml',
+    api      => $api_hash,
+  }
+  plugin_zabbix_configuration_import { 'Template_App_OpenStack_Ceph_MON.xml Import':
+    ensure   => present,
+    xml_file => '/etc/zabbix/import/Template_App_OpenStack_Ceph_MON.xml',
+    api      => $api_hash,
+  }
+  plugin_zabbix_configuration_import { 'Template_App_OpenStack_Ceph_OSD.xml Import':
+    ensure   => present,
+    xml_file => '/etc/zabbix/import/Template_App_OpenStack_Ceph_OSD.xml',
     api      => $api_hash,
   }
 

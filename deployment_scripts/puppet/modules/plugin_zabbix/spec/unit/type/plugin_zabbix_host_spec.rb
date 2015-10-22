@@ -77,10 +77,14 @@ describe 'Puppet::Type.type(:plugin_zabbix_host)' do
     }.to raise_error(Puppet::Error, /Parameter.+failed/)
   end
 
-  it 'should not accept array with empty strings for groups' do
+  it 'should not accept array with only empty strings for groups' do
     expect {
-      @zabbix_host[:groups] = ['hello', ""]
-    }.to raise_error(Puppet::Error, /Parameter.+failed/)
+      @zabbix_host[:groups] = ['', ""]
+    }.to raise_error(Puppet::Error, /groups array is empty/)
+  end
+
+  it 'should accept array with some empty strings for groups' do
+    @zabbix_host[:groups] = ['hello', "", 'foo']
   end
 
   it 'should accept valid hostname' do

@@ -65,10 +65,12 @@ Puppet::Type.newtype(:plugin_zabbix_host) do
 
     validate do |value|
       fail("groups is not an array") unless value.kind_of?(Array) or value.kind_of?(String)
-      fail("groups array is empty") if value.empty?
       if value.kind_of?(String) then
         value = [value]
       end
+      # Puppet stdlib concat() function append empty array by empty string
+      value.reject!{|i| i.empty?}
+      fail("groups array is empty") if value.empty?
       value.each do |item|
         fail("group name is not a string") unless item.kind_of?(String)
         fail("group name is empty") unless item =~ /.+/
