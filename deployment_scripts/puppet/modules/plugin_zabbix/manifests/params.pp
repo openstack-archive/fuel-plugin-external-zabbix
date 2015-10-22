@@ -100,7 +100,7 @@ class plugin_zabbix::params {
   $server_start_pollers_unreachable  = '30'
   $server_start_trappers             = '15'
   $server_cache_update_frequency     = '60'
-  if $::memoryfree_mb >= 8 {
+  if $::memoryfree_mb >= 800 {
     $server_cache_size                 = '32M'
     $server_history_cache_size         = '128M'
     $server_trend_cache_size           = '512M'
