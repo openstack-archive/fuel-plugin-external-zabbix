@@ -1,4 +1,4 @@
-#
+
 #    Copyright 2015 Mirantis, Inc.
 #
 #    Licensed under the Apache License, Version 2.0 (the "License"); you may
@@ -92,6 +92,11 @@ class plugin_zabbix::server::config {
   plugin_zabbix_configuration_import { 'Template_App_OpenStack_Nova_Conductor.xml Import':
     ensure   => present,
     xml_file => '/etc/zabbix/import/Template_App_OpenStack_Nova_Conductor.xml',
+    api      => $api_hash,
+  }
+  plugin_zabbix_configuration_import { 'Template_App_OpenStack_Nova_NoVNCProxy.xml Import':
+    ensure   => present,
+    xml_file => '/etc/zabbix/import/Template_App_OpenStack_Nova_NoVNCProxy.xml',
     api      => $api_hash,
   }
   plugin_zabbix_configuration_import { 'Template_App_OpenStack_Nova_Compute.xml Import':
