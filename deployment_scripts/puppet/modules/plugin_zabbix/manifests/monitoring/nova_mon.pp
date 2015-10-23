@@ -89,6 +89,14 @@ class plugin_zabbix::monitoring::nova_mon {
     }
   }
 
+  if defined_in_state(Class['nova::conductor']) {
+    plugin_zabbix_template_link { "${plugin_zabbix::params::host_name} Template App OpenStack Nova Scheduler":
+      host       => $plugin_zabbix::params::host_name,
+      template   => 'Template App OpenStack Nova Conductor',
+      api        => $plugin_zabbix::monitoring::api_hash,
+    }
+  }
+
   #Nova compute
   if defined_in_state(Class['nova::compute']) {
     plugin_zabbix_template_link { "${plugin_zabbix::params::host_name} Template App OpenStack Nova Compute":
