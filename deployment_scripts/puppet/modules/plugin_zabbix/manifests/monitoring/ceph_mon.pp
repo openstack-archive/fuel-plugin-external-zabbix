@@ -28,6 +28,11 @@ class plugin_zabbix::monitoring::ceph_mon {
         key     => 'ceph.health',
         command => '/etc/zabbix/scripts/ceph_health.sh'
     }
+    plugin_zabbix_template_link { "${plugin_zabbix::params::host_name} Template App OpenStack Ceph MON":
+      host     => $plugin_zabbix::params::host_name,
+      template => 'Template App OpenStack Ceph MON',
+      api      => $plugin_zabbix::monitoring::api_hash,
+    }
   }
   if defined_in_state(Class['ceph::osds']) {
     plugin_zabbix_template_link { "${plugin_zabbix::params::host_name} Template App OpenStack Ceph OSD":
