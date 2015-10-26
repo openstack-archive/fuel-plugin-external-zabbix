@@ -18,7 +18,7 @@ class plugin_zabbix::monitoring::neutron_mon {
   include plugin_zabbix::params
 
   # Neutron server
-  if defined_in_state(Class['::neutron']) and !defined_in_state(Class['openstack::compute']) {
+  if defined_in_state(Class['neutron::server']) {
 
     plugin_zabbix_template_link { "${plugin_zabbix::params::host_name} Template App OpenStack Neutron Server":
       host => $plugin_zabbix::params::host_name,
@@ -48,7 +48,7 @@ class plugin_zabbix::monitoring::neutron_mon {
   }
 
   # Neutron Metadata agent
-  if defined_in_state(Class['::neutron::agents::metadata']) {
+  if defined_in_state(Class['Neutron::Agents::Metadata']) {
     plugin_zabbix_template_link { "${plugin_zabbix::params::host_name} Template App OpenStack Neutron Metadata Agent":
       host => $plugin_zabbix::params::host_name,
       template => 'Template App OpenStack Neutron Metadata Agent',
@@ -57,7 +57,7 @@ class plugin_zabbix::monitoring::neutron_mon {
   }
 
   # Neutron L3 agent
-  if defined_in_state(Class['::neutron::agents::l3']) {
+  if defined_in_state(Class['Neutron::Agents::L3']) {
     plugin_zabbix_template_link { "${plugin_zabbix::params::host_name} Template App OpenStack Neutron L3 Agent":
       host => $plugin_zabbix::params::host_name,
       template => 'Template App OpenStack Neutron L3 Agent',
@@ -66,7 +66,7 @@ class plugin_zabbix::monitoring::neutron_mon {
   }
 
   # Neutron DHCP agent
-  if defined_in_state(Class['::neutron::agents::dhcp']) {
+  if defined_in_state(Class['Neutron::Agents::Dhcp']) {
     plugin_zabbix_template_link { "${plugin_zabbix::params::host_name} Template App OpenStack Neutron DHCP Agent":
       host => $plugin_zabbix::params::host_name,
       template => 'Template App OpenStack Neutron DHCP Agent',

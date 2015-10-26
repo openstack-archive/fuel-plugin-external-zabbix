@@ -106,4 +106,13 @@ class plugin_zabbix::monitoring::nova_mon {
       api        => $plugin_zabbix::monitoring::api_hash,
     }
   }
+
+  #Nova conductor
+  if defined_in_state(Class['nova::conductor']) {
+    plugin_zabbix_template_link { "${::fqdn} Template App OpenStack Nova Conductor":
+      host       => $plugin_zabbix::params::host_name
+      template   => 'Template App OpenStack Nova Conductor',
+      api        => $plugin_zabbix::monitoring::api_hash,
+    }
+  }
 }

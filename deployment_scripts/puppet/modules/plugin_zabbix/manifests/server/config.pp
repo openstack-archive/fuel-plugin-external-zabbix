@@ -104,6 +104,11 @@ class plugin_zabbix::server::config {
     xml_file => '/etc/zabbix/import/Template_App_OpenStack_Nova_Network.xml',
     api      => $api_hash,
   }
+  plugin_zabbix_configuration_import { 'Template_App_OpenStack_Nova_Conductor.xml Import':
+    ensure   => present,
+    xml_file => '/etc/zabbix/import/Template_App_OpenStack_Nova_Conductor.xml',
+    api      => $api_hash,
+  }
 
   # Keystone templates
   plugin_zabbix_configuration_import { 'Template_App_OpenStack_Keystone.xml Import':
