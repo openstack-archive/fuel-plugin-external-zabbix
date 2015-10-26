@@ -196,6 +196,12 @@ class plugin_zabbix::server::config {
     api      => $api_hash,
   }
 
+  plugin_zabbix_configuration_import { 'Template_App_OpenStack_Ceph_MON.xml Import':
+    ensure   => present,
+    xml_file => '/etc/zabbix/import/Template_App_OpenStack_Ceph_MON.xml',
+    api      => $api_hash,
+  }
+
   # RabbitMQ template
   plugin_zabbix_configuration_import { 'Template_App_OpenStack_RabbitMQ_ha.xml Import':
     ensure   => present,
