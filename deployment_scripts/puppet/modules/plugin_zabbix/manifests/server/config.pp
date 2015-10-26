@@ -178,10 +178,16 @@ class plugin_zabbix::server::config {
     api      => $api_hash,
   }
 
-  # Ceph template
+  # Ceph templates
   plugin_zabbix_configuration_import { 'Template_App_OpenStack_Ceph.xml Import':
     ensure   => present,
     xml_file => '/etc/zabbix/import/Template_App_OpenStack_Ceph.xml',
+    api      => $api_hash,
+  }
+
+  plugin_zabbix_configuration_import { 'Template_App_OpenStack_Ceph_OSD.xml Import':
+    ensure   => present,
+    xml_file => '/etc/zabbix/import/Template_App_OpenStack_Ceph_OSD.xml',
     api      => $api_hash,
   }
 

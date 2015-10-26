@@ -134,8 +134,9 @@ class plugin_zabbix::params {
   $host_groups_base                  = ['ManagedByPuppet', 'Linux servers']
   $host_groups_controller            = ['Controllers']
   $host_groups_compute               = ['Computes']
-  $host_groups_ceph_controller       = ['Controllers', 'Ceph MONs', 'Ceph Cluster']
-  $host_groups_ceph_osd              = ['Ceph OSDs', 'Ceph Cluster']
+  $host_groups_ceph_cluster          = ['Ceph Cluster']
+  $host_groups_ceph_mon              = ['Ceph MONs']
+  $host_groups_ceph_osd              = ['Ceph OSDs']
 
   #zabbix admin
   $zabbix_admin_username             = $zabbix_hash['username']
