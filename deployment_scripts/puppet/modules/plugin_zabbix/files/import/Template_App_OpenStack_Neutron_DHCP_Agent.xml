@@ -115,7 +115,7 @@
     </templates>
     <triggers>
         <trigger>
-            <expression>{Template App OpenStack Neutron DHCP Agent:proc.num[python,neutron,,neutron-dhcp-agent].last(0)}=0 &amp; {Template App OpenStack Neutron DHCP Agent:crm.node.check[p_neutron-dhcp-agent].last(0)}=1</expression>
+            <expression>{Template App OpenStack Neutron DHCP Agent:proc.num[python,neutron,,neutron-dhcp-agent].last(0)}=0 &amp; {Template App OpenStack Neutron DHCP Agent:crm.node.check[p_neutron-dhcp-agent].last(0)}=0</expression>
             <name>Neutron DHCP Agent process is not running on {HOST.NAME}</name>
             <url/>
             <status>0</status>
