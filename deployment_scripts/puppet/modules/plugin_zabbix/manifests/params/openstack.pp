@@ -16,6 +16,7 @@
 class plugin_zabbix::params::openstack {
 
   $virtual_cluster_name  = 'OpenStackCluster'
+  $ceph_virtual_cluster_name  = 'CephCluster'
 
   $keystone_vip          = hiera('management_vip')
   $db_vip                = hiera('management_vip')
