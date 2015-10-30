@@ -226,6 +226,12 @@ class plugin_zabbix::server::config {
       template => 'Template App OpenStack Ceph Cluster',
       api      => $plugin_zabbix::params::api_hash,
     }
+    ->
+    plugin_zabbix_configuration_import { 'Screens_Ceph_Cluster.xml Import':
+      ensure   => present,
+      xml_file => '/etc/zabbix/import/Screens_Ceph_Cluster.xml',
+      api      => $plugin_zabbix::params::api_hash,
+    }
   }
 
   # RabbitMQ template
