@@ -57,10 +57,40 @@ class plugin_zabbix::agent(
     $groups = $plugin_zabbix::params::host_groups_base
   }
 
+  if defined_in_state(Class['ceph::osds']){
+    $ceph_osd_group = $plugin_zabbix::params::host_groups_ceph_osd
+    $ceph_osd_used = true
+  } else {
+    $ceph_osd_group = []
+    $ceph_osd_used = false
+  }
+
+  if defined_in_state(Class['ceph::mon']){
+    $ceph_mon_group = $plugin_zabbix::params::host_groups_ceph_mon
+    $ceph_mon_used = true
+  } else {
+    $ceph_mon_group = []
+    $ceph_mon_used = false
+  }
+
+  if $ceph_osd_used or $ceph_mon_used {
+    $ceph_cluster_group = $plugin_zabbix::params::host_groups_ceph_cluster
+  } else {
+    $ceph_cluster_group = []
+  }
+
+  if ! empty($ceph_cluster_group){
+    $all_groups = parseyaml(
+      inline_template('<%= @groups.concat(@ceph_mon_group).concat(@ceph_osd_group).concat(@ceph_cluster_group).to_yaml %>')
+    )
+  } else {
+    $all_groups = $groups
+  }
+
   plugin_zabbix_host { $plugin_zabbix::params::host_name:
     host   => $plugin_zabbix::params::host_name,
     ip     => $plugin_zabbix::params::host_ip,
-    groups => $groups,
+    groups => $all_groups,
     api    => $api_hash
   }
 }
