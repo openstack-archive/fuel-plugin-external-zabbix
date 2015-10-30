@@ -33,6 +33,12 @@ class plugin_zabbix::monitoring::mysql_mon {
         command => 'mysqladmin --defaults-extra-file=/var/lib/zabbix/.my.cnf ping | grep -c alive';
       'mysql.version':
         command => 'mysql -V';
+      'db.wsrep.status.query':
+        command => "/etc/zabbix/scripts/query_db.py wsrep_status";
+      'db.wsrep.ready.query':
+        command => "/etc/zabbix/scripts/query_db.py wsrep_ready";
+      'db.wsrep.connected.query':
+        command => "/etc/zabbix/scripts/query_db.py wsrep_connected";
     }
 
     file { "${::plugin_zabbix::params::agent_include}/userparameter_mysql.conf":
