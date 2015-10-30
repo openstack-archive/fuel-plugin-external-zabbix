@@ -29,6 +29,9 @@ class plugin_zabbix::agent(
 
   package { $plugin_zabbix::params::agent_pkg:
     ensure => present
+  } ->
+  package { $plugin_zabbix::params::sender_pkg:
+    ensure => present
   }
   ->
   file { $plugin_zabbix::params::agent_include:
