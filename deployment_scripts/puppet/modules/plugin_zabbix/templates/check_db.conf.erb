@@ -39,3 +39,11 @@ services_offline_cinder_query=select count(*) from services where disabled=0 and
 #Count offline services - neutron
 services_offline_neutron_connection=mysql://neutron:<%= scope.lookupvar('plugin_zabbix::params::openstack::neutron_db_password') %>@<%= scope.lookupvar('plugin_zabbix::params::openstack::db_vip') %>/neutron
 services_offline_neutron_query=select count(*) from agents where admin_state_up=1 and timestampdiff(SECOND,heartbeat_timestamp,utc_timestamp())>60
+
+# WSREP
+wsrep_status_connection=mysql://nova:<%= scope.lookupvar('plugin_zabbix::params::openstack::nova_db_password') %>@<%= scope.lookupvar('plugin_zabbix::params::openstack::db_vip') %>/nova
+wsrep_status_query=select replace(replace(replace(VARIABLE_VALUE, 'Primary', 1), 'Non-Primary', 2), 'Disconnected', 3) as value from information_schema.GLOBAL_STATUS where VARIABLE_NAME = 'wsrep_cluster_status';
+wsrep_ready_connection=mysql://nova:<%= scope.lookupvar('plugin_zabbix::params::openstack::nova_db_password') %>@<%= scope.lookupvar('plugin_zabbix::params::openstack::db_vip') %>/nova
+wsrep_ready_query=select replace(replace(VARIABLE_VALUE, 'ON', 1), 'OFF', 0) as value from information_schema.GLOBAL_STATUS where VARIABLE_NAME = 'wsrep_ready'
+wsrep_connected_connection=mysql://nova:<%= scope.lookupvar('plugin_zabbix::params::openstack::nova_db_password') %>@<%= scope.lookupvar('plugin_zabbix::params::openstack::db_vip') %>/nova
+wsrep_connected_query=select replace(replace(VARIABLE_VALUE, 'ON', 1), 'OFF', 0) as value from information_schema.GLOBAL_STATUS where VARIABLE_NAME = 'wsrep_connected'
