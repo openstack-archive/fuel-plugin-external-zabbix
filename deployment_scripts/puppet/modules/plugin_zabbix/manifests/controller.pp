@@ -66,6 +66,11 @@ class plugin_zabbix::controller {
 
   File['zabbix-server-ocf'] -> Service["${plugin_zabbix::params::server_service}-init-stopped"] -> Service["${plugin_zabbix::params::server_service}-started"]
 
+  sysctl::value { 'kernel.shmmax':
+    value  => $plugin_zabbix::params::sysctl_kernel_shmmax,
+    notify => Service["${plugin_zabbix::params::server_service}-started"],
+  }
+
   plugin_zabbix::db::mysql_db { $plugin_zabbix::params::db_name:
     user     => $plugin_zabbix::params::db_user,
     password => $plugin_zabbix::params::db_password,
