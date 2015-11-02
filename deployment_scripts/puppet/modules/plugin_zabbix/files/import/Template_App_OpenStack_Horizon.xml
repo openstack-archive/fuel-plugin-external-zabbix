@@ -67,7 +67,7 @@
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>proc.num[,apache,,/usr/sbin/httpd]</key>
+                    <key>proc.num[,{$APACHE_USER},,/usr/sbin/httpd]</key>
                     <delay>30</delay>
                     <history>90</history>
                     <trends>365</trends>
@@ -148,7 +148,7 @@
     </templates>
     <triggers>
         <trigger>
-            <expression>{Template App OpenStack Horizon:proc.num[,apache,,/usr/sbin/httpd].last(0)}=0</expression>
+            <expression>{Template App OpenStack Horizon:proc.num[,{$APACHE_USER},,/usr/sbin/httpd].last(0)}=0</expression>
             <name>Horizon HTTP Server process is not running on {HOST.NAME}</name>
             <url/>
             <status>0</status>
