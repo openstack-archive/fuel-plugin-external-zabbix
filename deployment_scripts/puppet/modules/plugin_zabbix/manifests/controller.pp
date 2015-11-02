@@ -76,14 +76,6 @@ class plugin_zabbix::controller {
 
   File['zabbix-server-ocf'] -> Service["${plugin_zabbix::params::server_service}-init-stopped"] -> Service["${plugin_zabbix::params::server_service}-started"]
 
-  cron { 'zabbix db_clean':
-    ensure      => 'present',
-    require     => File[$plugin_zabbix::params::server_scripts],
-    command     => "${plugin_zabbix::params::server_scripts}/db_clean.sh",
-    user        => 'root',
-    minute      => '*/5',
-  }
-
   plugin_zabbix::db::mysql_db { $plugin_zabbix::params::db_name:
     user     => $plugin_zabbix::params::db_user,
     password => $plugin_zabbix::params::db_password,
