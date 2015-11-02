@@ -76,6 +76,12 @@ class plugin_zabbix::controller {
 
   File['zabbix-server-ocf'] -> Service["${plugin_zabbix::params::server_service}-init-stopped"] -> Service["${plugin_zabbix::params::server_service}-started"]
 
+  sysctl::value { 'kernel.shmmax':
+    # 1Gb allowed
+    value  => '1073741824',
+    notify => Service["${plugin_zabbix::params::server_service}-started"],
+  }
+
   cron { 'zabbix db_clean':
     ensure      => 'present',
     require     => File[$plugin_zabbix::params::server_scripts],
