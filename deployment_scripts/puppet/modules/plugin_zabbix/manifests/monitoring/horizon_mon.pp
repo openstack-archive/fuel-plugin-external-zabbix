@@ -16,6 +16,7 @@
 class plugin_zabbix::monitoring::horizon_mon {
 
   include plugin_zabbix::params
+  include apache::params
 
   #Horizon
   if defined_in_state(Class['horizon']) {
@@ -23,6 +24,20 @@ class plugin_zabbix::monitoring::horizon_mon {
       host     => $plugin_zabbix::params::host_name,
       template => 'Template App OpenStack Horizon',
       api      => $plugin_zabbix::monitoring::api_hash,
+    }
+
+    plugin_zabbix_usermacro { 'Apache bin name':
+        host  => $plugin_zabbix::params::host_name,
+        macro => '{$APACHE_NAME}',
+        value => $apache::params::apache_name,
+        api   => $plugin_zabbix::monitoring::api_hash,
+    }
+
+    plugin_zabbix_usermacro { 'Apache user':
+        host  => $plugin_zabbix::params::host_name,
+        macro => '{$APACHE_USER}',
+        value => $apache::params::user,
+        api   => $plugin_zabbix::monitoring::api_hash,
     }
   }
 }
