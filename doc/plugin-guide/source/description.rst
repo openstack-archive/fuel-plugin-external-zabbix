@@ -15,3 +15,13 @@ Requirement                        Version/Comment
 ================================== ===============
 Fuel                               7.0 and higher
 ================================== ===============
+
+
+Limitations
+===========
+
+Prior to version 2.5, the plugin requires access to distribution repository,
+external or local mirror, in order to download necessary packages for proper
+installation.
+
+With plugin version 2.5, the `fuel-createmirror` command is supported.
