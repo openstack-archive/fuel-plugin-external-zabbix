@@ -17,7 +17,7 @@ Environment configuration
 
 #. Set credentials for *Zabbix for Fuel*:
 
-   .. image:: images/settings.png
+   .. image:: ../../images/settings.png
       :width: 50%
 
    You could see default passwords by clicking on the eye icon. It is highly
@@ -56,14 +56,14 @@ Zabbix frontend UI
    <http://172.16.0.2/zabbix>`_ (at http://<VIP>/zabbix in general).
    After opening this address in a browser, you should see Zabbix login page:
 
-   .. image:: images/login.png
+   .. image:: ../../images/login.png
       :width: 50%
 
 #. Now log into Zabbix with the credentials set provided on the Settings tab of
    the Fuel web UI (see step 2 in the Environment configuration section).
    After logging into Zabbix, you will see the Zabbix Dashboard page:
 
-   .. image:: images/dashboard.png
+   .. image:: ../../images/dashboard.png
       :width: 50%
 
 #. The Zabbix Dashboard page provides information on running processes and
@@ -75,10 +75,10 @@ Zabbix frontend UI
    When you go to Monitoring->Screens page, you will see the OpenStack Cluster
    screen:
 
-   .. image:: images/openstackcluster1.png
+   .. image:: ../../images/openstackcluster1.png
       :width: 50%
 
-   .. image:: images/openstackcluster2.png
+   .. image:: ../../images/openstackcluster2.png
       :width: 50%
 
    On this screen you have general statistics and graphs presenting resources
@@ -102,7 +102,7 @@ several pages placed under Configuration tab.
    /hosts>`_ chapter in the official Zabbix Documentation.
 
 
-   .. image:: images/hostgroupspage.png
+   .. image:: ../../images/hostgroupspage.png
       :width: 50%
 
 #. Hosts page
@@ -115,10 +115,10 @@ several pages placed under Configuration tab.
    in the last column. When ‘Z’ icon is green, the Zabbix agent on this node is
    running and available.
 
-   .. image:: images/hostpage.png
+   .. image:: ../../images/hostpage.png
       :width: 50%
 
-   .. image:: images/hostpage2.png
+   .. image:: ../../images/hostpage2.png
       :width: 50%
 
 #. Templates page
@@ -129,10 +129,10 @@ several pages placed under Configuration tab.
    see `6.6 Templates chapter <https://www.zabbix.com/documentation/2.4/manual
    /config/templates>`_ in the official Zabbix Documentation.
 
-   .. image:: images/templatespage.png
+   .. image:: ../../images/templatespage.png
       :width: 50%
 
-   .. image:: images/templatespage2.png
+   .. image:: ../../images/templatespage2.png
       :width: 50%
 
    You can add an additional items (checks), create triggers and events via
