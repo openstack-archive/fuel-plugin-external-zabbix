@@ -19,3 +19,14 @@ User documentation
    user/removal
    user/terms
 
+QA Documentation
+================
+
+.. toctree::
+   :maxdepth: 2
+
+   qa/test-strategy
+   qa/test-system
+   qa/test-functional
+   qa/test-non-functional
+
