@@ -43,16 +43,6 @@ class plugin_zabbix::controller {
     content   => template($plugin_zabbix::params::server_config_template),
   }
 
-  file { $plugin_zabbix::params::server_scripts:
-    ensure    => directory,
-    require   => Package[$plugin_zabbix::params::server_pkg],
-    recurse   => true,
-    purge     => true,
-    force     => true,
-    mode      => '0755',
-    source    => 'puppet:///modules/plugin_zabbix/externalscripts',
-  }
-
   file { 'zabbix-server-ocf' :
     ensure      => present,
     path        => "${plugin_zabbix::params::ocf_scripts_dir}/${plugin_zabbix::params::ocf_scripts_provider}/${plugin_zabbix::params::server_service}",
@@ -75,14 +65,6 @@ class plugin_zabbix::controller {
   }
 
   File['zabbix-server-ocf'] -> Service["${plugin_zabbix::params::server_service}-init-stopped"] -> Service["${plugin_zabbix::params::server_service}-started"]
-
-  cron { 'zabbix db_clean':
-    ensure      => 'present',
-    require     => File[$plugin_zabbix::params::server_scripts],
-    command     => "${plugin_zabbix::params::server_scripts}/db_clean.sh",
-    user        => 'root',
-    minute      => '*/5',
-  }
 
   plugin_zabbix::db::mysql_db { $plugin_zabbix::params::db_name:
     user     => $plugin_zabbix::params::db_user,
