@@ -592,7 +592,7 @@ It requires user parameter mysql.status[*], which is defined in userparameter_my
                     <value_type>3</value_type>
                     <allowed_hosts/>
                     <units></units>
-                    <delta>1</delta>
+                    <delta>0</delta>
                     <snmpv3_securityname/>
                     <snmpv3_securitylevel>0</snmpv3_securitylevel>
                     <snmpv3_authpassphrase/>
@@ -631,7 +631,7 @@ It requires user parameter mysql.status[*], which is defined in userparameter_my
                     <value_type>3</value_type>
                     <allowed_hosts/>
                     <units></units>
-                    <delta>1</delta>
+                    <delta>0</delta>
                     <snmpv3_securityname/>
                     <snmpv3_securitylevel>0</snmpv3_securitylevel>
                     <snmpv3_authpassphrase/>
@@ -670,7 +670,7 @@ It requires user parameter mysql.status[*], which is defined in userparameter_my
                     <value_type>3</value_type>
                     <allowed_hosts/>
                     <units></units>
-                    <delta>1</delta>
+                    <delta>0</delta>
                     <snmpv3_securityname/>
                     <snmpv3_securitylevel>0</snmpv3_securitylevel>
                     <snmpv3_authpassphrase/>
