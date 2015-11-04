@@ -113,6 +113,8 @@ class plugin_zabbix::params {
     $server_history_text_cache_size    = '16M'
   }
   $server_log_slow_queries           = '1000'
+  # 1Gb allowed for shared memory
+  $sysctl_kernel_shmmax              = '1073741824'
 
   #frontend parameters
   $frontend                          = true
