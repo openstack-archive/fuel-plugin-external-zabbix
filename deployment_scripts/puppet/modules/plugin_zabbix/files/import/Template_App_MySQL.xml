@@ -589,7 +589,7 @@ It requires user parameter mysql.status[*], which is defined in userparameter_my
                     <history>7</history>
                     <trends>365</trends>
                     <status>0</status>
-                    <value_type>0</value_type>
+                    <value_type>3</value_type>
                     <allowed_hosts/>
                     <units></units>
                     <delta>1</delta>
@@ -628,7 +628,7 @@ It requires user parameter mysql.status[*], which is defined in userparameter_my
                     <history>7</history>
                     <trends>365</trends>
                     <status>0</status>
-                    <value_type>0</value_type>
+                    <value_type>3</value_type>
                     <allowed_hosts/>
                     <units></units>
                     <delta>1</delta>
@@ -667,7 +667,7 @@ It requires user parameter mysql.status[*], which is defined in userparameter_my
                     <history>7</history>
                     <trends>365</trends>
                     <status>0</status>
-                    <value_type>0</value_type>
+                    <value_type>3</value_type>
                     <allowed_hosts/>
                     <units></units>
                     <delta>1</delta>
