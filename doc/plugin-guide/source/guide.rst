@@ -68,7 +68,7 @@ Zabbix frontend UI
 
 #. The Zabbix Dashboard page provides information on running processes and
    their state. If all processes are running successfully in the environment,
-   you should see only green colour. To demonstrate that monitoring is working
+   you should see only green color. To demonstrate that monitoring is working
    properly, the Nova Scheduler process had been turned off. You can notice
    that Zabbix detected the halted process and provided the problem
    description: Nova Scheduler process is not running on node-13.domain.tld.
@@ -145,3 +145,59 @@ several pages placed under Configuration tab.
    For more information and instructions, see `6.7 Notifications
    <https://www.zabbix.com/documentation/2.4/manual/config/notifications>`_
    upon events chapter in the official Zabbix Documentation.
+
+Ceph
+====
+
+When Ceph is deployed the plugin configures:
+
+* A Host 'CephCluster' with 2 triggers:
+
+  .. image:: ../../images/host_ceph.png
+     :width: 50%
+
+* A Screen 'Ceph':
+
+  .. image:: ../../images/ceph_screen.png
+     :width: 50%
+
+* Metrics collection:
+
+  - monitor_count
+  - quorum_count
+  - pg_bytes_used
+  - pg_bytes_free
+  - pg_bytes_total
+  - pg_data_bytes
+  - pg_count
+  - pg_state_count_backfill
+  - pg_state_count_repair
+  - pg_state_count_creating
+  - pg_state_count_recovering
+  - pg_state_count_peered
+  - pg_state_count_incomplete
+  - pg_state_count_peering
+  - pg_state_count_splitting
+  - pg_state_count_waitbackfill
+  - pg_state_count_down
+  - pg_state_count_backfilltoofull
+  - pg_state_count_remapped
+  - pg_state_count_replay
+  - pg_state_count_inconsistent
+  - pg_state_count_clean
+  - pg_state_count_active
+  - pg_state_count_undersized
+  - pg_state_count_degraded
+  - pg_state_count_stale
+  - pg_state_count_scrubbing
+  - objects_count
+  - pool_count
+  - pool_total_bytes_used
+  - pool_total_bytes_free
+  - pool_total_bytes_total
+  - pool_total_percent_used
+  - pool_total_percent_free
+  - osd_count_up
+  - osd_count_down
+  - osd_count_in
+  - osd_count_out

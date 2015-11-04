@@ -51,3 +51,47 @@ Steps:
  * remove environment
  * remove plugin
  * check that it was successfully removed
+
+Deploy environment with plugin and Ceph
+=======================================
+
+* Test Case ID:  deploy_zabbix_ceph_ha
+* Expected Result: Cluster deployed, Zabbix dashboard available, Zabbix dashboard is not empty
+
+Steps:
+
+* Upload plugin to the master node
+* Install plugin
+* Create cluster
+* Add 3 nodes with controller,ceph-osd roles
+* Add 2 nodes with compute,ceph-osd roles
+* Deploy the cluster
+* Run network verification
+* Check plugin health
+* Run OSTF
+* Check login to zabbix dashboard
+* Check that zabbix dashboard is not empty
+* Check that zabbix screen for Ceph is present (Monitoring > Screens > Ceph)
+
+Deploy environment with plugin and fuel-createmirror
+====================================================
+
+* Test Case ID:  deploy_zabbix_ha_offline
+* Expected Result: Cluster deployed, Zabbix dashboard available, Zabbix dashboard is not empty
+
+Steps:
+
+* Upload plugin to the master node
+* Install plugin
+* run `fuel-createmirror` command on fuel master node
+* Create cluster
+* Add 3 nodes with controller role
+* Add 1 node with compute role
+* Add 1 node with cinder role
+* Deploy the cluster
+* Run network verification
+* Check plugin health
+* Run OSTF
+* Check login to zabbix dashboard
+* Check that zabbix dashboard is not empty
+
