@@ -31,12 +31,12 @@ To install Zabbix plugin, follow these steps:
     that. If you do not have the Fuel Master node yet, see
     [Quick Start Guide](https://software.mirantis.com/quick-start/) :
 
-        # scp zabbix_monitoring-2.0-2.0.0-0.noarch.rpm root@<Fuel_Master_ip>:/tmp
+        # scp zabbix_monitoring-<version>.noarch.rpm root@<Fuel_Master_ip>:/tmp
 
 3. Install the plugin:
 
         # cd /tmp
-        # fuel plugins --install zabbix_monitoring-2.0-2.0.0-0.noarch.rpm
+        # fuel plugins --install zabbix_monitoring-<version>.noarch.rpm
 
 4. Check if the plugin was installed successfully:
 
@@ -44,6 +44,9 @@ To install Zabbix plugin, follow these steps:
         id | name              | version | package_version
         ---|-------------------|---------|----------------
         1  | zabbix_monitoring | 2.0.0   | 3.0.0
+
+For further details see the Zabbix Plugin Guide in the
+[Fuel Plugins Catalog](https://software.mirantis.com/fuel-plugins)
 
 Zabbix plugin configuration
 ----------------------------
@@ -54,15 +57,11 @@ Zabbix plugin configuration
    * username/password - access credentials for Zabbix Administrator
    * database password - password for Zabbix database in MySQL
 4. Deploy the environment.
-5. Zabbix frontend is available at: http://<VIP>/zabbix
+5. Zabbix frontend is available at: http://<public_VIP>/zabbix
 
 For more information and instructions, see the Zabbix Plugin Guide in the
 [Fuel Plugins Catalog](https://software.mirantis.com/fuel-plugins)
 
-Release Notes
--------------
-
-This is the first release of the plugin.
 
 Contributors
 ------------
