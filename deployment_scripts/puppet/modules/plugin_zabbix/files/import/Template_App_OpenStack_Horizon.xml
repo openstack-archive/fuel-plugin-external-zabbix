@@ -67,7 +67,7 @@
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>proc.num[,{$APACHE_USER},,/usr/sbin/{$APACHE_NAME]</key>
+                    <key>proc.num[,{$APACHE_USER},,/usr/sbin/{$APACHE_NAME}]</key>
                     <delay>30</delay>
                     <history>90</history>
                     <trends>365</trends>
