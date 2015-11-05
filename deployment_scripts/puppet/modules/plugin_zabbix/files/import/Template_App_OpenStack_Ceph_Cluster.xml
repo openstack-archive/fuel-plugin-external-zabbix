@@ -1731,7 +1731,7 @@
     </triggers>
     <graphs>
         <graph>
-            <name>OSD breakdown by states</name>
+            <name>OSD breakdown by state</name>
             <width>900</width>
             <height>200</height>
             <yaxismin>0.0000</yaxismin>
@@ -1799,7 +1799,7 @@
             </graph_items>
         </graph>
         <graph>
-            <name>PG count breakdown by state</name>
+            <name>PG breakdown by state</name>
             <width>900</width>
             <height>200</height>
             <yaxismin>0.0000</yaxismin>

@@ -24,7 +24,7 @@
                     <dynamic>0</dynamic>
                     <sort_triggers>0</sort_triggers>
                     <resource>
-                        <name>OSD breakdown by states</name>
+                        <name>PG breakdown by state</name>
                         <host>CephCluster</host>
                     </resource>
                     <max_columns>3</max_columns>
@@ -90,7 +90,7 @@
                     <dynamic>0</dynamic>
                     <sort_triggers>0</sort_triggers>
                     <resource>
-                        <name>OSD breakdown by states</name>
+                        <name>OSD breakdown by state</name>
                         <host>CephCluster</host>
                     </resource>
                     <max_columns>3</max_columns>
