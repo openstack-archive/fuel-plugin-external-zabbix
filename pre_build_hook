@@ -25,7 +25,14 @@ function download {
 download deb http://repo.zabbix.com/zabbix/2.4/ubuntu/pool/main/z/zabbix/zabbix-agent_2.4.4-1+trusty_amd64.deb \
              http://repo.zabbix.com/zabbix/2.4/ubuntu/pool/main/z/zabbix/zabbix-frontend-php_2.4.4-1+trusty_all.deb \
              http://repo.zabbix.com/zabbix/2.4/ubuntu/pool/main/z/zabbix/zabbix-server-mysql_2.4.4-1+trusty_amd64.deb \
-             http://repo.zabbix.com/zabbix/2.4/ubuntu/pool/main/z/zabbix/zabbix-sender_2.4.4-1+trusty_amd64.deb
+             http://repo.zabbix.com/zabbix/2.4/ubuntu/pool/main/z/zabbix/zabbix-sender_2.4.4-1+trusty_amd64.deb \
+             http://archive.ubuntu.com/ubuntu/pool/main/p/php5/php5-mysql_5.5.9+dfsg-1ubuntu4.14_amd64.deb \
+             http://archive.ubuntu.com/ubuntu/pool/universe/n/net-snmp/libsnmp-perl_5.7.2~dfsg-8.1ubuntu3.1_amd64.deb \
+             http://archive.ubuntu.com/ubuntu/pool/universe/s/snmptt/snmptt_1.4-1_all.deb \
+             http://archive.ubuntu.com/ubuntu/pool/universe/libs/libsmi/smistrip_0.4.8+dfsg2-8ubuntu2_all.deb \
+             http://archive.ubuntu.com/ubuntu/pool/multiverse/s/snmp-mibs-downloader/snmp-mibs-downloader_1.1_all.deb \
+             http://archive.ubuntu.com/ubuntu/pool/universe/i/iptstate/iptstate_2.2.5-1_amd64.deb
+
 
 download rpm http://repo.zabbix.com/zabbix/2.4/rhel/6/x86_64/zabbix-agent-2.4.4-1.el6.x86_64.rpm \
              http://repo.zabbix.com/zabbix/2.4/rhel/6/x86_64/zabbix-server-2.4.4-1.el6.x86_64.rpm \
