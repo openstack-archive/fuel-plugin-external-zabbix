@@ -43,8 +43,10 @@ Release Notes
 Limitations
 ===========
 
-Prior to version 2.5, the plugin requires access to distribution repository,
-external or local mirror, in order to download necessary packages for proper
-installation.
+* Prior to version 2.5, the plugin requires access to distribution repository,
+  external or local mirror, in order to download necessary packages for proper
+  installation.
+  With plugin version 2.5, the `fuel-createmirror` command is supported.
 
-With plugin version 2.5, the `fuel-createmirror` command is supported.
+* If a base-os role node is deployed within the environment, the plugin
+  installation may fail because the management network is not configured.
