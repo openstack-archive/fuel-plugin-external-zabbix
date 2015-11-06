@@ -50,6 +50,12 @@ class plugin_zabbix::server::config {
     api      => $api_hash,
   }
 
+  plugin_zabbix_configuration_import { 'Template_NTP_binding Import':
+    ensure   => present,
+    xml_file => '/etc/zabbix/import/Template_NTP_binding.xml',
+    api      => $api_hash,
+  }
+
   # Nova templates
   plugin_zabbix_configuration_import { 'Template_App_OpenStack_Nova_API_EC2.xml Import':
     ensure   => present,
