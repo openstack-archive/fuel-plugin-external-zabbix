@@ -3,3 +3,4 @@ zabbix ALL = NOPASSWD: /usr/bin/socat /var/lib/haproxy/stats stdio
 zabbix ALL = NOPASSWD: /usr/sbin/iptstate
 zabbix ALL = NOPASSWD: /usr/sbin/crm_resource --locate --quiet --resource *
 zabbix ALL = NOPASSWD: /usr/bin/ceph health
+zabbix ALL = NOPASSWD: /etc/zabbix/scripts/netns.listen.sh
