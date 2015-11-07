@@ -77,6 +77,9 @@ class plugin_zabbix::monitoring(
     'crm.node.check':
       key     => 'crm.node.check[*]',
       command => '/etc/zabbix/scripts/crm_node_check.sh $1';
+    'netns.udp.listen':
+      key     => 'netns.udp.listen[*]',
+      command => '/usr/bin/sudo /etc/zabbix/scripts/netns.listen.sh UDP $1 $2 $3';
   }
 
   #Linux
@@ -86,11 +89,17 @@ class plugin_zabbix::monitoring(
     api      => $api_hash,
   }
 
-  if ! member($roles, 'controller') or ! member($roles, 'primary-controller') {
+  if ! member($roles, 'controller') and ! member($roles, 'primary-controller') {
     # default way to check NTP binding
     plugin_zabbix_template_link { "${plugin_zabbix::params::host_name} Template NTP binding":
       host     => $plugin_zabbix::params::host_name,
       template => 'Template NTP binding',
+      api      => $api_hash,
+    }
+  }else{
+    plugin_zabbix_template_link { "${plugin_zabbix::params::host_name} Template OS Controller":
+      host     => $plugin_zabbix::params::host_name,
+      template => 'Template OS Controller',
       api      => $api_hash,
     }
   }
