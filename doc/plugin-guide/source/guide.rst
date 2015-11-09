@@ -9,7 +9,7 @@ Environment configuration
    `Mirantis OpenStack User Guide <http://docs.mirantis.com/openstack/fuel
    /fuel-7.0/user-guide.html#create-a-new-openstack-environment>`_.
 
-#. Choose in *Environments* an evironment for which you want to run Zabbix
+#. Choose in *Environments* an environment for which you want to run Zabbix
    plugin.
 
 #. Open *Settings* tab and scroll the page down. On the left select
@@ -18,7 +18,7 @@ Environment configuration
 #. Set credentials for *Zabbix for Fuel*:
 
    .. image:: ../../images/settings.png
-      :width: 50%
+      :width: 100%
 
    You could see default passwords by clicking on the eye icon. It is highly
    recommended to change default passwords for Zabbix Administrator,
@@ -57,14 +57,14 @@ Zabbix frontend UI
    After opening this address in a browser, you should see Zabbix login page:
 
    .. image:: ../../images/login.png
-      :width: 50%
+      :width: 100%
 
 #. Now log into Zabbix with the credentials set provided on the Settings tab of
    the Fuel web UI (see step 2 in the Environment configuration section).
    After logging into Zabbix, you will see the Zabbix Dashboard page:
 
    .. image:: ../../images/dashboard.png
-      :width: 50%
+      :width: 150%
 
 #. The Zabbix Dashboard page provides information on running processes and
    their state. If all processes are running successfully in the environment,
@@ -76,10 +76,10 @@ Zabbix frontend UI
    screen:
 
    .. image:: ../../images/openstackcluster1.png
-      :width: 50%
+      :width: 100%
 
    .. image:: ../../images/openstackcluster2.png
-      :width: 50%
+      :width: 100%
 
    On this screen you have general statistics and graphs presenting resources
    usage in OpenStack environment. There is also a list of last 10 events
@@ -103,7 +103,7 @@ several pages placed under Configuration tab.
 
 
    .. image:: ../../images/hostgroupspage.png
-      :width: 50%
+       :width: 100%
 
 #. Hosts page
    This page contains a list of all monitored OpenStack nodes and, additionally
@@ -116,10 +116,10 @@ several pages placed under Configuration tab.
    running and available.
 
    .. image:: ../../images/hostpage.png
-      :width: 50%
+      :width: 100%
 
    .. image:: ../../images/hostpage2.png
-      :width: 50%
+      :width: 100%
 
 #. Templates page
    This page contains a list of all monitoring templates and list of hosts to
@@ -130,10 +130,10 @@ several pages placed under Configuration tab.
    /config/templates>`_ in the official Zabbix Documentation.
 
    .. image:: ../../images/templatespage.png
-      :width: 50%
+      :width: 100%
 
    .. image:: ../../images/templatespage2.png
-      :width: 50%
+      :width: 100%
 
    You can add an additional items (checks), create triggers and events via
    Zabbix UI. For more information and instructions, see `6.2 Items
@@ -154,12 +154,12 @@ When Ceph is deployed the plugin configures:
 * A Host 'CephCluster' with 2 triggers:
 
   .. image:: ../../images/host_ceph.png
-     :width: 50%
+     :width: 100%
 
 * A Screen 'Ceph':
 
   .. image:: ../../images/ceph_screen.png
-     :width: 50%
+     :width: 100%
 
 * Metrics collection:
 
