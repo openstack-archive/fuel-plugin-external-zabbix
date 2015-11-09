@@ -17,7 +17,7 @@ Environment configuration
 
 #. Set credentials for *Zabbix for Fuel*:
 
-   .. image:: ../../images/settings.png
+   .. image:: ../images/settings.png
       :width: 100%
 
    You could see default passwords by clicking on the eye icon. It is highly
@@ -56,15 +56,15 @@ Zabbix frontend UI
    <http://172.16.0.2/zabbix>`_ (at http://<VIP>/zabbix in general).
    After opening this address in a browser, you should see Zabbix login page:
 
-   .. image:: ../../images/login.png
-      :width: 100%
+   .. image:: ../images/login.png
+      :width: 50%
 
 #. Now log into Zabbix with the credentials set provided on the Settings tab of
    the Fuel web UI (see step 2 in the Environment configuration section).
    After logging into Zabbix, you will see the Zabbix Dashboard page:
 
-   .. image:: ../../images/dashboard.png
-      :width: 150%
+   .. image:: ../images/dashboard.png
+      :width: 100%
 
 #. The Zabbix Dashboard page provides information on running processes and
    their state. If all processes are running successfully in the environment,
@@ -75,10 +75,10 @@ Zabbix frontend UI
    When you go to Monitoring->Screens page, you will see the OpenStack Cluster
    screen:
 
-   .. image:: ../../images/openstackcluster1.png
+   .. image:: ../images/openstackcluster1.png
       :width: 100%
 
-   .. image:: ../../images/openstackcluster2.png
+   .. image:: ../images/openstackcluster2.png
       :width: 100%
 
    On this screen you have general statistics and graphs presenting resources
@@ -93,6 +93,7 @@ it should look after a successful environment deployment. Zabbix UI provides
 several pages placed under Configuration tab.
 
 #. Host groups page
+
    This page has a list of host groups with their members. There are separate
    groups for Controllers and Computes. These groups are used to join nodes
    with the same role in OpenStack environment. There is also ManagedByPuppet
@@ -102,10 +103,11 @@ several pages placed under Configuration tab.
    /hosts>`_ chapter in the official Zabbix Documentation.
 
 
-   .. image:: ../../images/hostgroupspage.png
+   .. image:: ../images/hostgroupspage.png
        :width: 100%
 
 #. Hosts page
+
    This page contains a list of all monitored OpenStack nodes and, additionally
    one OpenStackCluster virtual host which represents OpenStack API. There are
    also lists of linked monitoring templates to particular hosts. During
@@ -115,13 +117,14 @@ several pages placed under Configuration tab.
    in the last column. When ‘Z’ icon is green, the Zabbix agent on this node is
    running and available.
 
-   .. image:: ../../images/hostpage.png
+   .. image:: ../images/hostpage.png
       :width: 100%
 
-   .. image:: ../../images/hostpage2.png
-      :width: 100%
+   .. image:: ../images/hostpage2.png
+      :width: 50%
 
 #. Templates page
+
    This page contains a list of all monitoring templates and list of hosts to
    which they are linked. A monitoring template is a way to group items, graphs
    and thresholds which monitor a particular resource type, for example an
@@ -129,10 +132,10 @@ several pages placed under Configuration tab.
    see `6.6 Templates chapter <https://www.zabbix.com/documentation/2.4/manual
    /config/templates>`_ in the official Zabbix Documentation.
 
-   .. image:: ../../images/templatespage.png
+   .. image:: ../images/templatespage.png
       :width: 100%
 
-   .. image:: ../../images/templatespage2.png
+   .. image:: ../images/templatespage2.png
       :width: 100%
 
    You can add an additional items (checks), create triggers and events via
@@ -153,12 +156,12 @@ When Ceph is deployed the plugin configures:
 
 * A Host 'CephCluster' with 2 triggers:
 
-  .. image:: ../../images/host_ceph.png
+  .. image:: ../images/host_ceph.png
      :width: 100%
 
 * A Screen 'Ceph':
 
-  .. image:: ../../images/ceph_screen.png
+  .. image:: ../images/ceph_screen.png
      :width: 100%
 
 * Metrics collection:
