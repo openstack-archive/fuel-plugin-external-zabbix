@@ -13,4 +13,5 @@ User documentation
    installation
    guide
    removal
+   appendix
 
