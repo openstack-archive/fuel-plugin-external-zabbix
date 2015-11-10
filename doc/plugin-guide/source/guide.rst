@@ -154,53 +154,64 @@ Ceph
 
 When Ceph is deployed the plugin configures:
 
-* A Host 'CephCluster' with 2 triggers:
-
-  .. image:: ../images/host_ceph.png
-     :width: 100%
-
-* A Screen 'Ceph':
+* A Screen 'Ceph' providing an overview of the cluster with the following metrics:
 
   .. image:: ../images/ceph_screen.png
      :width: 100%
 
-* Metrics collection:
+* Zabbix is configured to verify that all Ceph processes are running
 
-  - monitor_count
-  - quorum_count
-  - pg_bytes_used
-  - pg_bytes_free
-  - pg_bytes_total
-  - pg_data_bytes
-  - pg_count
-  - pg_state_count_backfill
-  - pg_state_count_repair
-  - pg_state_count_creating
-  - pg_state_count_recovering
-  - pg_state_count_peered
-  - pg_state_count_incomplete
-  - pg_state_count_peering
-  - pg_state_count_splitting
-  - pg_state_count_waitbackfill
-  - pg_state_count_down
-  - pg_state_count_backfilltoofull
-  - pg_state_count_remapped
-  - pg_state_count_replay
-  - pg_state_count_inconsistent
-  - pg_state_count_clean
-  - pg_state_count_active
-  - pg_state_count_undersized
-  - pg_state_count_degraded
-  - pg_state_count_stale
-  - pg_state_count_scrubbing
-  - objects_count
-  - pool_count
-  - pool_total_bytes_used
-  - pool_total_bytes_free
-  - pool_total_bytes_total
-  - pool_total_percent_used
-  - pool_total_percent_free
-  - osd_count_up
-  - osd_count_down
-  - osd_count_in
-  - osd_count_out
+  * ceph-osd
+  * ceph-mon (on controller nodes)
+
+* A Host 'CephCluster' is configured where are attached all cluster metrics:
+
+  * Metrics collected for the cluster:
+
+   - monitor_count
+   - quorum_count
+   - pg_bytes_used
+   - pg_bytes_free
+   - pg_bytes_total
+   - pg_data_bytes
+   - pg_count
+   - pg_state_count_backfill
+   - pg_state_count_repair
+   - pg_state_count_creating
+   - pg_state_count_recovering
+   - pg_state_count_peered
+   - pg_state_count_incomplete
+   - pg_state_count_peering
+   - pg_state_count_splitting
+   - pg_state_count_waitbackfill
+   - pg_state_count_down
+   - pg_state_count_backfilltoofull
+   - pg_state_count_remapped
+   - pg_state_count_replay
+   - pg_state_count_inconsistent
+   - pg_state_count_clean
+   - pg_state_count_active
+   - pg_state_count_undersized
+   - pg_state_count_degraded
+   - pg_state_count_stale
+   - pg_state_count_scrubbing
+   - objects_count
+   - pool_count
+   - pool_total_bytes_used
+   - pool_total_bytes_free
+   - pool_total_bytes_total
+   - pool_total_percent_used
+   - pool_total_percent_free
+   - osd_count_up
+   - osd_count_down
+   - osd_count_in
+   - osd_count_out
+
+  * Triggers configured:
+
+   - An alert is triggered when Zabbix fail to collect Ceph cluster metrics
+   - An alert is triggered when the cluster free capacity is under 10%
+
+  .. image:: ../images/host_ceph.png
+     :width: 100%
+
