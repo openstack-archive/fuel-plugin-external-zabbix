@@ -16,16 +16,13 @@ Steps:
 * Check that package zabbix-server installed on controllers
 * Check that zabbix-server is started via `crm status`
 
-
 Check Zabbix API
 ================
 
 Test IDs:
 
-* test_get_ver_API
 * test_authentication_valid_cred
 * test_authentication_invalid_cred
-* test_http
 * test_https
 * test_ssl_certificate
 
@@ -33,12 +30,10 @@ Expected Result: All steps passed
 
 Steps:
 
-* Get version API
 * Test authentication with valid credentials
 * Test if authentication impossible with invalid credentials
-* Check HTTP request to dashboard
 * Check HTTPS request to dashboard
-* Check SSL certificate
+* Check SSL certificate (self signed)
 
 Check dashboard configuration
 =============================
@@ -52,6 +47,7 @@ Steps:
 * Log in to zabbix web
 * Get zabbix/screens.php
 * Check preconfigured graphs:
+
   * screen 'OpenStack Cluster'
   * screen 'Ceph' if Ceph is deployed
 
@@ -60,10 +56,36 @@ Check zabbix triggers
 
 Test ID: test_triggers
 
-Expected Result: All preconfigured triggers are present
+Expected Result: All preconfigured triggers are present and `green`
 
 Steps:
 
-* Log in to zabbix web
-* Check if preconfigured triggers are present
+* Log in to zabbix UI
+* Check on dashboard there is no alert: everything must be `green`
 
+Check API triggers
+==================
+
+Test ID: test_trigger_api
+
+Expected Result: The API is detected as down
+
+Steps:
+
+* Log into on controller node
+* Stop an API (for example neutron)::
+
+  # stop neutron-server
+
+* On dashboard verify these alerts are present:
+
+  * High severity
+
+    * Neutron Server process is not running on nodeX
+    * Neutron Server service is down on nodeX
+    * Neutron API test failed on nodeX
+
+  * Average severity
+
+    * Neutron service status offline test failed
+    * nodeX backend of neutron proxy down
