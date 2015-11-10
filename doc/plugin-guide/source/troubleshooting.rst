@@ -31,13 +31,13 @@ If the Zabbix UI reports 'Zabbix server is not running', check the following:
 
    # crm resource start p_zabbix-server
 
-# If the zabbix-server is still down, try the following::
+#. If the zabbix-server is still down, try the following::
 
    # crm resource stop p_zabbix-server
    # crm resource cleanup p_zabbix-server
    # crm resource start p_zabbix-server
 
-# If after the previous commands the zabbix-server is still down and you didn't
+#. If after the previous commands the zabbix-server is still down and you didn't
   find any explanation in the logs, try to increase the log level::
 
   # sed -i 's/DebugLevel=3/DebugLevel=4/' /etc/zabbix/zabbix_server.conf
@@ -46,7 +46,7 @@ If the Zabbix UI reports 'Zabbix server is not running', check the following:
 Zabbix agents
 -------------
 
-If an Zabbix agent don't report data (this can be determined on the Zabbix UI
+If a Zabbix agent don't report data (this can be determined on the Zabbix UI
 page: configuration > hosts).
 
 #. Check if the corresponding agent is running::
@@ -57,7 +57,7 @@ page: configuration > hosts).
 
    # /etc/init.d/zabbix-agent restart
 
-# If the zabbix-agent is still down or doesn't report any data try the following
+#. If the zabbix-agent is still down or doesn't report any data try the following
   command to validate the agent's configuration. This command should display all
   data that agent is configured to collect, if not the command should display
   an explicit error with regard to the configuration::
