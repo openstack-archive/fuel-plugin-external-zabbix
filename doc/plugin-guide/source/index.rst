@@ -12,6 +12,7 @@ User documentation
    description
    installation
    guide
+   troubleshooting
    removal
    appendix
 
