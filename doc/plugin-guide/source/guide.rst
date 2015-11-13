@@ -149,24 +149,27 @@ several pages placed under Configuration tab.
    <https://www.zabbix.com/documentation/2.4/manual/config/notifications>`_
    upon events chapter in the official Zabbix Documentation.
 
+.. _Ceph:
+
 Ceph
 ====
 
 When Ceph is deployed the plugin configures:
 
-* A Screen 'Ceph' providing an overview of the cluster with the following metrics:
+* A check on the general health of the cluster as reported by the command `ceph health` *(version 1.0.0)*
+* A Screen 'Ceph' providing an overview of the cluster with the following metrics *(version 2.5.0)*:
 
   .. image:: ../images/ceph_screen.png
      :width: 100%
 
-* Zabbix is configured to verify that all Ceph processes are running
+* Zabbix is configured to verify that all Ceph processes are running *(version 2.5.0)*:
 
   * ceph-osd
   * ceph-mon (on controller nodes)
 
-* A Host 'CephCluster' is configured where are attached all cluster metrics:
+* A Host 'CephCluster' is configured where are attached all cluster metrics *(version 2.5.0)*:
 
-  * Metrics collected for the cluster:
+  * Metrics collected for the cluster *(version 2.5.0)*:
 
    - monitor_count
    - quorum_count
@@ -207,7 +210,7 @@ When Ceph is deployed the plugin configures:
    - osd_count_in
    - osd_count_out
 
-  * Triggers configured:
+  * Triggers configured *(version 2.5.0)*:
 
    - An alert is triggered when Zabbix fail to collect Ceph cluster metrics
    - An alert is triggered when the cluster free capacity is under 10%
@@ -215,3 +218,22 @@ When Ceph is deployed the plugin configures:
   .. image:: ../images/host_ceph.png
      :width: 100%
 
+.. _MySQL:
+
+MySQL
+=====
+
+The following metrics are retrieved for each MySQL server (generally running
+on controller nodes):
+
+  .. image:: ../images/mysql_items.png
+     :width: 80%
+
+and 4 triggers are configured:
+
+- a simple `mysqladmin ping` check *(version 1.0.0)*
+- and 3 cluster related checks *(version 2.5.0)*:
+
+  - the cluster node is ready
+  - the cluster node is connected to the cluster
+  - the cluster node status (Primary, Non-Primary or Disconnected)
