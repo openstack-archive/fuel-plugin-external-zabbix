@@ -63,7 +63,7 @@
                 </item>
                 <item>
                     <name>Swift Container Server is listening on port</name>
-                    <type>3</type>
+                    <type>0</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
