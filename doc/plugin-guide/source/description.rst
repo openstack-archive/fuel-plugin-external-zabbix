@@ -32,6 +32,7 @@ Release Notes
   * Monitor `cinder-volume` process (instead of the Pacemaker resource which has
     been removed)
   * Fix trigger for Neutron DHCP/L3 agents (these agents run now on all controllers)
+  * Fix Swift container TCP check (bug 1517472_)
 
 * New process checks
 
@@ -43,6 +44,7 @@ Release Notes
 .. _1483983: https://bugs.launchpad.net/fuel/7.0.x/+bug/1483983
 .. _1510115: https://bugs.launchpad.net/fuel/+bug/1510115
 .. _1513454: https://bugs.launchpad.net/fuel-plugins/+bug/1513454
+.. _1517472: https://bugs.launchpad.net/fuel/+bug/1517472
 
 **2.0.0**
 
