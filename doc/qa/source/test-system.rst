@@ -2,6 +2,8 @@
 System testing
 ==============
 
+.. _deploy_zabbix_ha:
+
 Deploy environment with plugin
 ==============================
 
