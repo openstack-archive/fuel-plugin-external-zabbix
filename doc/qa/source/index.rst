@@ -12,4 +12,5 @@ Test plan
    test-system
    test-functional
    test-non-functional
+   test-dependant-plugins
 
