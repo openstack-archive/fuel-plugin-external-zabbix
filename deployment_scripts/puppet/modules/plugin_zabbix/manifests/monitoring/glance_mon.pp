@@ -20,14 +20,14 @@ class plugin_zabbix::monitoring::glance_mon {
   #Glance
   if defined_in_state(Class['glance::api']) {
     plugin_zabbix_template_link { "${plugin_zabbix::params::host_name} Template App OpenStack Glance API":
-      host => $plugin_zabbix::params::host_name,
+      host     => $plugin_zabbix::params::host_name,
       template => 'Template App OpenStack Glance API',
-      api => $plugin_zabbix::monitoring::api_hash,
+      api      => $plugin_zabbix::monitoring::api_hash,
     }
     plugin_zabbix_template_link { "${plugin_zabbix::params::host_name} Template App OpenStack Glance API check":
-      host    => $plugin_zabbix::params::host_name,
+      host     => $plugin_zabbix::params::host_name,
       template => 'Template App OpenStack Glance API check',
-      api => $plugin_zabbix::monitoring::api_hash,
+      api      => $plugin_zabbix::monitoring::api_hash,
     }
     plugin_zabbix::agent::userparameter {
       'glance.api.status':
@@ -37,9 +37,9 @@ class plugin_zabbix::monitoring::glance_mon {
 
   if defined_in_state(Class['glance::registry']) {
     plugin_zabbix_template_link { "${plugin_zabbix::params::host_name} Template App OpenStack Glance Registry":
-      host => $plugin_zabbix::params::host_name,
+      host     => $plugin_zabbix::params::host_name,
       template => 'Template App OpenStack Glance Registry',
-      api => $plugin_zabbix::monitoring::api_hash,
+      api      => $plugin_zabbix::monitoring::api_hash,
     }
   }
 }

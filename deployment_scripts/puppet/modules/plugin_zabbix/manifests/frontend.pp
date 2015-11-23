@@ -25,46 +25,46 @@ class plugin_zabbix::frontend {
   }
 
   package { $plugin_zabbix::params::frontend_pkg:
-    ensure    => present,
-    require   => [
+    ensure  => present,
+    require => [
       File['/etc/dbconfig-common/zabbix-server-mysql.conf'],
       Package[$plugin_zabbix::params::php_mysql_pkg]
     ],
   }
 
   package { $plugin_zabbix::params::php_mysql_pkg:
-    ensure    => present
+    ensure => present
   }
 
   file { $plugin_zabbix::params::frontend_config:
-    ensure    => present,
-    content   => template($plugin_zabbix::params::frontend_config_template),
-    notify    => Service[$plugin_zabbix::params::frontend_service],
-    require   => Package[$plugin_zabbix::params::frontend_pkg],
+    ensure  => present,
+    content => template($plugin_zabbix::params::frontend_config_template),
+    notify  => Service[$plugin_zabbix::params::frontend_service],
+    require => Package[$plugin_zabbix::params::frontend_pkg],
   }
 
   file_line { 'php timezone':
-    path      => $plugin_zabbix::params::frontend_service_config,
-    line      => '    php_value date.timezone UTC',
-    match     => 'php_value date.timezone',
-    notify    => Service[$plugin_zabbix::params::frontend_service],
-    require   => Package[$plugin_zabbix::params::frontend_pkg],
+    path    => $plugin_zabbix::params::frontend_service_config,
+    line    => '    php_value date.timezone UTC',
+    match   => 'php_value date.timezone',
+    notify  => Service[$plugin_zabbix::params::frontend_service],
+    require => Package[$plugin_zabbix::params::frontend_pkg],
   }
 
   file_line { 'php memory_limit':
-    path      => $plugin_zabbix::params::frontend_service_config,
-    line      => '    php_value memory_limit 256M',
-    match     => 'php_value memory_limit',
-    notify    => Service[$plugin_zabbix::params::frontend_service],
-    require   => Package[$plugin_zabbix::params::frontend_pkg],
+    path    => $plugin_zabbix::params::frontend_service_config,
+    line    => '    php_value memory_limit 256M',
+    match   => 'php_value memory_limit',
+    notify  => Service[$plugin_zabbix::params::frontend_service],
+    require => Package[$plugin_zabbix::params::frontend_pkg],
   }
 
   file_line { 'set expose_php to off':
-    path      => $plugin_zabbix::params::php_config,
-    match     => 'expose_php =',
-    line      => 'expose_php = Off',
-    notify    => Service[$plugin_zabbix::params::frontend_service],
-    require   => Package[$plugin_zabbix::params::frontend_pkg],
+    path    => $plugin_zabbix::params::php_config,
+    match   => 'expose_php =',
+    line    => 'expose_php = Off',
+    notify  => Service[$plugin_zabbix::params::frontend_service],
+    require => Package[$plugin_zabbix::params::frontend_pkg],
   }
 
   # disable worker MPM, use prefork MPM which is required by mod_php:
@@ -119,10 +119,10 @@ class plugin_zabbix::frontend {
         before   => Package[$plugin_zabbix::params::frontend_pkg],
       }
       file { '/etc/apache2/conf.d/zabbix.conf':
-        ensure   => link,
-        target   => $plugin_zabbix::params::frontend_service_config,
-        notify   => Service[$plugin_zabbix::params::frontend_service],
-        require  => Package[$plugin_zabbix::params::frontend_pkg],
+        ensure  => link,
+        target  => $plugin_zabbix::params::frontend_service_config,
+        notify  => Service[$plugin_zabbix::params::frontend_service],
+        require => Package[$plugin_zabbix::params::frontend_pkg],
       }
     }
     default: {}
