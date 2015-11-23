@@ -24,14 +24,16 @@ class plugin_zabbix::primary_controller {
     before      => [ Class['plugin_zabbix::frontend'], Cs_resource["p_${plugin_zabbix::params::server_service}"] ],
   }
 
+  $operations = {
+    'monitor' => {'interval' => '5s', 'timeout' => '30s' },
+    'start'   => {'interval' => '0', 'timeout' => '30s' }
+  }
+
   cs_resource { "p_${plugin_zabbix::params::server_service}":
     primitive_class => 'ocf',
     provided_by     => $plugin_zabbix::params::ocf_scripts_provider,
     primitive_type  => $plugin_zabbix::params::server_service,
-    operations      => {
-      'monitor' => { 'interval' => '5s', 'timeout' => '30s' },
-      'start'   => { 'interval' => '0', 'timeout' => '30s' }
-    },
+    operations      => $operations,
     metadata        => {
       'migration-threshold' => '3',
       'failure-timeout'     => '120',

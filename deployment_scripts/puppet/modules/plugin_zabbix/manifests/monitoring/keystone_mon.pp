@@ -20,14 +20,14 @@ class plugin_zabbix::monitoring::keystone_mon {
   #Keystone
   if defined_in_state(Class['keystone']) {
     plugin_zabbix_template_link { "${plugin_zabbix::params::host_name} Template App OpenStack Keystone":
-      host => $plugin_zabbix::params::host_name,
+      host     => $plugin_zabbix::params::host_name,
       template => 'Template App OpenStack Keystone',
-      api => $plugin_zabbix::monitoring::api_hash,
+      api      => $plugin_zabbix::monitoring::api_hash,
     }
     plugin_zabbix_template_link { "${plugin_zabbix::params::host_name} Template App OpenStack Keystone API check":
-      host    => $plugin_zabbix::params::host_name,
+      host     => $plugin_zabbix::params::host_name,
       template => 'Template App OpenStack Keystone API check',
-      api => $plugin_zabbix::monitoring::api_hash,
+      api      => $plugin_zabbix::monitoring::api_hash,
     }
     plugin_zabbix::agent::userparameter {
       'keystone.api.status':

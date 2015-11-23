@@ -84,14 +84,14 @@ class plugin_zabbix::ha::haproxy {
   Haproxy::Balancermember <||> -> Exec['haproxy reload']
 
   firewall { '998 zabbix agent vip':
-    proto     => 'tcp',
-    action    => 'accept',
-    port      => $plugin_zabbix::params::zabbix_ports['agent'],
+    proto  => 'tcp',
+    action => 'accept',
+    port   => $plugin_zabbix::params::zabbix_ports['agent'],
   }
 
   firewall { '998 zabbix server vip':
-    proto     => 'tcp',
-    action    => 'accept',
-    port      => $plugin_zabbix::params::zabbix_ports['server'],
+    proto  => 'tcp',
+    action => 'accept',
+    port   => $plugin_zabbix::params::zabbix_ports['server'],
   }
 }
