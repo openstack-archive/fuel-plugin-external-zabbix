@@ -22,9 +22,9 @@ class plugin_zabbix::monitoring::rabbitmq_mon {
   if defined_in_state(Class['Rabbitmq']) {
 
     plugin_zabbix_template_link { "${plugin_zabbix::params::host_name} Template App OpenStack RabbitMQ":
-      host        => $plugin_zabbix::params::host_name,
-      template    => 'Template App OpenStack HA RabbitMQ',
-      api         => $plugin_zabbix::monitoring::api_hash,
+      host     => $plugin_zabbix::params::host_name,
+      template => 'Template App OpenStack HA RabbitMQ',
+      api      => $plugin_zabbix::monitoring::api_hash,
     }
 
     exec { 'enable rabbitmq management plugin':
@@ -43,9 +43,9 @@ class plugin_zabbix::monitoring::rabbitmq_mon {
     }
 
     firewall {'992 rabbitmq management':
-      port        => '15672',
-      proto       => 'tcp',
-      action      => 'accept',
+      port   => '15672',
+      proto  => 'tcp',
+      action => 'accept',
     }
 
     plugin_zabbix::agent::userparameter {

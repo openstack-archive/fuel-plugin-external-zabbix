@@ -22,20 +22,20 @@ class plugin_zabbix::server::config {
   $api_hash = $plugin_zabbix::params::api_hash
 
   plugin_zabbix_hostgroup { $plugin_zabbix::params::host_groups:
-    ensure   => present,
-    api      => $api_hash,
+    ensure => present,
+    api    => $api_hash,
   }
 
   file { '/etc/zabbix/import':
-    ensure   => directory,
-    recurse  => true,
-    purge    => true,
-    force    => true,
-    source   => 'puppet:///modules/plugin_zabbix/import'
+    ensure  => directory,
+    recurse => true,
+    purge   => true,
+    force   => true,
+    source  => 'puppet:///modules/plugin_zabbix/import'
   }
 
   Plugin_zabbix_configuration_import {
-    require  => File['/etc/zabbix/import'],
+    require => File['/etc/zabbix/import'],
   }
 
   plugin_zabbix_configuration_import { 'Template_App_Zabbix_Agent.xml Import':
@@ -230,11 +230,11 @@ class plugin_zabbix::server::config {
     }
     ->
     plugin_zabbix_host { $plugin_zabbix::params::openstack::ceph_virtual_cluster_name:
-      host     => $plugin_zabbix::params::openstack::ceph_virtual_cluster_name,
-      ip       => $plugin_zabbix::params::server_ip,
-      port     => $plugin_zabbix::params::zabbix_ports['agent'],
-      groups   => concat($plugin_zabbix::params::host_groups_ceph_cluster, $plugin_zabbix::params::host_groups_base),
-      api      => $plugin_zabbix::params::api_hash,
+      host   => $plugin_zabbix::params::openstack::ceph_virtual_cluster_name,
+      ip     => $plugin_zabbix::params::server_ip,
+      port   => $plugin_zabbix::params::zabbix_ports['agent'],
+      groups => concat($plugin_zabbix::params::host_groups_ceph_cluster, $plugin_zabbix::params::host_groups_base),
+      api    => $plugin_zabbix::params::api_hash,
     }
     ->
     plugin_zabbix_template_link { "${plugin_zabbix::params::openstack::ceph_virtual_cluster_name} Template Ceph Cluster":
@@ -359,11 +359,11 @@ class plugin_zabbix::server::config {
   }
   ->
   plugin_zabbix_host { $plugin_zabbix::params::openstack::virtual_cluster_name:
-    host     => $plugin_zabbix::params::openstack::virtual_cluster_name,
-    ip       => $plugin_zabbix::params::server_ip,
-    port     => $plugin_zabbix::params::zabbix_ports['agent'],
-    groups   => $plugin_zabbix::params::host_groups_base,
-    api      => $plugin_zabbix::params::api_hash,
+    host   => $plugin_zabbix::params::openstack::virtual_cluster_name,
+    ip     => $plugin_zabbix::params::server_ip,
+    port   => $plugin_zabbix::params::zabbix_ports['agent'],
+    groups => $plugin_zabbix::params::host_groups_base,
+    api    => $plugin_zabbix::params::api_hash,
   }
   ->
   plugin_zabbix_template_link { "${plugin_zabbix::params::openstack::virtual_cluster_name} Template OpenStack Cluster":
