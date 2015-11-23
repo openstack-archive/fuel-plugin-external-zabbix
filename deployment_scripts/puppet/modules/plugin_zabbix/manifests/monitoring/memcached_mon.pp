@@ -19,9 +19,9 @@ class plugin_zabbix::monitoring::memcached_mon {
 
   if defined_in_state(Class['memcached']) {
     plugin_zabbix_template_link { "${plugin_zabbix::params::host_name} Template App Memcache":
-      host => $plugin_zabbix::params::host_name,
+      host     => $plugin_zabbix::params::host_name,
       template => 'Template App Memcache',
-      api => $plugin_zabbix::monitoring::api_hash,
+      api      => $plugin_zabbix::monitoring::api_hash,
     }
     plugin_zabbix::agent::userparameter {
       'memcache':

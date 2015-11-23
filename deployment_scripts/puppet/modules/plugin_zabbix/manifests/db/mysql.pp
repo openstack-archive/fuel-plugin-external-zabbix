@@ -36,9 +36,9 @@ class plugin_zabbix::db::mysql(
   }
 
   file { '/tmp/zabbix/parts/data_clean.sql':
-    ensure    => present,
-    require   => File['/tmp/zabbix/parts'],
-    content   => template('plugin_zabbix/data_clean.erb'),
+    ensure  => present,
+    require => File['/tmp/zabbix/parts'],
+    content => template('plugin_zabbix/data_clean.erb'),
   }
 
   exec { 'prepare-schema-1':

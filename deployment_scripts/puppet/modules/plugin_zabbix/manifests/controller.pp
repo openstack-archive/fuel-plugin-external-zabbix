@@ -19,49 +19,49 @@ class plugin_zabbix::controller {
   $host = regsubst($plugin_zabbix::params::db_ip,'^(\d+\.\d+\.\d+\.)\d+','\1%')
 
   file { '/etc/dbconfig-common':
-    ensure    => directory,
-    owner     => 'root',
-    group     => 'root',
-    mode      => '0755',
+    ensure => directory,
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0755',
   }
 
   file { '/etc/dbconfig-common/zabbix-server-mysql.conf':
-    ensure    => present,
-    require   => File['/etc/dbconfig-common'],
-    mode      => '0600',
-    source    => 'puppet:///modules/plugin_zabbix/zabbix-server-mysql.conf',
+    ensure  => present,
+    require => File['/etc/dbconfig-common'],
+    mode    => '0600',
+    source  => 'puppet:///modules/plugin_zabbix/zabbix-server-mysql.conf',
   }
 
   package { $plugin_zabbix::params::server_pkg:
-    ensure    => present,
-    require   => File['/etc/dbconfig-common/zabbix-server-mysql.conf'],
+    ensure  => present,
+    require => File['/etc/dbconfig-common/zabbix-server-mysql.conf'],
   }
 
   file { $plugin_zabbix::params::server_config:
-    ensure    => present,
-    require   => Package[$plugin_zabbix::params::server_pkg],
-    content   => template($plugin_zabbix::params::server_config_template),
+    ensure  => present,
+    require => Package[$plugin_zabbix::params::server_pkg],
+    content => template($plugin_zabbix::params::server_config_template),
   }
 
   file { 'zabbix-server-ocf' :
-    ensure      => present,
-    path        => "${plugin_zabbix::params::ocf_scripts_dir}/${plugin_zabbix::params::ocf_scripts_provider}/${plugin_zabbix::params::server_service}",
-    mode        => '0755',
-    owner       => 'root',
-    group       => 'root',
-    source      => 'puppet:///modules/plugin_zabbix/zabbix-server.ocf',
+    ensure => present,
+    path   => "${plugin_zabbix::params::ocf_scripts_dir}/${plugin_zabbix::params::ocf_scripts_provider}/${plugin_zabbix::params::server_service}",
+    mode   => '0755',
+    owner  => 'root',
+    group  => 'root',
+    source => 'puppet:///modules/plugin_zabbix/zabbix-server.ocf',
   }
   service { "${plugin_zabbix::params::server_service}-init-stopped":
-    ensure      => 'stopped',
-    name        => $plugin_zabbix::params::server_service,
-    enable      => false,
-    require     => File[$plugin_zabbix::params::server_config],
+    ensure  => 'stopped',
+    name    => $plugin_zabbix::params::server_service,
+    enable  => false,
+    require => File[$plugin_zabbix::params::server_config],
   }
   service { "${plugin_zabbix::params::server_service}-started":
-    ensure    => running,
-    name      => "p_${plugin_zabbix::params::server_service}",
-    enable    => true,
-    provider  => 'pacemaker',
+    ensure   => running,
+    name     => "p_${plugin_zabbix::params::server_service}",
+    enable   => true,
+    provider => 'pacemaker',
   }
 
   File['zabbix-server-ocf'] -> Service["${plugin_zabbix::params::server_service}-init-stopped"] -> Service["${plugin_zabbix::params::server_service}-started"]
@@ -79,23 +79,22 @@ class plugin_zabbix::controller {
 
   if $plugin_zabbix::params::frontend {
     class { 'plugin_zabbix::frontend':
-      require   => File[$plugin_zabbix::params::server_config],
-      before    => Class['plugin_zabbix::ha::haproxy'],
+      require => File[$plugin_zabbix::params::server_config],
+      before  => Class['plugin_zabbix::ha::haproxy'],
     }
   }
 
   include plugin_zabbix::ha::haproxy
 
   firewall { '998 zabbix agent vip':
-    proto     => 'tcp',
-    action    => 'accept',
-    port      => $plugin_zabbix::params::zabbix_ports['agent'],
+    proto  => 'tcp',
+    action => 'accept',
+    port   => $plugin_zabbix::params::zabbix_ports['agent'],
   }
 
   firewall { '998 zabbix server vip':
-    proto     => 'tcp',
-    action    => 'accept',
-    port      => $plugin_zabbix::params::zabbix_ports['server'],
+    proto  => 'tcp',
+    action => 'accept',
+    port   => $plugin_zabbix::params::zabbix_ports['server'],
   }
-
 }

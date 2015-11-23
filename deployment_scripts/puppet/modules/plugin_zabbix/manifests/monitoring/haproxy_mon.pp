@@ -19,9 +19,9 @@ class plugin_zabbix::monitoring::haproxy_mon {
 
   if defined_in_state(Class[Cluster::Haproxy]) {
     plugin_zabbix_template_link { "${plugin_zabbix::params::host_name} Template App HAProxy":
-      host => $plugin_zabbix::params::host_name,
+      host     => $plugin_zabbix::params::host_name,
       template => 'Template App HAProxy',
-      api => $plugin_zabbix::monitoring::api_hash,
+      api      => $plugin_zabbix::monitoring::api_hash,
     }
     plugin_zabbix::agent::userparameter {
       'haproxy.be.discovery':
