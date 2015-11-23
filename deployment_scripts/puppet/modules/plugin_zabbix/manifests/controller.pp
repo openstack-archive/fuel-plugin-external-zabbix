@@ -112,5 +112,4 @@ class plugin_zabbix::controller {
     action    => 'accept',
     port      => $plugin_zabbix::params::zabbix_ports['server'],
   }
-
 }

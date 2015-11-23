@@ -20,8 +20,8 @@ class plugin_zabbix::monitoring::openvswitch_mon {
   # Open vSwitch
 
   plugin_zabbix_template_link { "${plugin_zabbix::params::host_name} Template App OpenStack Open vSwitch":
-    host => $plugin_zabbix::params::host_name,
+    host     => $plugin_zabbix::params::host_name,
     template => 'Template App OpenStack Open vSwitch',
-    api => $plugin_zabbix::monitoring::api_hash,
+    api      => $plugin_zabbix::monitoring::api_hash,
   }
 }

@@ -20,12 +20,12 @@ class plugin_zabbix::monitoring::firewall_mon {
   #Iptables stats
   if defined_in_state(Class['firewall']) {
     plugin_zabbix_template_link { "${plugin_zabbix::params::host_name} Template App Iptables Stats":
-      host      => $plugin_zabbix::params::host_name,
-      template  => 'Template App Iptables Stats',
-      api       => $plugin_zabbix::monitoring::api_hash,
+      host     => $plugin_zabbix::params::host_name,
+      template => 'Template App Iptables Stats',
+      api      => $plugin_zabbix::monitoring::api_hash,
     }
     package { 'iptstate':
-      ensure    => present;
+      ensure => present;
     }
     plugin_zabbix::agent::userparameter {
       'iptstate.tcp':
