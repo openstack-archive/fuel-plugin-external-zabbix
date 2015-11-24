@@ -43,8 +43,7 @@ class plugin_zabbix::ha::haproxy {
       'timeout client' => '48h',
       'timeout server' => '48h',
       'balance'        => 'roundrobin',
-      'mode'           => 'tcp',
-      'source'         =>  $zabbix_vip
+      'mode'           => 'tcp'
     },
 
     balancermember_options => 'check inter 5000 rise 2 fall 3',
