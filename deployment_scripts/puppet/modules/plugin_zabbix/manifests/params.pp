@@ -91,6 +91,7 @@ class plugin_zabbix::params {
   #server parameters
   $vip_name                          = 'zbx_vip_mgmt'
   $server_ip                         = $network_metadata['vips'][$vip_name]['ipaddr']
+  $mgmt_vip                          = $network_metadata['vips']['management']['ipaddr']
   $server_config                     = '/etc/zabbix/zabbix_server.conf'
   $server_config_template            = 'plugin_zabbix/zabbix_server.conf.erb'
   $server_node_id                    = 0
