@@ -18,27 +18,27 @@ class plugin_zabbix::agent::scripts {
   include plugin_zabbix::params
 
   file { $plugin_zabbix::params::agent_scripts:
-    ensure    => directory,
-    recurse   => true,
-    purge     => true,
-    force     => true,
-    mode      => '0755',
-    source    => 'puppet:///modules/plugin_zabbix/scripts',
+    ensure  => directory,
+    recurse => true,
+    purge   => true,
+    force   => true,
+    mode    => '0755',
+    source  => 'puppet:///modules/plugin_zabbix/scripts',
   }
 
   file { '/etc/zabbix/check_api.conf':
-    ensure      => present,
-    content     => template('plugin_zabbix/check_api.conf.erb'),
+    ensure  => present,
+    content => template('plugin_zabbix/check_api.conf.erb'),
   }
 
   file { '/etc/zabbix/check_rabbit.conf':
-    ensure      => present,
-    content     => template('plugin_zabbix/check_rabbit.conf.erb'),
+    ensure  => present,
+    content => template('plugin_zabbix/check_rabbit.conf.erb'),
   }
 
   file { '/etc/zabbix/check_db.conf':
-    ensure      => present,
-    content     => template('plugin_zabbix/check_db.conf.erb'),
+    ensure  => present,
+    content => template('plugin_zabbix/check_db.conf.erb'),
   }
 
   if ! defined(Package['sudo']) {
@@ -55,5 +55,4 @@ class plugin_zabbix::agent::scripts {
     source  => 'puppet:///modules/plugin_zabbix/zabbix-sudo',
     require => Package['sudo'],
   }
-
 }
