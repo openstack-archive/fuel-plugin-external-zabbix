@@ -107,7 +107,8 @@ class Puppet::Provider::Plugin_zabbix < Puppet::Provider
     puts "DEBUG gethost #{name}"
     api_request(api,
                 {:method => "host.get",
-                 :params => {:filter => {:name => [name]}}})
+                 :params => {:selectGroups => 'count',
+                             :filter => {:name => [name]}}})
   end
 
   def self.get_hostgroup(api, name)
