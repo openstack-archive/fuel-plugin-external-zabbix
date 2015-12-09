@@ -125,11 +125,19 @@ ExternalScripts=<%= scope.lookupvar('plugin_zabbix::params::server_scripts') %>
 
 # Location of fping. Default is /usr/sbin/fping
 # Make sure that fping binary has root permissions and SUID flag set
+<%- if @osfamily == 'Debian' then -%>
+<%='FpingLocation=/usr/bin/fping'%>
+<%- else -%>
 #FpingLocation=/usr/sbin/fping
+<%- end -%>
 
 # Location of fping6. Default is /usr/sbin/fping6
 # Make sure that fping binary has root permissions and SUID flag set
+<%- if @osfamily == 'Debian' then -%>
+<%='Fping6Location=/usr/bin/fping6'%>
+<%- else -%>
 #Fping6Location=/usr/sbin/fping6
+<%- end -%>
 
 # Temporary directory. Default is /tmp
 #TmpDir=/tmp
