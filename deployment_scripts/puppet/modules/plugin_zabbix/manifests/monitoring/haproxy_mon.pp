@@ -29,19 +29,19 @@ class plugin_zabbix::monitoring::haproxy_mon {
         command => '/etc/zabbix/scripts/haproxy.sh -b';
       'haproxy.be':
         key     => 'haproxy.be[*]',
-        command => '/etc/zabbix/scripts/haproxy.sh -v $1';
+        command => '/etc/zabbix/scripts/haproxy.sh -v $1 $2 $3';
       'haproxy.fe.discovery':
         key     => 'haproxy.fe.discovery',
         command => '/etc/zabbix/scripts/haproxy.sh -f';
       'haproxy.fe':
         key     => 'haproxy.fe[*]',
-        command => '/etc/zabbix/scripts/haproxy.sh -v $1';
+        command => '/etc/zabbix/scripts/haproxy.sh -v $1 $2 $3';
       'haproxy.sv.discovery':
         key     => 'haproxy.sv.discovery',
         command => '/etc/zabbix/scripts/haproxy.sh -s';
       'haproxy.sv':
         key     => 'haproxy.sv[*]',
-        command => '/etc/zabbix/scripts/haproxy.sh -v $1';
+        command => '/etc/zabbix/scripts/haproxy.sh -v $1 $2 $3';
     }
   }
 }
