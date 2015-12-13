@@ -34,12 +34,9 @@ case $1 in
     ;;
   "-v")
     OPER='value'
-    IFS=$'.'
-    QA=($2)
-    unset IFS
-    HAPX=${QA[0]}
-    HASV=${QA[1]}
-    ITEM=${QA[2]}
+    HAPX=$2
+    HASV=$3
+    ITEM=$4
     FESQ="grep ^${HAPX},${HASV},"
     ;;
   *)
