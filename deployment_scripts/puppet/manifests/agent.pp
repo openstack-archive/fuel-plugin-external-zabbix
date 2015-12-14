@@ -27,5 +27,5 @@ $swift_address = join(values(nodes_to_hash($node_data,'name','storage_address'))
 
 class { 'plugin_zabbix::monitoring':
   server_ips => $controller_nodes,
-  roles      => hiera('roles'),
+  roles      => node_roles(hiera('nodes'), hiera('uid')),
 }
