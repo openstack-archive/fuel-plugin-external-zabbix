@@ -18,12 +18,12 @@ class plugin_zabbix::monitoring(
   $roles = [],
 ) {
 
-  # This should evaluate to false on base-os only nodes
+  # This should evaluate to false on base-os or virt only nodes
   # and therefore Zabbix should not be installed neither configured in this case
-  $zabbix_agent_not_supported = member($roles, 'base-os') and (size($roles) == 1)
+  $zabbix_agent_not_supported = (member($roles, 'base-os') or member($roles, 'virt')) and (size($roles) == 1)
 
   if $zabbix_agent_not_supported {
-    notice('Skipping Zabbix configuration for base-os only host')
+    notice('Skipping Zabbix configuration for base-os or virt only host')
   } else {
     validate_array($roles)
 
