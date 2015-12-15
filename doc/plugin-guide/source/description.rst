@@ -41,12 +41,14 @@ Release Notes
 
 * Generate documentation with `Sphinx <http://sphinx-doc.org/>`_
 * Allow deployment without Horizon (bug 1517005_)
+* Skip zabbix agent installation when node has either 'base-os' or 'virt' role (bug 1515956_)
 
 .. _1483983: https://bugs.launchpad.net/fuel/7.0.x/+bug/1483983
 .. _1510115: https://bugs.launchpad.net/fuel/+bug/1510115
 .. _1513454: https://bugs.launchpad.net/fuel-plugins/+bug/1513454
 .. _1517472: https://bugs.launchpad.net/fuel/+bug/1517472
 .. _1517005: https://bugs.launchpad.net/fuel/+bug/1517005
+.. _1515956: https://bugs.launchpad.net/fuel-plugins/+bug/1515956
 
 **2.0.0**
 
