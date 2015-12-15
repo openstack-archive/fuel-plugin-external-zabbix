@@ -97,3 +97,25 @@ Steps:
 * Check login to zabbix dashboard
 * Check that zabbix dashboard is not empty
 
+Deploy environment with not supported roles
+===========================================
+
+* Test Case ID:  deploy_zabbix_non_supported_roles
+* Expected Result: Cluster deployed, Zabbix dashboard available, Zabbix dashboard is not empty, Zabbix hosts are not configured for nodes with role 'virt' or 'base-os'
+
+Steps:
+
+* Upload plugin to the master node
+* Install plugin
+* Create cluster
+* Add 1 nodes with controller role
+* Add 1 node with compute role
+* Add 1 node with base-os role
+* Add 1 node with virt role (see `reduced footprint feature <https://docs.mirantis.com/openstack/fuel/fuel-7.0/operations.html#reduced-footprint-flow-in-brief>`_)
+* Deploy the cluster
+* Run network verification
+* Check plugin health
+* Run OSTF
+* Check login to zabbix dashboard
+* Check that zabbix dashboard is not empty
+
