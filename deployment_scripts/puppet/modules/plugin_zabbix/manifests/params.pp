@@ -33,6 +33,7 @@ class plugin_zabbix::params {
       $server_pkg               = 'zabbix-server-mysql'
       $frontend_pkg             = 'zabbix-frontend-php'
       $sender_pkg               = 'zabbix-sender'
+      $get_pkg                  = 'zabbix-get'
 
       $agent_service            = 'zabbix-agent'
       $server_service           = 'zabbix-server'
@@ -54,6 +55,7 @@ class plugin_zabbix::params {
       $server_pkg               = 'zabbix-server-mysql'
       $frontend_pkg             = 'zabbix-web-mysql'
       $sender_pkg               = 'zabbix-sender'
+      $get_pkg                  = 'zabbix-get'
 
       $agent_service            = 'zabbix-agent'
       $server_service           = 'zabbix-server'
