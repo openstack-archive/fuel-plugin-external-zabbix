@@ -67,7 +67,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.be[{#HAPX}.{#HASV}.act]</key>
+                            <key>haproxy.be[{#HAPX},{#HASV},act]</key>
                             <delay>30</delay>
                             <history>365</history>
                             <trends>365</trends>
@@ -106,7 +106,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.be[{#HAPX}.{#HASV}.bck]</key>
+                            <key>haproxy.be[{#HAPX},{#HASV},bck]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>365</trends>
@@ -145,7 +145,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.be[{#HAPX}.{#HASV}.bin]</key>
+                            <key>haproxy.be[{#HAPX},{#HASV},bin]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -184,7 +184,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.be[{#HAPX}.{#HASV}.bout]</key>
+                            <key>haproxy.be[{#HAPX},{#HASV},bout]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -223,7 +223,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.be[{#HAPX}.{#HASV}.check_code]</key>
+                            <key>haproxy.be[{#HAPX},{#HASV},check_code]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -262,7 +262,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.be[{#HAPX}.{#HASV}.check_duration]</key>
+                            <key>haproxy.be[{#HAPX},{#HASV},check_duration]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -301,7 +301,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.be[{#HAPX}.{#HASV}.check_status]</key>
+                            <key>haproxy.be[{#HAPX},{#HASV},check_status]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>365</trends>
@@ -340,7 +340,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.be[{#HAPX}.{#HASV}.cli_abrt]</key>
+                            <key>haproxy.be[{#HAPX},{#HASV},cli_abrt]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -379,7 +379,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.be[{#HAPX}.{#HASV}.econ]</key>
+                            <key>haproxy.be[{#HAPX},{#HASV},econ]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -418,7 +418,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.be[{#HAPX}.{#HASV}.scur]</key>
+                            <key>haproxy.be[{#HAPX},{#HASV},scur]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -457,7 +457,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.be[{#HAPX}.{#HASV}.dreq]</key>
+                            <key>haproxy.be[{#HAPX},{#HASV},dreq]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -496,7 +496,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.be[{#HAPX}.{#HASV}.dresp]</key>
+                            <key>haproxy.be[{#HAPX},{#HASV},dresp]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -535,7 +535,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.be[{#HAPX}.{#HASV}.chkfail]</key>
+                            <key>haproxy.be[{#HAPX},{#HASV},chkfail]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -574,7 +574,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.be[{#HAPX}.{#HASV}.hanafail]</key>
+                            <key>haproxy.be[{#HAPX},{#HASV},hanafail]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>365</trends>
@@ -613,7 +613,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.be[{#HAPX}.{#HASV}.hrsp_1xx]</key>
+                            <key>haproxy.be[{#HAPX},{#HASV},hrsp_1xx]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -652,7 +652,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.be[{#HAPX}.{#HASV}.hrsp_2xx]</key>
+                            <key>haproxy.be[{#HAPX},{#HASV},hrsp_2xx]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -691,7 +691,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.be[{#HAPX}.{#HASV}.hrsp_3xx]</key>
+                            <key>haproxy.be[{#HAPX},{#HASV},hrsp_3xx]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -730,7 +730,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.be[{#HAPX}.{#HASV}.hrsp_4xx]</key>
+                            <key>haproxy.be[{#HAPX},{#HASV},hrsp_4xx]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -769,7 +769,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.be[{#HAPX}.{#HASV}.hrsp_5xx]</key>
+                            <key>haproxy.be[{#HAPX},{#HASV},hrsp_5xx]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -808,7 +808,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.be[{#HAPX}.{#HASV}.hrsp_other]</key>
+                            <key>haproxy.be[{#HAPX},{#HASV},hrsp_other]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -847,7 +847,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.be[{#HAPX}.{#HASV}.lastchg]</key>
+                            <key>haproxy.be[{#HAPX},{#HASV},lastchg]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -886,7 +886,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.be[{#HAPX}.{#HASV}.qmax]</key>
+                            <key>haproxy.be[{#HAPX},{#HASV},qmax]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -925,7 +925,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.be[{#HAPX}.{#HASV}.smax]</key>
+                            <key>haproxy.be[{#HAPX},{#HASV},smax]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -964,7 +964,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.be[{#HAPX}.{#HASV}.pid]</key>
+                            <key>haproxy.be[{#HAPX},{#HASV},pid]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -1003,7 +1003,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.be[{#HAPX}.{#HASV}.qcur]</key>
+                            <key>haproxy.be[{#HAPX},{#HASV},qcur]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -1042,7 +1042,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.be[{#HAPX}.{#HASV}.qlimit]</key>
+                            <key>haproxy.be[{#HAPX},{#HASV},qlimit]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -1081,7 +1081,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.be[{#HAPX}.{#HASV}.wredis]</key>
+                            <key>haproxy.be[{#HAPX},{#HASV},wredis]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -1120,7 +1120,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.be[{#HAPX}.{#HASV}.ereq]</key>
+                            <key>haproxy.be[{#HAPX},{#HASV},ereq]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -1159,7 +1159,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.be[{#HAPX}.{#HASV}.req_rate]</key>
+                            <key>haproxy.be[{#HAPX},{#HASV},req_rate]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -1198,7 +1198,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.be[{#HAPX}.{#HASV}.req_rate_max]</key>
+                            <key>haproxy.be[{#HAPX},{#HASV},req_rate_max]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -1237,7 +1237,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.be[{#HAPX}.{#HASV}.eresp]</key>
+                            <key>haproxy.be[{#HAPX},{#HASV},eresp]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -1276,7 +1276,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.be[{#HAPX}.{#HASV}.wretr]</key>
+                            <key>haproxy.be[{#HAPX},{#HASV},wretr]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -1315,7 +1315,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.be[{#HAPX}.{#HASV}.srv_abrt]</key>
+                            <key>haproxy.be[{#HAPX},{#HASV},srv_abrt]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -1354,7 +1354,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.be[{#HAPX}.{#HASV}.sid]</key>
+                            <key>haproxy.be[{#HAPX},{#HASV},sid]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -1393,7 +1393,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.be[{#HAPX}.{#HASV}.rate]</key>
+                            <key>haproxy.be[{#HAPX},{#HASV},rate]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -1432,7 +1432,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.be[{#HAPX}.{#HASV}.rate_lim]</key>
+                            <key>haproxy.be[{#HAPX},{#HASV},rate_lim]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -1471,7 +1471,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.be[{#HAPX}.{#HASV}.rate_max]</key>
+                            <key>haproxy.be[{#HAPX},{#HASV},rate_max]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -1510,7 +1510,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.be[{#HAPX}.{#HASV}.slim]</key>
+                            <key>haproxy.be[{#HAPX},{#HASV},slim]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -1549,7 +1549,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.be[{#HAPX}.{#HASV}.status]</key>
+                            <key>haproxy.be[{#HAPX},{#HASV},status]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>365</trends>
@@ -1588,7 +1588,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.be[{#HAPX}.{#HASV}.throttle]</key>
+                            <key>haproxy.be[{#HAPX},{#HASV},throttle]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -1627,7 +1627,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.be[{#HAPX}.{#HASV}.lbtot]</key>
+                            <key>haproxy.be[{#HAPX},{#HASV},lbtot]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -1666,7 +1666,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.be[{#HAPX}.{#HASV}.downtime]</key>
+                            <key>haproxy.be[{#HAPX},{#HASV},downtime]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -1705,7 +1705,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.be[{#HAPX}.{#HASV}.req_tot]</key>
+                            <key>haproxy.be[{#HAPX},{#HASV},req_tot]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -1744,7 +1744,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.be[{#HAPX}.{#HASV}.stot]</key>
+                            <key>haproxy.be[{#HAPX},{#HASV},stot]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -1783,7 +1783,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.be[{#HAPX}.{#HASV}.tracked]</key>
+                            <key>haproxy.be[{#HAPX},{#HASV},tracked]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -1822,7 +1822,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.be[{#HAPX}.{#HASV}.chkdown]</key>
+                            <key>haproxy.be[{#HAPX},{#HASV},chkdown]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -1861,7 +1861,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.be[{#HAPX}.{#HASV}.type]</key>
+                            <key>haproxy.be[{#HAPX},{#HASV},type]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -1900,7 +1900,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.be[{#HAPX}.{#HASV}.iid]</key>
+                            <key>haproxy.be[{#HAPX},{#HASV},iid]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -1939,7 +1939,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.be[{#HAPX}.{#HASV}.weight]</key>
+                            <key>haproxy.be[{#HAPX},{#HASV},weight]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -2008,7 +2008,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.sv[{#HAPX}.{#HASV}.act]</key>
+                            <key>haproxy.sv[{#HAPX},{#HASV},act]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>365</trends>
@@ -2047,7 +2047,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.sv[{#HAPX}.{#HASV}.bck]</key>
+                            <key>haproxy.sv[{#HAPX},{#HASV},bck]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>365</trends>
@@ -2086,7 +2086,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.sv[{#HAPX}.{#HASV}.bin]</key>
+                            <key>haproxy.sv[{#HAPX},{#HASV},bin]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -2125,7 +2125,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.sv[{#HAPX}.{#HASV}.bout]</key>
+                            <key>haproxy.sv[{#HAPX},{#HASV},bout]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -2164,7 +2164,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.sv[{#HAPX}.{#HASV}.check_code]</key>
+                            <key>haproxy.sv[{#HAPX},{#HASV},check_code]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -2203,7 +2203,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.sv[{#HAPX}.{#HASV}.check_duration]</key>
+                            <key>haproxy.sv[{#HAPX},{#HASV},check_duration]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -2242,7 +2242,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.sv[{#HAPX}.{#HASV}.check_status]</key>
+                            <key>haproxy.sv[{#HAPX},{#HASV},check_status]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>365</trends>
@@ -2281,7 +2281,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.sv[{#HAPX}.{#HASV}.cli_abrt]</key>
+                            <key>haproxy.sv[{#HAPX},{#HASV},cli_abrt]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -2320,7 +2320,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.sv[{#HAPX}.{#HASV}.econ]</key>
+                            <key>haproxy.sv[{#HAPX},{#HASV},econ]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -2359,7 +2359,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.sv[{#HAPX}.{#HASV}.scur]</key>
+                            <key>haproxy.sv[{#HAPX},{#HASV},scur]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -2398,7 +2398,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.sv[{#HAPX}.{#HASV}.dreq]</key>
+                            <key>haproxy.sv[{#HAPX},{#HASV},dreq]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -2437,7 +2437,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.sv[{#HAPX}.{#HASV}.dresp]</key>
+                            <key>haproxy.sv[{#HAPX},{#HASV},dresp]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -2476,7 +2476,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.sv[{#HAPX}.{#HASV}.chkfail]</key>
+                            <key>haproxy.sv[{#HAPX},{#HASV},chkfail]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -2515,7 +2515,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.sv[{#HAPX}.{#HASV}.hanafail]</key>
+                            <key>haproxy.sv[{#HAPX},{#HASV},hanafail]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>365</trends>
@@ -2554,7 +2554,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.sv[{#HAPX}.{#HASV}.hrsp_1xx]</key>
+                            <key>haproxy.sv[{#HAPX},{#HASV},hrsp_1xx]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -2593,7 +2593,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.sv[{#HAPX}.{#HASV}.hrsp_2xx]</key>
+                            <key>haproxy.sv[{#HAPX},{#HASV},hrsp_2xx]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -2632,7 +2632,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.sv[{#HAPX}.{#HASV}.hrsp_3xx]</key>
+                            <key>haproxy.sv[{#HAPX},{#HASV},hrsp_3xx]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -2671,7 +2671,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.sv[{#HAPX}.{#HASV}.hrsp_4xx]</key>
+                            <key>haproxy.sv[{#HAPX},{#HASV},hrsp_4xx]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -2710,7 +2710,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.sv[{#HAPX}.{#HASV}.hrsp_5xx]</key>
+                            <key>haproxy.sv[{#HAPX},{#HASV},hrsp_5xx]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -2749,7 +2749,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.sv[{#HAPX}.{#HASV}.hrsp_other]</key>
+                            <key>haproxy.sv[{#HAPX},{#HASV},hrsp_other]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -2788,7 +2788,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.sv[{#HAPX}.{#HASV}.lastchg]</key>
+                            <key>haproxy.sv[{#HAPX},{#HASV},lastchg]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -2827,7 +2827,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.sv[{#HAPX}.{#HASV}.qmax]</key>
+                            <key>haproxy.sv[{#HAPX},{#HASV},qmax]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -2866,7 +2866,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.sv[{#HAPX}.{#HASV}.smax]</key>
+                            <key>haproxy.sv[{#HAPX},{#HASV},smax]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -2905,7 +2905,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.sv[{#HAPX}.{#HASV}.pid]</key>
+                            <key>haproxy.sv[{#HAPX},{#HASV},pid]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -2944,7 +2944,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.sv[{#HAPX}.{#HASV}.qcur]</key>
+                            <key>haproxy.sv[{#HAPX},{#HASV},qcur]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -2983,7 +2983,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.sv[{#HAPX}.{#HASV}.qlimit]</key>
+                            <key>haproxy.sv[{#HAPX},{#HASV},qlimit]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -3022,7 +3022,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.sv[{#HAPX}.{#HASV}.wredis]</key>
+                            <key>haproxy.sv[{#HAPX},{#HASV},wredis]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -3061,7 +3061,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.sv[{#HAPX}.{#HASV}.ereq]</key>
+                            <key>haproxy.sv[{#HAPX},{#HASV},ereq]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -3100,7 +3100,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.sv[{#HAPX}.{#HASV}.req_rate]</key>
+                            <key>haproxy.sv[{#HAPX},{#HASV},req_rate]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -3139,7 +3139,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.sv[{#HAPX}.{#HASV}.req_rate_max]</key>
+                            <key>haproxy.sv[{#HAPX},{#HASV},req_rate_max]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -3178,7 +3178,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.sv[{#HAPX}.{#HASV}.eresp]</key>
+                            <key>haproxy.sv[{#HAPX},{#HASV},eresp]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -3217,7 +3217,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.sv[{#HAPX}.{#HASV}.wretr]</key>
+                            <key>haproxy.sv[{#HAPX},{#HASV},wretr]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -3256,7 +3256,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.sv[{#HAPX}.{#HASV}.srv_abrt]</key>
+                            <key>haproxy.sv[{#HAPX},{#HASV},srv_abrt]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -3295,7 +3295,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.sv[{#HAPX}.{#HASV}.sid]</key>
+                            <key>haproxy.sv[{#HAPX},{#HASV},sid]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -3334,7 +3334,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.sv[{#HAPX}.{#HASV}.rate]</key>
+                            <key>haproxy.sv[{#HAPX},{#HASV},rate]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -3373,7 +3373,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.sv[{#HAPX}.{#HASV}.rate_lim]</key>
+                            <key>haproxy.sv[{#HAPX},{#HASV},rate_lim]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -3412,7 +3412,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.sv[{#HAPX}.{#HASV}.rate_max]</key>
+                            <key>haproxy.sv[{#HAPX},{#HASV},rate_max]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -3451,7 +3451,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.sv[{#HAPX}.{#HASV}.slim]</key>
+                            <key>haproxy.sv[{#HAPX},{#HASV},slim]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -3490,7 +3490,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.sv[{#HAPX}.{#HASV}.status]</key>
+                            <key>haproxy.sv[{#HAPX},{#HASV},status]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>365</trends>
@@ -3529,7 +3529,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.sv[{#HAPX}.{#HASV}.throttle]</key>
+                            <key>haproxy.sv[{#HAPX},{#HASV},throttle]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -3568,7 +3568,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.sv[{#HAPX}.{#HASV}.lbtot]</key>
+                            <key>haproxy.sv[{#HAPX},{#HASV},lbtot]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -3607,7 +3607,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.sv[{#HAPX}.{#HASV}.downtime]</key>
+                            <key>haproxy.sv[{#HAPX},{#HASV},downtime]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -3646,7 +3646,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.sv[{#HAPX}.{#HASV}.req_tot]</key>
+                            <key>haproxy.sv[{#HAPX},{#HASV},req_tot]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -3685,7 +3685,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.sv[{#HAPX}.{#HASV}.stot]</key>
+                            <key>haproxy.sv[{#HAPX},{#HASV},stot]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -3724,7 +3724,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.sv[{#HAPX}.{#HASV}.tracked]</key>
+                            <key>haproxy.sv[{#HAPX},{#HASV},tracked]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -3763,7 +3763,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.sv[{#HAPX}.{#HASV}.chkdown]</key>
+                            <key>haproxy.sv[{#HAPX},{#HASV},chkdown]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -3802,7 +3802,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.sv[{#HAPX}.{#HASV}.type]</key>
+                            <key>haproxy.sv[{#HAPX},{#HASV},type]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -3841,7 +3841,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.sv[{#HAPX}.{#HASV}.iid]</key>
+                            <key>haproxy.sv[{#HAPX},{#HASV},iid]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -3880,7 +3880,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.sv[{#HAPX}.{#HASV}.weight]</key>
+                            <key>haproxy.sv[{#HAPX},{#HASV},weight]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -3916,7 +3916,7 @@
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
-                            <expression>{Template App HAProxy:haproxy.sv[{#HAPX}.{#HASV}.status].str(UP)}=0</expression>
+                            <expression>{Template App HAProxy:haproxy.sv[{#HAPX},{#HASV},status].str(UP)}=0</expression>
                             <name>{#HASV} backend of {#HAPX} proxy down</name>
                             <url/>
                             <status>0</status>
@@ -3959,7 +3959,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.fe[{#HAPX}.{#HASV}.act]</key>
+                            <key>haproxy.fe[{#HAPX},{#HASV},act]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>365</trends>
@@ -3998,7 +3998,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.fe[{#HAPX}.{#HASV}.bck]</key>
+                            <key>haproxy.fe[{#HAPX},{#HASV},bck]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>365</trends>
@@ -4037,7 +4037,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.fe[{#HAPX}.{#HASV}.bin]</key>
+                            <key>haproxy.fe[{#HAPX},{#HASV},bin]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -4076,7 +4076,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.fe[{#HAPX}.{#HASV}.bout]</key>
+                            <key>haproxy.fe[{#HAPX},{#HASV},bout]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -4115,7 +4115,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.fe[{#HAPX}.{#HASV}.check_code]</key>
+                            <key>haproxy.fe[{#HAPX},{#HASV},check_code]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -4154,7 +4154,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.fe[{#HAPX}.{#HASV}.check_duration]</key>
+                            <key>haproxy.fe[{#HAPX},{#HASV},check_duration]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -4193,7 +4193,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.fe[{#HAPX}.{#HASV}.check_status]</key>
+                            <key>haproxy.fe[{#HAPX},{#HASV},check_status]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>365</trends>
@@ -4232,7 +4232,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.fe[{#HAPX}.{#HASV}.cli_abrt]</key>
+                            <key>haproxy.fe[{#HAPX},{#HASV},cli_abrt]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -4271,7 +4271,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.fe[{#HAPX}.{#HASV}.econ]</key>
+                            <key>haproxy.fe[{#HAPX},{#HASV},econ]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -4310,7 +4310,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.fe[{#HAPX}.{#HASV}.scur]</key>
+                            <key>haproxy.fe[{#HAPX},{#HASV},scur]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -4349,7 +4349,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.fe[{#HAPX}.{#HASV}.dreq]</key>
+                            <key>haproxy.fe[{#HAPX},{#HASV},dreq]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -4388,7 +4388,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.fe[{#HAPX}.{#HASV}.dresp]</key>
+                            <key>haproxy.fe[{#HAPX},{#HASV},dresp]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -4427,7 +4427,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.fe[{#HAPX}.{#HASV}.chkfail]</key>
+                            <key>haproxy.fe[{#HAPX},{#HASV},chkfail]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -4466,7 +4466,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.fe[{#HAPX}.{#HASV}.hanafail]</key>
+                            <key>haproxy.fe[{#HAPX},{#HASV},hanafail]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>365</trends>
@@ -4505,7 +4505,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.fe[{#HAPX}.{#HASV}.hrsp_1xx]</key>
+                            <key>haproxy.fe[{#HAPX},{#HASV},hrsp_1xx]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -4544,7 +4544,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.fe[{#HAPX}.{#HASV}.hrsp_2xx]</key>
+                            <key>haproxy.fe[{#HAPX},{#HASV},hrsp_2xx]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -4583,7 +4583,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.fe[{#HAPX}.{#HASV}.hrsp_3xx]</key>
+                            <key>haproxy.fe[{#HAPX},{#HASV},hrsp_3xx]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -4622,7 +4622,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.fe[{#HAPX}.{#HASV}.hrsp_4xx]</key>
+                            <key>haproxy.fe[{#HAPX},{#HASV},hrsp_4xx]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -4661,7 +4661,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.fe[{#HAPX}.{#HASV}.hrsp_5xx]</key>
+                            <key>haproxy.fe[{#HAPX},{#HASV},hrsp_5xx]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -4700,7 +4700,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.fe[{#HAPX}.{#HASV}.hrsp_other]</key>
+                            <key>haproxy.fe[{#HAPX},{#HASV},hrsp_other]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -4739,7 +4739,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.fe[{#HAPX}.{#HASV}.lastchg]</key>
+                            <key>haproxy.fe[{#HAPX},{#HASV},lastchg]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -4778,7 +4778,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.fe[{#HAPX}.{#HASV}.qmax]</key>
+                            <key>haproxy.fe[{#HAPX},{#HASV},qmax]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -4817,7 +4817,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.fe[{#HAPX}.{#HASV}.smax]</key>
+                            <key>haproxy.fe[{#HAPX},{#HASV},smax]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -4856,7 +4856,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.fe[{#HAPX}.{#HASV}.pid]</key>
+                            <key>haproxy.fe[{#HAPX},{#HASV},pid]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -4895,7 +4895,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.fe[{#HAPX}.{#HASV}.qcur]</key>
+                            <key>haproxy.fe[{#HAPX},{#HASV},qcur]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -4934,7 +4934,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.fe[{#HAPX}.{#HASV}.qlimit]</key>
+                            <key>haproxy.fe[{#HAPX},{#HASV},qlimit]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -4973,7 +4973,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.fe[{#HAPX}.{#HASV}.wredis]</key>
+                            <key>haproxy.fe[{#HAPX},{#HASV},wredis]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -5012,7 +5012,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.fe[{#HAPX}.{#HASV}.ereq]</key>
+                            <key>haproxy.fe[{#HAPX},{#HASV},ereq]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -5051,7 +5051,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.fe[{#HAPX}.{#HASV}.req_rate]</key>
+                            <key>haproxy.fe[{#HAPX},{#HASV},req_rate]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -5090,7 +5090,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.fe[{#HAPX}.{#HASV}.req_rate_max]</key>
+                            <key>haproxy.fe[{#HAPX},{#HASV},req_rate_max]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -5129,7 +5129,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.fe[{#HAPX}.{#HASV}.eresp]</key>
+                            <key>haproxy.fe[{#HAPX},{#HASV},eresp]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -5168,7 +5168,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.fe[{#HAPX}.{#HASV}.wretr]</key>
+                            <key>haproxy.fe[{#HAPX},{#HASV},wretr]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -5207,7 +5207,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.fe[{#HAPX}.{#HASV}.srv_abrt]</key>
+                            <key>haproxy.fe[{#HAPX},{#HASV},srv_abrt]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -5246,7 +5246,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.fe[{#HAPX}.{#HASV}.sid]</key>
+                            <key>haproxy.fe[{#HAPX},{#HASV},sid]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -5285,7 +5285,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.fe[{#HAPX}.{#HASV}.rate]</key>
+                            <key>haproxy.fe[{#HAPX},{#HASV},rate]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -5324,7 +5324,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.fe[{#HAPX}.{#HASV}.rate_lim]</key>
+                            <key>haproxy.fe[{#HAPX},{#HASV},rate_lim]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -5363,7 +5363,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.fe[{#HAPX}.{#HASV}.rate_max]</key>
+                            <key>haproxy.fe[{#HAPX},{#HASV},rate_max]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -5402,7 +5402,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.fe[{#HAPX}.{#HASV}.slim]</key>
+                            <key>haproxy.fe[{#HAPX},{#HASV},slim]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -5441,7 +5441,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.fe[{#HAPX}.{#HASV}.status]</key>
+                            <key>haproxy.fe[{#HAPX},{#HASV},status]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>365</trends>
@@ -5480,7 +5480,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.fe[{#HAPX}.{#HASV}.throttle]</key>
+                            <key>haproxy.fe[{#HAPX},{#HASV},throttle]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -5519,7 +5519,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.fe[{#HAPX}.{#HASV}.lbtot]</key>
+                            <key>haproxy.fe[{#HAPX},{#HASV},lbtot]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -5558,7 +5558,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.fe[{#HAPX}.{#HASV}.downtime]</key>
+                            <key>haproxy.fe[{#HAPX},{#HASV},downtime]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -5597,7 +5597,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.fe[{#HAPX}.{#HASV}.req_tot]</key>
+                            <key>haproxy.fe[{#HAPX},{#HASV},req_tot]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -5636,7 +5636,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.fe[{#HAPX}.{#HASV}.stot]</key>
+                            <key>haproxy.fe[{#HAPX},{#HASV},stot]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -5675,7 +5675,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.fe[{#HAPX}.{#HASV}.tracked]</key>
+                            <key>haproxy.fe[{#HAPX},{#HASV},tracked]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -5714,7 +5714,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.fe[{#HAPX}.{#HASV}.chkdown]</key>
+                            <key>haproxy.fe[{#HAPX},{#HASV},chkdown]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -5753,7 +5753,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.fe[{#HAPX}.{#HASV}.type]</key>
+                            <key>haproxy.fe[{#HAPX},{#HASV},type]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -5792,7 +5792,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.fe[{#HAPX}.{#HASV}.iid]</key>
+                            <key>haproxy.fe[{#HAPX},{#HASV},iid]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -5831,7 +5831,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>haproxy.fe[{#HAPX}.{#HASV}.weight]</key>
+                            <key>haproxy.fe[{#HAPX},{#HASV},weight]</key>
                             <delay>60</delay>
                             <history>365</history>
                             <trends>9999</trends>
@@ -5894,7 +5894,7 @@
                                     <type>0</type>
                                     <item>
                                         <host>Template App HAProxy</host>
-                                        <key>haproxy.fe[{#HAPX}.{#HASV}.dreq]</key>
+                                        <key>haproxy.fe[{#HAPX},{#HASV},dreq]</key>
                                     </item>
                                 </graph_item>
                                 <graph_item>
@@ -5906,7 +5906,7 @@
                                     <type>0</type>
                                     <item>
                                         <host>Template App HAProxy</host>
-                                        <key>haproxy.fe[{#HAPX}.{#HASV}.qcur]</key>
+                                        <key>haproxy.fe[{#HAPX},{#HASV},qcur]</key>
                                     </item>
                                 </graph_item>
                                 <graph_item>
@@ -5918,7 +5918,7 @@
                                     <type>0</type>
                                     <item>
                                         <host>Template App HAProxy</host>
-                                        <key>haproxy.fe[{#HAPX}.{#HASV}.ereq]</key>
+                                        <key>haproxy.fe[{#HAPX},{#HASV},ereq]</key>
                                     </item>
                                 </graph_item>
                                 <graph_item>
@@ -5930,7 +5930,7 @@
                                     <type>0</type>
                                     <item>
                                         <host>Template App HAProxy</host>
-                                        <key>haproxy.fe[{#HAPX}.{#HASV}.req_tot]</key>
+                                        <key>haproxy.fe[{#HAPX},{#HASV},req_tot]</key>
                                     </item>
                                 </graph_item>
                             </graph_items>
@@ -5962,7 +5962,7 @@
                                     <type>0</type>
                                     <item>
                                         <host>Template App HAProxy</host>
-                                        <key>haproxy.fe[{#HAPX}.{#HASV}.hrsp_1xx]</key>
+                                        <key>haproxy.fe[{#HAPX},{#HASV},hrsp_1xx]</key>
                                     </item>
                                 </graph_item>
                                 <graph_item>
@@ -5974,7 +5974,7 @@
                                     <type>0</type>
                                     <item>
                                         <host>Template App HAProxy</host>
-                                        <key>haproxy.fe[{#HAPX}.{#HASV}.hrsp_2xx]</key>
+                                        <key>haproxy.fe[{#HAPX},{#HASV},hrsp_2xx]</key>
                                     </item>
                                 </graph_item>
                                 <graph_item>
@@ -5986,7 +5986,7 @@
                                     <type>0</type>
                                     <item>
                                         <host>Template App HAProxy</host>
-                                        <key>haproxy.fe[{#HAPX}.{#HASV}.hrsp_3xx]</key>
+                                        <key>haproxy.fe[{#HAPX},{#HASV},hrsp_3xx]</key>
                                     </item>
                                 </graph_item>
                                 <graph_item>
@@ -5998,7 +5998,7 @@
                                     <type>0</type>
                                     <item>
                                         <host>Template App HAProxy</host>
-                                        <key>haproxy.fe[{#HAPX}.{#HASV}.hrsp_4xx]</key>
+                                        <key>haproxy.fe[{#HAPX},{#HASV},hrsp_4xx]</key>
                                     </item>
                                 </graph_item>
                                 <graph_item>
@@ -6010,7 +6010,7 @@
                                     <type>0</type>
                                     <item>
                                         <host>Template App HAProxy</host>
-                                        <key>haproxy.fe[{#HAPX}.{#HASV}.hrsp_5xx]</key>
+                                        <key>haproxy.fe[{#HAPX},{#HASV},hrsp_5xx]</key>
                                     </item>
                                 </graph_item>
                                 <graph_item>
@@ -6022,7 +6022,7 @@
                                     <type>0</type>
                                     <item>
                                         <host>Template App HAProxy</host>
-                                        <key>haproxy.fe[{#HAPX}.{#HASV}.hrsp_other]</key>
+                                        <key>haproxy.fe[{#HAPX},{#HASV},hrsp_other]</key>
                                     </item>
                                 </graph_item>
                             </graph_items>
@@ -6054,7 +6054,7 @@
                                     <type>0</type>
                                     <item>
                                         <host>Template App HAProxy</host>
-                                        <key>haproxy.fe[{#HAPX}.{#HASV}.econ]</key>
+                                        <key>haproxy.fe[{#HAPX},{#HASV},econ]</key>
                                     </item>
                                 </graph_item>
                                 <graph_item>
@@ -6066,7 +6066,7 @@
                                     <type>0</type>
                                     <item>
                                         <host>Template App HAProxy</host>
-                                        <key>haproxy.fe[{#HAPX}.{#HASV}.stot]</key>
+                                        <key>haproxy.fe[{#HAPX},{#HASV},stot]</key>
                                     </item>
                                 </graph_item>
                             </graph_items>
@@ -6098,7 +6098,7 @@
                                     <type>0</type>
                                     <item>
                                         <host>Template App HAProxy</host>
-                                        <key>haproxy.fe[{#HAPX}.{#HASV}.bin]</key>
+                                        <key>haproxy.fe[{#HAPX},{#HASV},bin]</key>
                                     </item>
                                 </graph_item>
                                 <graph_item>
@@ -6110,7 +6110,7 @@
                                     <type>0</type>
                                     <item>
                                         <host>Template App HAProxy</host>
-                                        <key>haproxy.fe[{#HAPX}.{#HASV}.bout]</key>
+                                        <key>haproxy.fe[{#HAPX},{#HASV},bout]</key>
                                     </item>
                                 </graph_item>
                             </graph_items>
