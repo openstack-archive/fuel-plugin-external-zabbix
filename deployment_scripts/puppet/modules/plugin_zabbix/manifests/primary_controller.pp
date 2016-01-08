@@ -57,6 +57,8 @@ class plugin_zabbix::primary_controller {
   }
 
   File[$plugin_zabbix::params::server_config] -> File['zabbix-server-ocf'] -> Cs_resource["p_${plugin_zabbix::params::server_service}"]
-  Service["${plugin_zabbix::params::server_service}-init-stopped"] -> Cs_resource["p_${plugin_zabbix::params::server_service}"]
+  if $plugin_zabbix::controller::zabbix_pcmk_managed == '' {
+    Service["${plugin_zabbix::params::server_service}-init-stopped"] -> Cs_resource["p_${plugin_zabbix::params::server_service}"]
+  }
   Cs_rsc_colocation['vip-with-zabbix'] -> Service["${plugin_zabbix::params::server_service}-started"]
 }
