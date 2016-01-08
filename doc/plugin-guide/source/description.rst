@@ -21,6 +21,10 @@ Release Notes
 
 **2.5.0**
 
+* Service "zabbix_server" was restarted after executing of task "upload_core_repos" (bug 1529642_)
+* Monitoring of HAProxy vips doesn't work when the backend name contains dots (bug 1525713_)
+* Zabbix plugin should provide zabbix_get command (bug 1525924_)
+* fail to deploy with base-os or virt roles (bug 1515956_)
 * Enhance :ref:`Ceph` monitoring
 * :ref:`tuning` for server and agents
 * Add :ref:`MySQL` cluster metrics (wsrep global variables)
@@ -43,6 +47,10 @@ Release Notes
 * Allow deployment without Horizon (bug 1517005_)
 * Skip zabbix agent installation when node has either 'base-os' or 'virt' role (bug 1515956_)
 
+.. _1529642: https://bugs.launchpad.net/fuel-plugins/+bug/1529642
+.. _1525713: https://bugs.launchpad.net/fuel-plugins/+bug/1525713
+.. _1525924: https://bugs.launchpad.net/fuel-plugins/+bug/1525924
+.. _1515956: https://bugs.launchpad.net/fuel-plugins/+bug/1515956
 .. _1483983: https://bugs.launchpad.net/fuel/7.0.x/+bug/1483983
 .. _1510115: https://bugs.launchpad.net/fuel/+bug/1510115
 .. _1513454: https://bugs.launchpad.net/fuel-plugins/+bug/1513454
