@@ -15,6 +15,8 @@
 #
 class plugin_zabbix::controller {
 
+  $zbx = $::check_zabbix_pacemaker
+
   include plugin_zabbix::params
   $host = regsubst($plugin_zabbix::params::db_ip,'^(\d+\.\d+\.\d+\.)\d+','\1%')
 
@@ -51,11 +53,13 @@ class plugin_zabbix::controller {
     group  => 'root',
     source => 'puppet:///modules/plugin_zabbix/zabbix-server.ocf',
   }
-  service { "${plugin_zabbix::params::server_service}-init-stopped":
-    ensure  => 'stopped',
-    name    => $plugin_zabbix::params::server_service,
-    enable  => false,
-    require => File[$plugin_zabbix::params::server_config],
+  if $zbx == '' {
+    service { "${plugin_zabbix::params::server_service}-init-stopped":
+      ensure  => 'stopped',
+      name    => $plugin_zabbix::params::server_service,
+      enable  => false,
+      require => File[$plugin_zabbix::params::server_config],
+    }
   }
   service { "${plugin_zabbix::params::server_service}-started":
     ensure   => running,
@@ -64,8 +68,11 @@ class plugin_zabbix::controller {
     provider => 'pacemaker',
   }
 
-  File['zabbix-server-ocf'] -> Service["${plugin_zabbix::params::server_service}-init-stopped"] -> Service["${plugin_zabbix::params::server_service}-started"]
-
+  if $zbx == '' {
+    File['zabbix-server-ocf'] -> Service["${plugin_zabbix::params::server_service}-init-stopped"] -> Service["${plugin_zabbix::params::server_service}-started"]
+  } else {
+    File['zabbix-server-ocf'] -> Service["${plugin_zabbix::params::server_service}-started"]
+  }
   sysctl::value { 'kernel.shmmax':
     value  => $plugin_zabbix::params::sysctl_kernel_shmmax,
     notify => Service["${plugin_zabbix::params::server_service}-started"],
