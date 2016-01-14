@@ -96,6 +96,8 @@ class plugin_zabbix::params {
   $mgmt_vip                          = $network_metadata['vips']['management']['ipaddr']
   $server_config                     = '/etc/zabbix/zabbix_server.conf'
   $server_config_template            = 'plugin_zabbix/zabbix_server.conf.erb'
+  $server_snmp_config                = '/etc/zabbix/zabbix_server_snmp.conf'
+  $server_snmp_config_template       = 'plugin_zabbix/zabbix_server_snmp.conf.erb'
   $server_node_id                    = 0
   $server_ensure                     = present
   $ocf_scripts_dir                   = '/usr/lib/ocf/resource.d'

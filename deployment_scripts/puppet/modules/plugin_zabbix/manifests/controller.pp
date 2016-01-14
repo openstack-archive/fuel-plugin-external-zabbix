@@ -39,9 +39,22 @@ class plugin_zabbix::controller {
     require => File['/etc/dbconfig-common/zabbix-server-mysql.conf'],
   }
 
+  if $zabbix_pcmk_managed == '' {
+    file { $plugin_zabbix::params::server_snmp_config:
+      ensure  => present,
+      mode    => '0640',
+      backup  => true,
+      require => Package[$plugin_zabbix::params::server_pkg],
+      content => template($plugin_zabbix::params::server_snmp_config_template),
+    }
+    $zabbix_server_config_require = File[$plugin_zabbix::params::server_snmp_config]
+  } else {
+    $zabbix_server_config_require = Package[$plugin_zabbix::params::server_pkg]
+  }
   file { $plugin_zabbix::params::server_config:
     ensure  => present,
-    require => Package[$plugin_zabbix::params::server_pkg],
+    backup  => true,
+    require => $zabbix_server_config_require,
     content => template($plugin_zabbix::params::server_config_template),
   }
 

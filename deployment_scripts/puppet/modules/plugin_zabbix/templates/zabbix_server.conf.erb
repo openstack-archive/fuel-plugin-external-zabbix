@@ -88,9 +88,8 @@ DebugLevel=3
 # Must be between 1 and 30
 Timeout=5
 
-#SNMP Trapper
-#StartSNMPTrapper=1
-#SNMPTrapperFile=/tmp/snmptt.log
+# SNMP specific configuration
+Include=<%= scope.lookupvar('plugin_zabbix::params::server_snmp_config') %>
 
 # Specifies how many seconds trapper may spend processing new data
 # Must be between 1 and 30
