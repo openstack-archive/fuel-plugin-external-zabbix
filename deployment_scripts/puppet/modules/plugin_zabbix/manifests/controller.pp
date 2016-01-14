@@ -41,8 +41,17 @@ class plugin_zabbix::controller {
 
   file { $plugin_zabbix::params::server_config:
     ensure  => present,
+    backup  => true,
     require => Package[$plugin_zabbix::params::server_pkg],
     content => template($plugin_zabbix::params::server_config_template),
+  }
+
+  file { $plugin_zabbix::params::zabbix_extra_conf_dir:
+    ensure  => directory,
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0755',
+    require => File[$plugin_zabbix::params::server_config],
   }
 
   file { 'zabbix-server-ocf' :

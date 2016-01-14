@@ -88,9 +88,8 @@ DebugLevel=3
 # Must be between 1 and 30
 Timeout=5
 
-#SNMP Trapper
-#StartSNMPTrapper=1
-#SNMPTrapperFile=/tmp/snmptt.log
+# Optional SNMP & others Zabbix extra modules specific configuration
+Include=<%= scope.lookupvar('plugin_zabbix::params::zabbix_extra_conf_dir') %>/*.conf
 
 # Specifies how many seconds trapper may spend processing new data
 # Must be between 1 and 30
@@ -107,7 +106,7 @@ Timeout=5
 
 # Name of PID file
 
-PidFile=/var/run/zabbix/zabbix_server.pid
+PidFile=<%= scope.lookupvar('plugin_zabbix::params::zabbix_base_run_dir') %>/zabbix_server.pid
 
 # Name of log file
 # If not set, syslog is used
