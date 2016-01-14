@@ -20,6 +20,11 @@ class plugin_zabbix::params {
   $zabbix_hash = hiera('zabbix_monitoring')
   $network_metadata = hiera('network_metadata')
   $ssl = hiera('public_ssl')
+  $zabbix_base_conf_dir = '/etc/zabbix'
+  $zabbix_extra_conf_subdir = 'conf.d'
+  $zabbix_extra_conf_dir = "${zabbix_base_conf_dir}/${zabbix_extra_conf_subdir}"
+  $zabbix_base_run_dir = '/var/run/zabbix'
+  $zabbix_base_log_dir = '/var/log/zabbix'
 
   $zabbix_ports = {
     server         => '10051',
@@ -38,14 +43,14 @@ class plugin_zabbix::params {
       $agent_service            = 'zabbix-agent'
       $server_service           = 'zabbix-server'
 
-      $agent_log_file           = '/var/log/zabbix/zabbix_agentd.log'
-      $server_log_file          = '/var/log/zabbix/zabbix_server.log'
+      $agent_log_file           = "${zabbix_base_log_dir}/zabbix_agentd.log"
+      $server_log_file          = "${zabbix_base_log_dir}/zabbix_server.log"
 
       $prepare_schema_cmd       = 'cat /usr/share/zabbix-server-mysql/schema.sql /usr/share/zabbix-server-mysql/images.sql > /tmp/zabbix/schema.sql'
 
       $frontend_service         = 'apache2'
-      $frontend_service_config  = '/etc/zabbix/apache.conf'
-      $frontend_config          = '/etc/zabbix/web/zabbix.conf.php'
+      $frontend_service_config  = "${zabbix_base_conf_dir}/apache.conf"
+      $frontend_config          = "${zabbix_base_conf_dir}/web/zabbix.conf.php"
       $php_config               = '/etc/php5/apache2/php.ini'
       $php_mysql_pkg            = 'php5-mysql'
     }
@@ -60,14 +65,14 @@ class plugin_zabbix::params {
       $agent_service            = 'zabbix-agent'
       $server_service           = 'zabbix-server'
 
-      $agent_log_file           = '/var/log/zabbix/zabbix_agentd.log'
-      $server_log_file          = '/var/log/zabbix/zabbix_server.log'
+      $agent_log_file           = "${zabbix_base_log_dir}/zabbix_agentd.log"
+      $server_log_file          = "${zabbix_base_log_dir}/zabbix_server.log"
 
       $prepare_schema_cmd       = 'cat /usr/share/doc/zabbix-server-mysql-`zabbix_server -V | awk \'/v[0-9].[0-9].[0-9]/{print substr($3, 2)}\'`/create/schema.sql /usr/share/doc/zabbix-server-mysql-`zabbix_server -V | awk \'/v[0-9].[0-9].[0-9]/{print substr($3, 2)}\'`/create/images.sql > /tmp/zabbix/schema.sql'
 
       $frontend_service         = 'httpd'
       $frontend_service_config  = '/etc/httpd/conf.d/zabbix.conf'
-      $frontend_config          = '/etc/zabbix/web/zabbix.conf.php'
+      $frontend_config          = "${zabbix_base_conf_dir}/web/zabbix.conf.php"
       $php_config               = '/etc/php.ini'
       $php_mysql_pkg            = 'php-mysql'
     }
@@ -80,11 +85,11 @@ class plugin_zabbix::params {
   $agent_source_ip                   = $::internal_address
 
   $agent_config_template             = 'plugin_zabbix/zabbix_agentd.conf.erb'
-  $agent_config                      = '/etc/zabbix/zabbix_agentd.conf'
-  $agent_pid_file                    = '/var/run/zabbix/zabbix_agentd.pid'
+  $agent_config                      = "${zabbix_base_conf_dir}/zabbix_agentd.conf"
+  $agent_pid_file                    = "${zabbix_base_run_dir}/zabbix_agentd.pid"
 
-  $agent_include                     = '/etc/zabbix/zabbix_agentd.d'
-  $agent_scripts                     = '/etc/zabbix/scripts'
+  $agent_include                     = "${zabbix_base_conf_dir}/zabbix_agentd.d"
+  $agent_scripts                     = "${zabbix_base_conf_dir}/scripts"
   $has_userparameters                = true
   $agent_start_agents                = '10'
   $agent_log_file_size               = '1024'
@@ -94,7 +99,7 @@ class plugin_zabbix::params {
   $vip_name                          = 'zbx_vip_mgmt'
   $server_ip                         = $network_metadata['vips'][$vip_name]['ipaddr']
   $mgmt_vip                          = $network_metadata['vips']['management']['ipaddr']
-  $server_config                     = '/etc/zabbix/zabbix_server.conf'
+  $server_config                     = "${zabbix_base_conf_dir}/zabbix_server.conf"
   $server_config_template            = 'plugin_zabbix/zabbix_server.conf.erb'
   $server_node_id                    = 0
   $server_ensure                     = present

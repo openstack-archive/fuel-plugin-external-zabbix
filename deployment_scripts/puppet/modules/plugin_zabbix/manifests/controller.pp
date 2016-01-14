@@ -45,6 +45,14 @@ class plugin_zabbix::controller {
     content => template($plugin_zabbix::params::server_config_template),
   }
 
+  file { $plugin_zabbix::params::zabbix_extra_conf_dir:
+    ensure  => directory,
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0755',
+    require => Package[$plugin_zabbix::params::server_pkg],
+  }
+
   file { 'zabbix-server-ocf' :
     ensure => present,
     path   => "${plugin_zabbix::params::ocf_scripts_dir}/${plugin_zabbix::params::ocf_scripts_provider}/${plugin_zabbix::params::server_service}",
