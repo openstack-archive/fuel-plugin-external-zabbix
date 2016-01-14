@@ -1,4 +1,8 @@
 .build/
+*.swp
+*~
+.#*
+\#*#
 zabbix_monitoring*.noarch.rpm
 repositories/centos/*.rpm
 repositories/ubuntu/*.deb
