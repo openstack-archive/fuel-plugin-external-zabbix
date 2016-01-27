@@ -1,0 +1,10 @@
+fixtures:
+  repositories:
+#    hiera-puppet-helper:
+#      repo: "git://github.com/mthibaut/hiera-puppet-helper"
+#      ref: "master"
+    stdlib:
+      repo: "git://github.com/puppetlabs/puppetlabs-stdlib"
+      ref: "4.7.0"
+  symlinks:
+    plugin_zabbix: "#{source_dir}"

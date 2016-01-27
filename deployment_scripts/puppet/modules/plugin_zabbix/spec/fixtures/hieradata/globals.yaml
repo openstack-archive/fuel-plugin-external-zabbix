@@ -1,0 +1,6 @@
+
+--- 
+  management_vip: "10.109.2.3"
+  neutron_config:
+    database:
+      passwd: foo
