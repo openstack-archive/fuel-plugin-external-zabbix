@@ -22,7 +22,9 @@ class plugin_zabbix::params {
   $ssl = hiera('public_ssl')
   $zabbix_base_conf_dir = '/etc/zabbix'
   $zabbix_extra_conf_subdir = 'conf.d'
+  $zabbix_import_subdir = 'import'
   $zabbix_extra_conf_dir = "${zabbix_base_conf_dir}/${zabbix_extra_conf_subdir}"
+  $zabbix_import_dir = "${zabbix_base_conf_dir}/${zabbix_import_subdir}"
   $zabbix_base_run_dir = '/var/run/zabbix'
   $zabbix_base_log_dir = '/var/log/zabbix'
 
