@@ -16,6 +16,7 @@ class plugin_zabbix::server::config {
 
   include plugin_zabbix::params
 
+  $base_dir = '/etc/zabbix/import'
   $settings = hiera(storage)
   $use_ceph = $settings['volumes_ceph']
 
@@ -26,7 +27,7 @@ class plugin_zabbix::server::config {
     api    => $api_hash,
   }
 
-  file { '/etc/zabbix/import':
+  file { $base_dir:
     ensure  => directory,
     recurse => true,
     purge   => true,
@@ -35,197 +36,163 @@ class plugin_zabbix::server::config {
   }
 
   Plugin_zabbix_configuration_import {
-    require => File['/etc/zabbix/import'],
+    require => File[$base_dir],
   }
 
-  plugin_zabbix_configuration_import { 'Template_App_Zabbix_Agent.xml Import':
-    ensure   => present,
-    xml_file => '/etc/zabbix/import/Template_App_Zabbix_Agent.xml',
+  xmltemplate { 'Template_App_Zabbix_Agent':
+    base_dir => $base_dir,
     api      => $api_hash,
   }
 
-  plugin_zabbix_configuration_import { 'Template_Fuel_OS_Linux.xml Import':
-    ensure   => present,
-    xml_file => '/etc/zabbix/import/Template_Fuel_OS_Linux.xml',
+  xmltemplate { 'Template_Fuel_OS_Linux':
+    base_dir => $base_dir,
     api      => $api_hash,
   }
 
-  plugin_zabbix_configuration_import { 'Template_NTP_binding Import':
-    ensure   => present,
-    xml_file => '/etc/zabbix/import/Template_NTP_binding.xml',
+  xmltemplate { 'Template_NTP_binding':
+    base_dir => $base_dir,
     api      => $api_hash,
   }
 
-  plugin_zabbix_configuration_import { 'Template_OS_Controller Import':
-    ensure   => present,
-    xml_file => '/etc/zabbix/import/Template_OS_Controller.xml',
+  xmltemplate { 'Template_OS_Controller':
+    base_dir => $base_dir,
     api      => $api_hash,
   }
 
   # Nova templates
-  plugin_zabbix_configuration_import { 'Template_App_OpenStack_Nova_API_EC2.xml Import':
-    ensure   => present,
-    xml_file => '/etc/zabbix/import/Template_App_OpenStack_Nova_API_EC2.xml',
+  xmltemplate { 'Template_App_OpenStack_Nova_API_EC2':
+    base_dir => $base_dir,
     api      => $api_hash,
   }
-  plugin_zabbix_configuration_import { 'Template_App_OpenStack_Nova_API.xml Import':
-    ensure   => present,
-    xml_file => '/etc/zabbix/import/Template_App_OpenStack_Nova_API.xml',
+  xmltemplate { 'Template_App_OpenStack_Nova_API':
+    base_dir => $base_dir,
     api      => $api_hash,
   }
-  plugin_zabbix_configuration_import { 'Template_App_OpenStack_Nova_API_Metadata.xml Import':
-    ensure   => present,
-    xml_file => '/etc/zabbix/import/Template_App_OpenStack_Nova_API_Metadata.xml',
+  xmltemplate { 'Template_App_OpenStack_Nova_API_Metadata':
+    base_dir => $base_dir,
     api      => $api_hash,
   }
-  plugin_zabbix_configuration_import { 'Template_App_OpenStack_Nova_API_OSAPI.xml Import':
-    ensure   => present,
-    xml_file => '/etc/zabbix/import/Template_App_OpenStack_Nova_API_OSAPI.xml',
+  xmltemplate { 'Template_App_OpenStack_Nova_API_OSAPI':
+    base_dir => $base_dir,
     api      => $api_hash,
   }
-  plugin_zabbix_configuration_import { 'Template_App_OpenStack_Nova_API_OSAPI_check.xml Import':
-    ensure   => present,
-    xml_file => '/etc/zabbix/import/Template_App_OpenStack_Nova_API_OSAPI_check.xml',
+  xmltemplate { 'Template_App_OpenStack_Nova_API_OSAPI_check':
+    base_dir => $base_dir,
     api      => $api_hash,
   }
-  plugin_zabbix_configuration_import { 'Template_App_OpenStack_Nova_Cert.xml Import':
-    ensure   => present,
-    xml_file => '/etc/zabbix/import/Template_App_OpenStack_Nova_Cert.xml',
+  xmltemplate { 'Template_App_OpenStack_Nova_Cert':
+    base_dir => $base_dir,
     api      => $api_hash,
   }
-  plugin_zabbix_configuration_import { 'Template_App_OpenStack_Nova_ConsoleAuth.xml Import':
-    ensure   => present,
-    xml_file => '/etc/zabbix/import/Template_App_OpenStack_Nova_ConsoleAuth.xml',
+  xmltemplate { 'Template_App_OpenStack_Nova_ConsoleAuth':
+    base_dir => $base_dir,
     api      => $api_hash,
   }
-  plugin_zabbix_configuration_import { 'Template_App_OpenStack_Nova_Scheduler.xml Import':
-    ensure   => present,
-    xml_file => '/etc/zabbix/import/Template_App_OpenStack_Nova_Scheduler.xml',
+  xmltemplate { 'Template_App_OpenStack_Nova_Scheduler':
+    base_dir => $base_dir,
     api      => $api_hash,
   }
-  plugin_zabbix_configuration_import { 'Template_App_OpenStack_Nova_Conductor.xml Import':
-    ensure   => present,
-    xml_file => '/etc/zabbix/import/Template_App_OpenStack_Nova_Conductor.xml',
+  xmltemplate { 'Template_App_OpenStack_Nova_Conductor':
+    base_dir => $base_dir,
     api      => $api_hash,
   }
-  plugin_zabbix_configuration_import { 'Template_App_OpenStack_Nova_NoVNCProxy.xml Import':
-    ensure   => present,
-    xml_file => '/etc/zabbix/import/Template_App_OpenStack_Nova_NoVNCProxy.xml',
+  xmltemplate { 'Template_App_OpenStack_Nova_NoVNCProxy':
+    base_dir => $base_dir,
     api      => $api_hash,
   }
-  plugin_zabbix_configuration_import { 'Template_App_OpenStack_Nova_Compute.xml Import':
-    ensure   => present,
-    xml_file => '/etc/zabbix/import/Template_App_OpenStack_Nova_Compute.xml',
+  xmltemplate { 'Template_App_OpenStack_Nova_Compute':
+    base_dir => $base_dir,
     api      => $api_hash,
   }
-  plugin_zabbix_configuration_import { 'Template_App_OpenStack_Libvirt.xml Import':
-    ensure   => present,
-    xml_file => '/etc/zabbix/import/Template_App_OpenStack_Libvirt.xml',
+  xmltemplate { 'Template_App_OpenStack_Libvirt':
+    base_dir => $base_dir,
     api      => $api_hash,
   }
-  plugin_zabbix_configuration_import { 'Template_App_OpenStack_Nova_Network.xml Import':
-    ensure   => present,
-    xml_file => '/etc/zabbix/import/Template_App_OpenStack_Nova_Network.xml',
+  xmltemplate { 'Template_App_OpenStack_Nova_Network':
+    base_dir => $base_dir,
     api      => $api_hash,
   }
 
   # Keystone templates
-  plugin_zabbix_configuration_import { 'Template_App_OpenStack_Keystone.xml Import':
-    ensure   => present,
-    xml_file => '/etc/zabbix/import/Template_App_OpenStack_Keystone.xml',
+  xmltemplate { 'Template_App_OpenStack_Keystone':
+    base_dir => $base_dir,
     api      => $api_hash,
   }
-  plugin_zabbix_configuration_import { 'Template_App_OpenStack_Keystone_API_check.xml Import':
-    ensure   => present,
-    xml_file => '/etc/zabbix/import/Template_App_OpenStack_Keystone_API_check.xml',
+  xmltemplate { 'Template_App_OpenStack_Keystone_API_check':
+    base_dir => $base_dir,
     api      => $api_hash,
   }
 
   # Glance templates
-  plugin_zabbix_configuration_import { 'Template_App_OpenStack_Glance_API.xml Import':
-    ensure   => present,
-    xml_file => '/etc/zabbix/import/Template_App_OpenStack_Glance_API.xml',
+  xmltemplate { 'Template_App_OpenStack_Glance_API':
+    base_dir => $base_dir,
     api      => $api_hash,
   }
-  plugin_zabbix_configuration_import { 'Template_App_OpenStack_Glance_API_check.xml Import':
-    ensure   => present,
-    xml_file => '/etc/zabbix/import/Template_App_OpenStack_Glance_API_check.xml',
+  xmltemplate { 'Template_App_OpenStack_Glance_API_check':
+    base_dir => $base_dir,
     api      => $api_hash,
   }
-  plugin_zabbix_configuration_import { 'Template_App_OpenStack_Glance_Registry.xml Import':
-    ensure   => present,
-    xml_file => '/etc/zabbix/import/Template_App_OpenStack_Glance_Registry.xml',
+  xmltemplate { 'Template_App_OpenStack_Glance_Registry':
+    base_dir => $base_dir,
     api      => $api_hash,
   }
 
   # Cinder templates
-  plugin_zabbix_configuration_import { 'Template_App_OpenStack_Cinder_API.xml Import':
-    ensure   => present,
-    xml_file => '/etc/zabbix/import/Template_App_OpenStack_Cinder_API.xml',
+  xmltemplate { 'Template_App_OpenStack_Cinder_API':
+    base_dir => $base_dir,
     api      => $api_hash,
   }
-  plugin_zabbix_configuration_import { 'Template_App_OpenStack_Cinder_API_check.xml Import':
-    ensure   => present,
-    xml_file => '/etc/zabbix/import/Template_App_OpenStack_Cinder_API_check.xml',
+  xmltemplate { 'Template_App_OpenStack_Cinder_API_check':
+    base_dir => $base_dir,
     api      => $api_hash,
   }
-  plugin_zabbix_configuration_import { 'Template_App_OpenStack_Cinder_Scheduler.xml Import':
-    ensure   => present,
-    xml_file => '/etc/zabbix/import/Template_App_OpenStack_Cinder_Scheduler.xml',
+  xmltemplate { 'Template_App_OpenStack_Cinder_Scheduler':
+    base_dir => $base_dir,
     api      => $api_hash,
   }
-  plugin_zabbix_configuration_import { 'Template_App_OpenStack_Cinder_Volume.xml Import':
-    ensure   => present,
-    xml_file => '/etc/zabbix/import/Template_App_OpenStack_Cinder_Volume.xml',
+  xmltemplate { 'Template_App_OpenStack_Cinder_Volume':
+    base_dir => $base_dir,
     api      => $api_hash,
   }
 
   # Swift templates
-  plugin_zabbix_configuration_import { 'Template_App_OpenStack_Swift_Account.xml Import':
-    ensure   => present,
-    xml_file => '/etc/zabbix/import/Template_App_OpenStack_Swift_Account.xml',
+  xmltemplate { 'Template_App_OpenStack_Swift_Account':
+    base_dir => $base_dir,
     api      => $api_hash,
   }
-  plugin_zabbix_configuration_import { 'Template_App_OpenStack_Swift_Container.xml Import':
-    ensure   => present,
-    xml_file => '/etc/zabbix/import/Template_App_OpenStack_Swift_Container.xml',
+  xmltemplate { 'Template_App_OpenStack_Swift_Container':
+    base_dir => $base_dir,
     api      => $api_hash,
   }
-  plugin_zabbix_configuration_import { 'Template_App_OpenStack_Swift_Object.xml Import':
-    ensure   => present,
-    xml_file => '/etc/zabbix/import/Template_App_OpenStack_Swift_Object.xml',
+  xmltemplate { 'Template_App_OpenStack_Swift_Object':
+    base_dir => $base_dir,
     api      => $api_hash,
   }
-  plugin_zabbix_configuration_import { 'Template_App_OpenStack_Swift_Proxy.xml Import':
-    ensure   => present,
-    xml_file => '/etc/zabbix/import/Template_App_OpenStack_Swift_Proxy.xml',
+  xmltemplate { 'Template_App_OpenStack_Swift_Proxy':
+    base_dir => $base_dir,
     api      => $api_hash,
   }
 
   if $use_ceph {
     # Ceph templates
-    plugin_zabbix_configuration_import { 'Template_App_OpenStack_Ceph.xml Import':
-      ensure   => present,
-      xml_file => '/etc/zabbix/import/Template_App_OpenStack_Ceph.xml',
+    xmltemplate { 'Template_App_OpenStack_Ceph':
+      base_dir => $base_dir,
       api      => $api_hash,
     }
 
-    plugin_zabbix_configuration_import { 'Template_App_OpenStack_Ceph_OSD.xml Import':
-      ensure   => present,
-      xml_file => '/etc/zabbix/import/Template_App_OpenStack_Ceph_OSD.xml',
+    xmltemplate { 'Template_App_OpenStack_Ceph_OSD':
+      base_dir => $base_dir,
       api      => $api_hash,
     }
 
-    plugin_zabbix_configuration_import { 'Template_App_OpenStack_Ceph_MON.xml Import':
-      ensure   => present,
-      xml_file => '/etc/zabbix/import/Template_App_OpenStack_Ceph_MON.xml',
+    xmltemplate { 'Template_App_OpenStack_Ceph_MON':
+      base_dir => $base_dir,
       api      => $api_hash,
     }
 
     # Virtual Ceph Cluser
-    plugin_zabbix_configuration_import { 'Template_App_OpenStack_Ceph_Cluster.xml Import':
-      ensure   => present,
-      xml_file => '/etc/zabbix/import/Template_App_OpenStack_Ceph_Cluster.xml',
+    xmltemplate { 'Template_App_OpenStack_Ceph_Cluster':
+      base_dir => $base_dir,
       api      => $api_hash,
     }
     ->
@@ -251,110 +218,92 @@ class plugin_zabbix::server::config {
   }
 
   # RabbitMQ template
-  plugin_zabbix_configuration_import { 'Template_App_OpenStack_RabbitMQ_ha.xml Import':
-    ensure   => present,
-    xml_file => '/etc/zabbix/import/Template_App_OpenStack_RabbitMQ_ha.xml',
+  xmltemplate { 'Template_App_OpenStack_RabbitMQ_ha':
+    base_dir => $base_dir,
     api      => $api_hash,
   }
 
   # Horizon
-  plugin_zabbix_configuration_import { 'Template_App_OpenStack_Horizon.xml Import':
-    ensure   => present,
-    xml_file => '/etc/zabbix/import/Template_App_OpenStack_Horizon.xml',
+  xmltemplate { 'Template_App_OpenStack_Horizon':
+    base_dir => $base_dir,
     api      => $api_hash,
   }
 
   # MySQL
-  plugin_zabbix_configuration_import { 'Template_App_MySQL.xml Import':
-    ensure   => present,
-    xml_file => '/etc/zabbix/import/Template_App_MySQL.xml',
+  xmltemplate { 'Template_App_MySQL':
+    base_dir => $base_dir,
     api      => $api_hash,
   }
 
   # memcached
-  plugin_zabbix_configuration_import { 'Template_App_Memcache.xml Import':
-    ensure   => present,
-    xml_file => '/etc/zabbix/import/Template_App_Memcache.xml',
+  xmltemplate { 'Template_App_Memcache':
+    base_dir => $base_dir,
     api      => $api_hash,
   }
 
   # HAProxy
-  plugin_zabbix_configuration_import { 'Template_App_HAProxy.xml Import':
-    ensure   => present,
-    xml_file => '/etc/zabbix/import/Template_App_HAProxy.xml',
+  xmltemplate { 'Template_App_HAProxy':
+    base_dir => $base_dir,
     api      => $api_hash,
   }
 
   # Zabbix server
-  plugin_zabbix_configuration_import { 'Template_App_Zabbix_Server.xml Import':
-    ensure   => present,
-    xml_file => '/etc/zabbix/import/Template_App_Zabbix_Server.xml',
+  xmltemplate { 'Template_App_Zabbix_Server':
+    base_dir => $base_dir,
     api      => $api_hash,
   }
-
 
   # Neutron
-  plugin_zabbix_configuration_import { 'Template_App_OpenStack_Neutron_Server.xml Import':
-    ensure   => present,
-    xml_file => '/etc/zabbix/import/Template_App_OpenStack_Neutron_Server.xml',
+  xmltemplate { 'Template_App_OpenStack_Neutron_Server':
+    base_dir => $base_dir,
     api      => $api_hash,
   }
-  plugin_zabbix_configuration_import { 'Template_App_OpenStack_Neutron_OVS_Agent.xml Import':
-    ensure   => present,
-    xml_file => '/etc/zabbix/import/Template_App_OpenStack_Neutron_OVS_Agent.xml',
+  xmltemplate { 'Template_App_OpenStack_Neutron_OVS_Agent':
+    base_dir => $base_dir,
     api      => $api_hash,
   }
-  plugin_zabbix_configuration_import { 'Template_App_OpenStack_Neutron_Metadata_Agent.xml Import':
-    ensure   => present,
-    xml_file => '/etc/zabbix/import/Template_App_OpenStack_Neutron_Metadata_Agent.xml',
+  xmltemplate { 'Template_App_OpenStack_Neutron_Metadata_Agent':
+    base_dir => $base_dir,
     api      => $api_hash,
   }
-  plugin_zabbix_configuration_import { 'Template_App_OpenStack_Neutron_L3_Agent.xml Import':
-    ensure   => present,
-    xml_file => '/etc/zabbix/import/Template_App_OpenStack_Neutron_L3_Agent.xml',
+  xmltemplate { 'Template_App_OpenStack_Neutron_L3_Agent':
+    base_dir => $base_dir,
     api      => $api_hash,
   }
-  plugin_zabbix_configuration_import { 'Template_App_OpenStack_Neutron_DHCP_Agent.xml Import':
-    ensure   => present,
-    xml_file => '/etc/zabbix/import/Template_App_OpenStack_Neutron_DHCP_Agent.xml',
+  xmltemplate { 'Template_App_OpenStack_Neutron_DHCP_Agent':
+    base_dir => $base_dir,
     api      => $api_hash,
   }
-  plugin_zabbix_configuration_import { 'Template_App_OpenStack_Neutron_API_check.xml Import':
-    ensure   => present,
-    xml_file => '/etc/zabbix/import/Template_App_OpenStack_Neutron_API_check.xml',
+  xmltemplate { 'Template_App_OpenStack_Neutron_API_check':
+    base_dir => $base_dir,
     api      => $api_hash,
   }
 
   # Open vSwitch
-  plugin_zabbix_configuration_import { 'Template_App_OpenStack_Open_vSwitch.xml Import':
-    ensure   => present,
-    xml_file => '/etc/zabbix/import/Template_App_OpenStack_Open_vSwitch.xml',
+  xmltemplate { 'Template_App_OpenStack_Open_vSwitch':
+    base_dir => $base_dir,
     api      => $api_hash,
   }
 
   # Ceilometer
-  plugin_zabbix_configuration_import { 'Template_App_OpenStack_Ceilometer.xml Import':
-    ensure   => present,
-    xml_file => '/etc/zabbix/import/Template_App_OpenStack_Ceilometer.xml',
+  xmltemplate { 'Template_App_OpenStack_Ceilometer':
+    base_dir => $base_dir,
     api      => $api_hash,
   }
-  plugin_zabbix_configuration_import { 'Template_App_OpenStack_Ceilometer_Compute.xml Import':
-    ensure   => present,
-    xml_file => '/etc/zabbix/import/Template_App_OpenStack_Ceilometer_Compute.xml',
+  xmltemplate { 'Template_App_OpenStack_Ceilometer_Compute':
+    base_dir => $base_dir,
     api      => $api_hash,
   }
 
   # Firewall
-  plugin_zabbix_configuration_import { 'Template_App_Iptables_Stats.xml Import':
-    ensure   => present,
-    xml_file => '/etc/zabbix/import/Template_App_Iptables_Stats.xml',
+  xmltemplate { 'Template_App_Iptables_Stats':
+    base_dir => $base_dir,
     api      => $api_hash,
   }
 
   # Virtual OpenStack Cluster
-  plugin_zabbix_configuration_import { 'Template_OpenStack_Cluster.xml Import':
-    ensure   => present,
-    xml_file => '/etc/zabbix/import/Template_OpenStack_Cluster.xml',
+  xmltemplate { 'Template_OpenStack_Cluster':
+    base_dir => $base_dir,
     api      => $api_hash,
   }
   ->
