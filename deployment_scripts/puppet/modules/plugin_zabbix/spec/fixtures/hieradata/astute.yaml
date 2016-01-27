@@ -1,0 +1,66 @@
+---
+zabbix_monitoring:
+  username: admin
+  db_password: bar
+  password: zabbix
+  metadata:
+    plugin_id: 1
+    enabled: true
+    toggleable: true
+    weight: 70
+    label: Zabbix for Fuel
+  monitoring_password: foo
+access:
+  user: admin
+  password: admin
+  email: admin@localhost
+  tenant: admin
+  metadata:
+    weight: 10
+    label: Access
+keystone:
+  db_password: bar
+  admin_token: foo
+nova:
+  db_password: foo
+  user_password: bar
+  state_path: "/var/lib/nova"
+cinder:
+  db_password: foo
+  user_password: bar
+  fixed_key: foo
+rabbit:
+  password: AgjUeMUw
+network_metadata:
+  vips:
+    vrouter_pub:
+      network_role: public/vip
+      node_roles:
+      - controller
+      - primary-controller
+      namespace: vrouter
+      ipaddr: 10.109.1.2
+    management:
+      network_role: mgmt/vip
+      node_roles:
+      - controller
+      - primary-controller
+      namespace: haproxy
+      ipaddr: 10.109.2.3
+    zbx_vip_mgmt:
+      network_role: zabbix
+      node_roles:
+      - controller
+      - primary-controller
+      namespace: haproxy
+      ipaddr: 10.109.2.4
+    public:
+      network_role: public/vip
+      node_roles:
+      - controller
+      - primary-controller
+      namespace: haproxy
+      ipaddr: 10.109.1.3
+public_ssl:
+  horizon: true
+  services: true
