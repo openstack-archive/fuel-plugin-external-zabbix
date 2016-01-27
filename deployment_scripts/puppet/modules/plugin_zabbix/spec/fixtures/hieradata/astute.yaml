@@ -1,0 +1,87 @@
+---
+zabbix_monitoring:
+  username: admin
+  db_password: fae2oom_aeR6
+  password: zabbix
+  metadata:
+    plugin_id: 1
+    enabled: true
+    toggleable: true
+    weight: 70
+    label: Zabbix for Fuel
+  monitoring_password: Og1aaQivaiv1
+access:
+  user: admin
+  password: admin
+  email: admin@localhost
+  tenant: admin
+  metadata:
+    weight: 10
+    label: Access
+keystone:
+  db_password: BazlwWAT
+  admin_token: PjLosSeX
+nova:
+  db_password: 9UGWOXZN
+  user_password: qudCCMBf
+  state_path: "/var/lib/nova"
+cinder:
+  db_password: Jr3aKRXZ
+  user_password: uNlg9o6n
+  fixed_key: 2936f42dbaa570e4d0855080552800a9a0d2d002d2d875ec01896814b320883e
+rabbit:
+  password: AgjUeMUw
+network_metadata:
+  vips:
+    vrouter_pub:
+      network_role: public/vip
+      node_roles:
+      - controller
+      - primary-controller
+      namespace: vrouter
+      ipaddr: 10.109.1.2
+    management:
+      network_role: mgmt/vip
+      node_roles:
+      - controller
+      - primary-controller
+      namespace: haproxy
+      ipaddr: 10.109.2.3
+    zbx_vip_mgmt:
+      network_role: zabbix
+      node_roles:
+      - controller
+      - primary-controller
+      namespace: haproxy
+      ipaddr: 10.109.2.4
+    public:
+      network_role: public/vip
+      node_roles:
+      - controller
+      - primary-controller
+      namespace: haproxy
+      ipaddr: 10.109.1.3
+    vrouter:
+      network_role: mgmt/vip
+      node_roles:
+      - controller
+      - primary-controller
+      namespace: vrouter
+      ipaddr: 10.109.2.2
+public_ssl:
+  hostname: 10.109.1.3
+  horizon: true
+  services: true
+  cert_data:
+    content: |
+      -----BEGIN CERTIFICATE-----
+      DUMMY CERT
+      -----END CERTIFICATE-----
+      -----BEGIN PRIVATE KEY-----
+      DUMMY PRIVATE KEY
+      -----END PRIVATE KEY-----
+    name: ca.pem
+  cert_source: user_uploaded
+  metadata:
+    weight: 110
+    label: Public TLS
