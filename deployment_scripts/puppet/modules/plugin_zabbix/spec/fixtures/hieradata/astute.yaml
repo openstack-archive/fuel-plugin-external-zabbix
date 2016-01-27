@@ -1,0 +1,25 @@
+---
+zabbix_monitoring:
+  username: admin
+  db_password: bar
+  password: zabbix
+  monitoring_password: foo
+access:
+  user: admin
+keystone:
+  db_password: foo
+nova:
+  db_password: foo
+cinder:
+  db_password: foo
+rabbit:
+  password: foo
+network_metadata:
+  vips:
+    management:
+      ipaddr: 10.109.2.3
+    zbx_vip_mgmt:
+      ipaddr: 10.109.2.4
+public_ssl:
+  horizon: true
+  services: true
