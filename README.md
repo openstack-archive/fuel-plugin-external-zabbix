@@ -14,7 +14,7 @@ Requirements
 
 | Requirement                      | Version/Comment |
 |:---------------------------------|:----------------|
-| Mirantis OpenStack compatibility | >= 6.1          |
+| Mirantis OpenStack compatibility | 6.1             |
 
 Installation Guide
 ==================
