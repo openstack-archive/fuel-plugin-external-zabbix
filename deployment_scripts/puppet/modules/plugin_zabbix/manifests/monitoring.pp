@@ -15,7 +15,10 @@
 #
 class plugin_zabbix::monitoring(
   $server_ips  = undef,
+  $roles = [],
 ) {
+
+  validate_array($roles)
 
   include plugin_zabbix::params
 
@@ -75,6 +78,15 @@ class plugin_zabbix::monitoring(
     host     => $plugin_zabbix::params::host_name,
     template => 'Template Fuel OS Linux',
     api      => $api_hash,
+  }
+
+  if ! member($roles, 'controller') or ! member($roles, 'primary-controller') {
+    # default way to check NTP binding
+    plugin_zabbix_template_link { "${plugin_zabbix::params::host_name} Template NTP binding":
+      host     => $plugin_zabbix::params::host_name,
+      template => 'Template NTP binding',
+      api      => $api_hash,
+    }
   }
 
   #Zabbix Agent
