@@ -13,7 +13,7 @@ Requirements
 ================================== ===============
 Requirement                        Version/Comment
 ================================== ===============
-Fuel                               7.0 and higher
+Fuel                               7.0 and 8.0
 ================================== ===============
 
 Release Notes
@@ -30,7 +30,7 @@ Release Notes
 * Add :ref:`MySQL` cluster metrics (wsrep global variables)
 * Embed all package dependencies (bug 1483983_)
 * Fix HAproxy configuration behind the Zabbix VIP (bug 1510115_)
-* Compatibility with MOS 7.0 *(follow-up)*
+* Compatibility with MOS 7.0 and 8.0
 
   * Fix NTP monitoring on controller nodes (bug 1513454_)
   * Monitor `cinder-volume` process (instead of the Pacemaker resource which has
