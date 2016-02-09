@@ -14,7 +14,7 @@ Requirements
 
 | Requirement                      | Version/Comment |
 |:---------------------------------|:----------------|
-| Mirantis OpenStack compatibility | >= 7.0          |
+| Mirantis OpenStack compatibility | 7.0, 8.0        |
 
 Installation Guide
 ==================
