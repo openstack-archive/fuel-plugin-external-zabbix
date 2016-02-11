@@ -28,7 +28,7 @@
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>proc.num[python,neutron,,neutron-l3-agent]</key>
+                    <key>proc.num[,neutron,,bin/python.*bin/neutron-l3-agent]</key>
                     <delay>30</delay>
                     <history>90</history>
                     <trends>365</trends>
@@ -73,7 +73,7 @@
     </templates>
     <triggers>
         <trigger>
-            <expression>{Template App OpenStack Neutron L3 Agent:proc.num[python,neutron,,neutron-l3-agent].last(0)}=0</expression>
+            <expression>{Template App OpenStack Neutron L3 Agent:proc.num[,neutron,,bin/python.*bin/neutron-l3-agent].last(0)}=0</expression>
             <name>Neutron L3 Agent process is not running on {HOST.NAME}</name>
             <url/>
             <status>0</status>
