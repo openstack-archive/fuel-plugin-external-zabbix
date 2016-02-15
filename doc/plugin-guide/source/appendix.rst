@@ -25,9 +25,9 @@ Memory cache sizes:
 
 The process numbers are also increased:
 
-* StartPollers = 30
-* StartPollersUnreachable = 30
-* StartTrappersStartTrappers = 15
+* StartPollers = 30 (default 10)
+* StartPollersUnreachable = 30 (default 1)
+* StartTrappers = 15 (default 5)
 
 Refer to the `Zabbix server <https://www.zabbix.com/documentation/2.4/manual/appendix/config/zabbix_server>`_ official documentation for further details
 and this `blog entry <http://blog.zabbix.com/monitoring-how-busy-zabbix-processes-are/457/>`_ can be useful to configure the optimal number of Zabbix processes.
