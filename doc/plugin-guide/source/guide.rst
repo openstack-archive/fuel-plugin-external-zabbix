@@ -18,7 +18,7 @@ Environment configuration
 #. Set credentials for *Zabbix for Fuel*:
 
    .. image:: ../images/settings.png
-      :width: 100%
+      :width: 80%
 
    You could see default passwords by clicking on the eye icon. It is highly
    recommended to change default passwords for Zabbix Administrator,
@@ -64,7 +64,7 @@ Zabbix frontend UI
    After logging into Zabbix, you will see the Zabbix Dashboard page:
 
    .. image:: ../images/dashboard.png
-      :width: 150%
+      :width: 80%
 
 #. The Zabbix Dashboard page provides information on running processes and
    their state. If all processes are running successfully in the environment,
