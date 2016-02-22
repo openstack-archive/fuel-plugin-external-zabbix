@@ -21,6 +21,7 @@ Release Notes
 
 **2.5.0**
 
+* Compatibility with MOS 8.0
 * Service "zabbix_server" was restarted after executing of task "upload_core_repos" (bug 1529642_)
 * Monitoring of HAProxy vips doesn't work when the backend name contains dots (bug 1525713_)
 * Zabbix plugin should provide zabbix_get command (bug 1525924_)
@@ -30,7 +31,8 @@ Release Notes
 * Add :ref:`MySQL` cluster metrics (wsrep global variables)
 * Embed all package dependencies (bug 1483983_)
 * Fix HAproxy configuration behind the Zabbix VIP (bug 1510115_)
-* Compatibility with MOS 7.0 and 8.0
+* Reduced set of HA proxy gathered data to be in sync with LMA (bug 1531834_ + see `LMA metrics <http://fuel-plugin-lma-collector.readthedocs.org/en/latest/dev/metrics.html#haproxy>`_)
+* Compatibility with MOS 7.0 (follow up)
 
   * Fix NTP monitoring on controller nodes (bug 1513454_)
   * Monitor `cinder-volume` process (instead of the Pacemaker resource which has
@@ -57,6 +59,7 @@ Release Notes
 .. _1517472: https://bugs.launchpad.net/fuel/+bug/1517472
 .. _1517005: https://bugs.launchpad.net/fuel/+bug/1517005
 .. _1515956: https://bugs.launchpad.net/fuel-plugins/+bug/1515956
+.. _1531834: https://bugs.launchpad.net/fuel-plugins/+bug/1531834
 
 **2.0.0**
 
@@ -85,4 +88,17 @@ Limitations
   external or local mirror, in order to download necessary packages for proper
   installation.
   Since plugin version 2.5.0, the `fuel-createmirror` command is supported.
+
+* If you remove some nodes after initial deployments, their related informations
+  will not be removed from the Zabbix collected metrics and you will have to
+  remove these manually
+
+* MySQL database is common with other OpenStack services (see `1531834 <https://bugs.launchpad.net/fuel-plugins/+bug/1531834>`_)
+  This has a potential high impact on the disk sizing for /var/lib/mysql even
+  though the biggest set of data has been cut down drastically
+
+* Zabbix server service is located on one of the controller nodes
+  therefore and in the exact same manner than `1531834 <https://bugs.launchpad.net/fuel-plugins/+bug/1531834>`_ can impact disk space,
+  this can have a big impact on CPU and/or memory usage on controller nodes
+  when big amount of metrics are collected
 
