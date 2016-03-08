@@ -56,8 +56,27 @@ class plugin_zabbix::db::mysql(
     require     => File['/tmp/zabbix/parts/data_clean.sql'],
   }
 
+  if $plugin_zabbix::params::db_is_external {
+    $su = size($plugin_zabbix::params::db_admin_user)
+    $sp = size($plugin_zabbix::params::db_admin_password)
+    if ($su > 0) {
+      $u_param = " --user=${plugin_zabbix::params::db_admin_user}"
+    } else {
+      $u_param = ''
+    }
+    if ($sp > 0) {
+      $p_param = " --password=${plugin_zabbix::params::db_admin_password}"
+    } else {
+      $p_param = ''
+    }
+    $mysql_extras = "${u_param}${p_param} --host=${plugin_zabbix::params::db_ip} --port=${plugin_zabbix::params::db_port}"
+  } else {
+    $mysql_extras = ''
+  }
+  $mysql_cmd = "/usr/bin/mysql${mysql_extras} ${plugin_zabbix::params::db_name} < /tmp/zabbix/schema.sql"
+
   exec{ "${plugin_zabbix::params::db_name}-import":
-    command     => "/usr/bin/mysql ${plugin_zabbix::params::db_name} < /tmp/zabbix/schema.sql",
+    command     => $mysql_cmd,
     logoutput   => true,
     refreshonly => true,
     subscribe   => Database[$plugin_zabbix::params::db_name],
