@@ -23,3 +23,45 @@ attributes:
     description: "Password for Monitoring user"
     weight: 30
     type: "password"
+  external_db:
+    value: false
+    label: "Use external MySQL Database Server"
+    description: "If selected, a MySQL server and zabbix database must be pre-configured by yourself and available from this environment. Check the documentation for complete requirements."
+    weight: 40
+    type: "checkbox"
+  mysql_server:
+    value: ""
+    label: "Hostname/IP"
+    description: "Remote MySQL server hostname or IP"
+    weight: 50
+    type: "text"
+    regex:
+      source: '^[a-zA-Z\d][a-zA-Z\d_\-\.]+'
+      error: "Invalid hostname"
+    restrictions:
+      - condition: "settings:zabbix_monitoring.external_db.value == false"
+        action: "hide"
+  mysql_port:
+    value: "3306"
+    label: "Port"
+    description: "Remote MySQL server port"
+    weight: 60
+    type: "text"
+    regex:
+      source: "^[1-9][0-9]*$"
+      error: "Invalid MySQL server port"
+    restrictions:
+      - condition: "settings:zabbix_monitoring.external_db.value == false"
+        action: "hide"
+  mysql_dbname:
+    value: "zabbix"
+    label: "MySQL database"
+    description: "The name of the database. The database must be created beforehand when 'remote' mode is selected."
+    weight: 70
+    type: "text"
+    regex:
+      source: "^[a-zA-Z0-9$_]{1,64}$"
+      error: "You must provide the name of the database (maximum length: 64 characters)"
+    restrictions:
+      - condition: "settings:zabbix_monitoring.external_db.value == false"
+        action: "hide"

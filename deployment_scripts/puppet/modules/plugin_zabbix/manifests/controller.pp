@@ -18,7 +18,13 @@ class plugin_zabbix::controller {
   $zabbix_pcmk_managed = $::check_zabbix_pacemaker
 
   include plugin_zabbix::params
-  $host = regsubst($plugin_zabbix::params::db_ip,'^(\d+\.\d+\.\d+\.)\d+','\1%')
+  # To access an external Zabbix MySQL database permissions should be much
+  # more "loose" and can not be restricted to the network IP
+  if $plugin_zabbix::params::db_is_external {
+    $host = '%'
+  } else {
+    $host = regsubst($plugin_zabbix::params::db_ip,'^(\d+\.\d+\.\d+\.)\d+','\1%')
+  }
 
   file { '/etc/dbconfig-common':
     ensure => directory,
