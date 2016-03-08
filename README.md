@@ -45,6 +45,12 @@ To install Zabbix plugin, follow these steps:
         ---|-------------------|---------|----------------
         1  | zabbix_monitoring | 2.5.0   | 3.0.0
 
+5. If you want to connect to a remote MySQL server (not part of Fuel deployment)
+make sure to grant proper access rights by running a command like follows on this
+remote DB server:
+
+echo 'show grants;' | mysql -uroot -p$remote_mysql_root_passwd mysql | egrep -i " privileges .* TO 'root'@'localhost'" | sed -e 's/localhost/%/' | mysql -uroot -p$remote_mysql_root_passwd mysql
+
 For further details see the Zabbix Plugin Guide in the
 [Fuel Plugins Catalog](https://software.mirantis.com/fuel-plugins)
 

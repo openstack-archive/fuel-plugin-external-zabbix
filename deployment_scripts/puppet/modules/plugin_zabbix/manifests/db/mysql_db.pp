@@ -23,10 +23,75 @@ define plugin_zabbix::db::mysql_db (
   $enforce_sql = false
 ) {
 
+  include plugin_zabbix::params
+
+  $db_options_file = '/root/.my.cnf'
+  if $plugin_zabbix::params::db_is_external {
+    # Mandatory because the MySQL Puppet module does not allow
+    # passing --host=X
+    $db_admin_user = $plugin_zabbix::params::db_admin_user
+    $db_admin_pass = $plugin_zabbix::params::db_admin_password
+    $db_host = $plugin_zabbix::params::db_ip
+    $db_port = $plugin_zabbix::params::db_port
+    $db_file_content = inline_template('[client]
+user=\'<%= @db_admin_user %>\'
+password=\'<%= @db_admin_pass %>\'
+host=\'<%= @db_host %>\'
+port=\'<%= @db_port %>\'
+')
+
+    exec { 'test_and_backup_db_options_file':
+      path    => '/usr/bin:/usr/sbin:/bin',
+      command => "mv ${db_options_file} ${db_options_file}.zbx",
+      onlyif  => "test -e ${db_options_file}",
+    }
+
+    file { $db_options_file:
+      ensure  => file,
+      content => $db_file_content,
+      # Mandatory so that Zabbix plugin does not overwrite
+      # any potentially existing file/link
+      require => Exec['test_and_backup_db_options_file'],
+    }
+
+    exec { 'remove_db_options_file':
+      path    => '/usr/bin:/usr/sbin:/bin',
+      command => "/bin/rm -f ${db_options_file}",
+    }
+
+    exec { 'restore_backup_db_options_file':
+      path    => '/usr/bin:/usr/sbin:/bin',
+      command => "mv ${db_options_file}.zbx ${db_options_file}",
+      onlyif  => "test -e ${db_options_file}.zbx",
+    }
+
+    $su = size($plugin_zabbix::params::db_admin_user)
+    $sp = size($plugin_zabbix::params::db_admin_password)
+    if ($su > 0) {
+      $u_param = " --user=${plugin_zabbix::params::db_admin_user}"
+    } else {
+      $u_param = ''
+    }
+    if ($sp > 0) {
+      $p_param = " --password=${plugin_zabbix::params::db_admin_password}"
+    } else {
+      $p_param = ''
+    }
+    $mysql_extras = "${u_param}${p_param} --host=${plugin_zabbix::params::db_ip} --port=${plugin_zabbix::params::db_port}"
+    Database_grant["${user}@${host}/${name}"] ->  Exec['remove_db_options_file'] -> Exec['restore_backup_db_options_file']
+  } else {
+    $mysql_extras = ''
+
+    file { $db_options_file:
+      ensure => present,
+    }
+  }
+
   database { $name:
     ensure   => present,
     charset  => $charset,
     provider => 'mysql',
+    require  => File[$db_options_file],
   }
 
   database_user { "${user}@${host}":
@@ -43,10 +108,11 @@ define plugin_zabbix::db::mysql_db (
   }
 
   $refresh = ! $enforce_sql
+  $mysql_cmd = "/usr/bin/mysql${mysql_extras} ${name} < ${sql}"
 
   if $sql {
     exec{ "${name}-import":
-      command     => "/usr/bin/mysql ${name} < ${sql}",
+      command     => $mysql_cmd,
       logoutput   => true,
       refreshonly => $refresh,
       require     => Database_grant["${user}@${host}/${name}"],

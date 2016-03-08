@@ -132,10 +132,25 @@ class plugin_zabbix::params {
 
   #common parameters
   $db_type                           = 'MYSQL'
-  $db_ip                             = hiera('management_vip')
-  $db_port                           = '3306'
-  $db_name                           = 'zabbix'
-  $db_user                           = 'zabbix'
+  if $zabbix_hash['external_db'] == true {
+    $db_ip                             = $zabbix_hash['mysql_server']
+    $db_port                           = $zabbix_hash['mysql_port']
+    $db_bootstrap                      = $zabbix_hash['bootstrap_db']
+    $db_admin_user                     = $zabbix_hash['mysql_admin']
+    $db_admin_password                 = $zabbix_hash['mysql_password']
+    $db_name                           = $zabbix_hash['db_name']
+    $db_user                           = $zabbix_hash['db_user']
+    $db_is_external                    = true
+  } else {
+    $db_ip                             = hiera('management_vip')
+    $db_port                           = '3306'
+    $db_bootstrap                      = true
+    $db_admin_user                     = ''
+    $db_admin_password                 = ''
+    $db_name                           = 'zabbix'
+    $db_user                           = 'zabbix'
+    $db_is_external                    = false
+  }
   $db_password                       = $zabbix_hash['db_password']
 
   #zabbix hosts params
