@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
-# The Zabbix plugin for Fuel documentation build configuration file, created by
-# sphinx-quickstart on Wed Feb 24 17:05:59 2016.
+# The Zabbix plugin for Fuel specification documentation build configuration file, created by
+# sphinx-quickstart on Tue Nov  3 10:53:03 2015.
 #
 # This file is execfile()d with the current directory set to its
 # containing dir.
@@ -45,7 +45,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'The Zabbix plugin for Fuel'
+project = u'The Zabbix plugin for Fuel Specification'
 copyright = u'2016, Mirantis Inc.'
 author = u'Mirantis Inc.'
 
@@ -199,7 +199,7 @@ html_static_path = ['_static']
 #html_search_scorer = 'scorer.js'
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'TheZabbixpluginforFueldoc'
+htmlhelp_basename = 'TheZabbixpluginforFuelSpecDoc'
 
 # -- Options for LaTeX output ---------------------------------------------
 
@@ -224,7 +224,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-  (master_doc, 'TheZabbixpluginforFuel-' + version + '.tex', u'The Zabbix plugin for Fuel Documentation',
+  (master_doc, 'TheZabbixpluginforFuelSpec-' + version + '.tex', u'The Zabbix plugin for Fuel Specification Documentation',
    author, 'manual'),
 ]
 
@@ -254,7 +254,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'thezabbixpluginforfuel', u'The Zabbix plugin for Fuel Documentation',
+    (master_doc, 'thezabbixpluginforfuelspec', u'The Zabbix plugin for Fuel Specification Documentation',
      [author], 1)
 ]
 
@@ -268,8 +268,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  (master_doc, 'TheZabbixpluginforFuel', u'The Zabbix plugin for Fuel Documentation',
-   author, 'TheZabbixpluginforFuel')
+  (master_doc, 'TheZabbixpluginforFuelSpec', u'The Zabbix plugin for Fuel Specification Documentation',
+   author, 'TheZabbixpluginforFuelSpec')
 ]
 
 # Documents to append as an appendix to all manuals.
