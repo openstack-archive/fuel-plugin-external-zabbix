@@ -8,4 +8,4 @@ Zabbix
     network services, servers, and other network hardware.
 
 VIP
-    Virtual IP Adress.
+    Virtual IP Address.
