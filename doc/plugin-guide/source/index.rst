@@ -2,11 +2,8 @@
 Welcome to The Zabbix plugin for Fuel's documentation!
 ======================================================
 
-User documentation
-==================
-
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
 
    terms
    description

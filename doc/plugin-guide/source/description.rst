@@ -1,6 +1,6 @@
-===================================================
+=============================================
 Guide to the Zabbix Plugin extension for Fuel
-===================================================
+=============================================
 
 This plugin extends Mirantis OpenStack functionality by adding Zabbix
 monitoring system. It installs Zabbix server, frontend and agent components.
@@ -10,11 +10,11 @@ services and APIs.
 Requirements
 ============
 
-================================== ===============
-Requirement                        Version/Comment
-================================== ===============
-Fuel                               7.0 and 8.0
-================================== ===============
+============== ===============
+Requirement    Version/Comment
+============== ===============
+Fuel           7.0 and 8.0
+============== ===============
 
 Release Notes
 =============
@@ -74,8 +74,6 @@ Release Notes
 **1.0.0**
 
 * This is the first release of the plugin.
-
-
 
 Limitations
 ===========

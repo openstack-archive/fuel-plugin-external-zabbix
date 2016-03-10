@@ -5,6 +5,8 @@ User Guide
 Environment configuration
 =========================
 
+.. highlight:: none
+
 #. Create an environment. For more information about environment creation, see
    `Mirantis OpenStack User Guide <http://docs.mirantis.com/openstack/fuel
    /fuel-7.0/user-guide.html#create-a-new-openstack-environment>`_.
@@ -44,7 +46,7 @@ Environment configuration
    /openstack/fuel/fuel-7.0/operations.html#using-networking-templates>`_.
 
 Zabbix frontend UI
-=========================
+==================
 
 #. After successful deployment you will see a green notification: “Deployment
    of environment 'test' is done. Access the OpenStack dashboard (Horizon) at
@@ -85,8 +87,10 @@ Zabbix frontend UI
    usage in OpenStack environment. There is also a list of last 10 events
    recorded by Zabbix.
 
+.. _Pages:
+
 Pages
-=========================
+=====
 
 Below there are a few screenshots from Zabbix configuration pages to show how
 it should look after a successful environment deployment. Zabbix UI provides
@@ -237,3 +241,4 @@ and 4 triggers are configured:
   - the cluster node is ready
   - the cluster node is connected to the cluster
   - the cluster node status (Primary, Non-Primary or Disconnected)
+
