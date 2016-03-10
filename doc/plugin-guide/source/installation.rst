@@ -3,9 +3,11 @@ Installation Guide
 ==================
 
 Zabbix plugin installation
-============================================
+==========================
 
 To install Zabbix plugin, follow these steps:
+
+.. highlight:: none
 
 #. Download the plugin from the
    `Fuel Plugins Catalog <https://www.mirantis.com/products/
@@ -28,4 +30,23 @@ To install Zabbix plugin, follow these steps:
     id | name                      | version  | package_version
     ---|---------------------------|----------|----------------
     1  | zabbix_monitoring         | 2.5.0    | 3.0.0
+
+Zabbix plugin removal
+=====================
+
+To uninstall Zabbix plugin, follow these steps:
+
+#. Delete all Environments in which Zabbix plugin has been enabled.
+
+#. Uninstall the plugin::
+
+     # fuel plugins --remove zabbix_monitoring==2.5.0
+
+#. Check if the plugin was uninstalled successfully::
+
+     # fuel plugins
+     id | name                      | version  | package_version
+     ---|---------------------------|----------|----------------
+     ...
+     You can still have other plugins listed here but not zabbix_monitoring
 
