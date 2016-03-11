@@ -1,5 +1,5 @@
-Changelog
-=========
+Release notes / Changelog
+=========================
 
 The following set of issues have been fixed since 1.0.0 version:
 

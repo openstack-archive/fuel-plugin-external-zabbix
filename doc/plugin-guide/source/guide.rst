@@ -24,14 +24,22 @@ Important preliminary notes
 Known problems
 ==============
 
-- If you remove some nodes after initial deployments, their related
-  informations will not be removed from the Zabbix collected metrics
-  and you will have to remove these manually.
+- If a base-os role node is deployed within the environment, the plugin
+  installation may fail because the management network is not configured
+  (see bug `1515956 <https://bugs.launchpad.net/fuel-plugins/+bug/1515956>`_).
+
+- If you remove some nodes after initial deployments, their related informations
+  will not be removed from the Zabbix collected metrics and you will have to
+  remove these manually from the Zabbix UI.
+
 - `#1529642 <https://bugs.launchpad.net/fuel-plugins/+bug/1529642>`_:
   Service "zabbix\_server" was restarted after executing of task
   "upload\_core\_repos".
-- `#1531834 <https://bugs.launchpad.net/fuel/+bug/1531834>`_: MySQL
-  consumes too much disk space if Zabbix plugin is enabled.
+
+- MySQL database is common with other OpenStack services (see `1531834 <https://bugs.launchpad.net/fuel-plugins/+bug/1531834>`_)
+  This has a potential high impact on the disk sizing for /var/lib/mysql even
+  though the biggest set of data has been cut down drastically.
+
 - Zabbix server service is located on one of the controller nodes
   therefore and in the exact same manner than `1531834 <https://bugs.launchpad.net/fuel-plugins/+bug/1531834>`_ can impact disk space,
   this can have a significant CPU and/or memory usage on controller nodes for large deployment.
@@ -39,104 +47,97 @@ Known problems
 Environment configuration
 =========================
 
-#. Create an environment. For more information about environment
-   creation, see `Create a new OpenStack environment in Mirantis OpenStack User Guide
-   <http://docs.mirantis.com/openstack/fuel/fuel-6.1/user-guide.html#create-a-new-openstack-environment>`_.
-
 .. |zabbix_fuel_ui.png| image:: ../images/zabbix_fuel_ui.png
    :alt: zabbix_fuel_ui.png
 
-2. Open Settings tab of the Fuel web UI and scroll the page down. Select
-   the plugin checkbox and set credentials for Zabbix Administrator and
+#. Create an environment.
+
+   For more information about environment
+   creation, see `Create a new OpenStack environment in Mirantis OpenStack User Guide
+   <http://docs.mirantis.com/openstack/fuel/fuel-6.1/user-guide.html#create-a-new-openstack-environment>`_.
+
+#. Open Settings tab of the Fuel web UI and scroll the page down.
+
+   Select the plugin checkbox and set credentials for Zabbix Administrator and
    Zabbix Database:
 
    |zabbix_fuel_ui.png|
 
-   You could see default passwords by clicking on the eye icon. It is
-   highly recommended to change default passwords for Zabbix Administrator
+   You could see default passwords by clicking on the eye icon.
+
+   It is highly recommended to change default passwords for Zabbix Administrator
    and Zabbix Database.
 
-3. Adjust other environment settings to your requirements and deploy the
-   environment. For more information, see `Deploy changes in Mirantis OpenStack User Guide 
+#. Adjust other environment settings to your requirements and deploy the
+   environment.
+
+   For more information, see `Deploy changes in Mirantis OpenStack User Guide 
    <http://docs.mirantis.com/openstack/fuel/fuel-6.1/user-guide.html#deploy-changes>`_.
 
 Zabbix frontend UI
 ==================
 
-After successful deployment you will see a green notification:
-"Deployment of environment 'test' is done". Access the OpenStack
-dashboard (Horizon) at
-`http://172.16.0.2/ <http://172.16.0.2/>`_.
-In this example, 172.16.0.2 is the VIP address (see troubleshooting
-section to see how to get this IP address). Zabbix UI will be available
-at `http://172.16.0.2/zabbix <http://172.16.0.2/zabbix>`_
-(at ``http://<VIP>/zabbix`` in general).
-After opening this address in a browser, you should see Zabbix login page:
+#. After successful deployment you will see a green notification:
+   "Deployment of environment 'test' is done".
 
-.. |zabbix_login_page.png| image:: ../images/zabbix_login_page.png
-   :alt: zabbix_login_page.png
+   Access the OpenStack dashboard (Horizon) at
+   `http://172.16.0.2/ <http://172.16.0.2/>`_.
 
-|zabbix_login_page.png|
+   In this example, 172.16.0.2 is the VIP address (see troubleshooting
+   section to see how to get this IP address).
 
-Now log into Zabbix with the credentials set provided on
-the Settings tab of the Fuel web UI (see step 2 in the `Environment
-configuration <#environment-configuration>`_ section). After logging into Zabbix,
-you will see the Zabbix Dashboard page:
+   Zabbix UI will be available
+   at `http://172.16.0.2/zabbix <http://172.16.0.2/zabbix>`_
+   (at ``http://<VIP>/zabbix`` in general).
 
-.. |zabbix_dashboard.png| image:: ../images/zabbix_dashboard.png
-   :alt: zabbix_dashboard.png
-   :width: 1215px
-   :height: 682px
+   After opening this address in a browser, you should see Zabbix login page:
 
-.. |startspanarea| raw:: html
+   .. |zabbix_login_page.png| image:: ../images/zabbix_login_page.png
+      :alt: zabbix_login_page.png
 
-   <span style="overflow: hidden; display: inline-block;
+   |zabbix_login_page.png|
 
-.. |closespanarea| raw:: html
+#. Now log into Zabbix with the credentials set provided on
+   the Settings tab of the Fuel web UI (see step 2 in the `Environment
+   configuration <#environment-configuration>`_ section).
 
-   ">
+   After logging into Zabbix, you will see the Zabbix Dashboard page:
 
-.. |endspanarea| raw:: html
+   .. |zabbix_dashboard.png| image:: ../images/zabbix_dashboard.png
+      :alt: zabbix_dashboard.png
 
-   </span>
+   |zabbix_dashboard.png|
 
-|startspanarea| width: 638px; height: 682px; |closespanarea|
-|zabbix_dashboard.png|
-|endspanarea|
+#. The Zabbix Dashboard page provides information on running processes and
+   their state.
 
-The Zabbix Dashboard page provides information on running processes and
-their state.
+   If all processes are running successfully in the environment, you should
+   see only green colour.
 
-If all processes are running successfully in the environment, you should
-see only green colour.
+   To demonstrate that monitoring is working properly, the Nova Scheduler
+   process had been turned off.
 
-To demonstrate that monitoring is working properly, the Nova Scheduler
-process had been turned off. You can notice that Zabbix detected the
-halted process and provided the problem description: Nova Scheduler
-process is not running on node-13.domain.tld.
+   You can notice that Zabbix detected the
+   halted process and provided the problem description: Nova Scheduler
+   process is not running on node-13.domain.tld.
 
-When you go to Monitoring->Screens page, you will see the OpenStack
-Cluster screen:
+   When you go to Monitoring->Screens page, you will see the OpenStack
+   Cluster screen:
 
-.. |zabbix_openstack_cluster_screen.png| image:: ../images/zabbix_openstack_cluster_screen.png
-   :alt: zabbix_openstack_cluster_screen.png
-   :width: 776px
-   :height: 438px
+   .. |zabbix_openstack_cluster_screen.png| image:: ../images/zabbix_openstack_cluster_screen.png
+      :alt: zabbix_openstack_cluster_screen.png
 
-|zabbix_openstack_cluster_screen.png|
+   |zabbix_openstack_cluster_screen.png|
 
-.. |zabbix_openstack_cluster_screen_emphasis.png| image:: ../images/zabbix_openstack_cluster_screen.png
-   :alt: zabbix_openstack_cluster_screen.png
-   :width: 1260px
-   :height: 715px
+   .. |zabbix_openstack_cluster_screen_emphasis.png| image:: ../images/zabbix_openstack_cluster_screen_emphasis.png
+      :alt: zabbix_openstack_cluster_screen_emphasis.png
 
-|startspanarea| width: 776px; height: 315px; |closespanarea|
-|zabbix_openstack_cluster_screen_emphasis.png|
-|endspanarea|
+   |zabbix_openstack_cluster_screen_emphasis.png|
 
-On this screen you have general statistics and graphs presenting
-resources usage in OpenStack environment. There is also a list of last
-10 events recorded by Zabbix.
+   On this screen you have general statistics and graphs presenting
+   resources usage in OpenStack environment.
+
+   There is also a list of last 10 events recorded by Zabbix.
 
 Pages
 -----
@@ -146,7 +147,7 @@ show how it should look after a successful environment deployment.
 Zabbix UI provides several pages placed under Configuration tab.
 
 Host groups page
-````````````````
+^^^^^^^^^^^^^^^^
 
 This page has a list of host groups with their members. There are
 separate groups for Controllers and Computes. These groups are used to
@@ -159,15 +160,11 @@ in the official Zabbix Documentation.
 
 .. |zabbix_host_groups.png| image:: ../images/zabbix_host_groups.png
    :alt: zabbix_host_groups.png
-   :width: 1674px
-   :height: 470px
 
-|startspanarea| width: 641px; height: 470px; |closespanarea|
 |zabbix_host_groups.png|
-|endspanarea|
 
 Hosts page
-``````````
+^^^^^^^^^^
 
 This page contains a list of all monitored OpenStack nodes and,
 additionally one OpenStackCluster virtual host which represents
@@ -180,23 +177,16 @@ the Zabbix agent on this node is running and available.
 
 .. |zabbix_hosts.png| image:: ../images/zabbix_hosts.png
    :alt: zabbix_hosts.png
-   :width: 778px
-   :height: 203px
 
 |zabbix_hosts.png|
 
-.. |zabbix_hosts_emphasis.png| image:: ../images/zabbix_hosts.png
-   :alt: zabbix_hosts.png
-   :width: 1736px
-   :height: 452px
+.. |zabbix_hosts_emphasis.png| image:: ../images/zabbix_hosts_emphasis.png
+   :alt: zabbix_hosts_emphasis.png
 
-|startspanarea| width: 555px; height: 452px; |closespanarea|
 |zabbix_hosts_emphasis.png|
-|endspanarea|
-
 
 Templates page
-``````````````
+^^^^^^^^^^^^^^
 
 This page contains a list of all monitoring templates and list of hosts
 to which they are linked. A monitoring template is a way to group items,
@@ -208,22 +198,13 @@ in the official Zabbix Documentation.
 
 .. |zabbix_templates.png| image:: ../images/zabbix_templates.png
    :alt: zabbix_templates.png
-   :width: 936px
-   :height: 531px
 
-|startspanarea| width: 765px; height: 171px; |closespanarea|
 |zabbix_templates.png|
-|endspanarea|
 
-.. |zabbix_templates_emphasis.png| image:: ../images/zabbix_templates.png
-   :alt: zabbix_templates.png
-   :width: 1660px
-   :height: 927px
+.. |zabbix_templates_emphasis.png| image:: ../images/zabbix_templates_emphasis.png
+   :alt: zabbix_templates_emphasis.png
 
-|startspanarea| width: 766px; height: 243px; |closespanarea|
 |zabbix_templates_emphasis.png|
-|endspanarea|
-
 
 You can add an additional items (checks), create triggers and events via
 Zabbix UI. For more information and instructions, see `6.2
