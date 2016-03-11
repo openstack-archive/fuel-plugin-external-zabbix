@@ -57,7 +57,6 @@ class OSAPI(object):
                     }
                 }
             })
-        fail_services = 0
         for keystone in self.endpoint_keystone:
             self.logger.info("Trying to get token from '%s'" % keystone)
             try:
@@ -76,10 +75,8 @@ class OSAPI(object):
                 return
             except Exception as e:
                 self.logger.debug("Got exception '%s'" % e)
-                fail_services += 1
-        if fail_services == len(self.endpoint_keystone):
-            self.logger.critical(0)
-            sys.exit(1)
+        self.logger.critical(0)
+        sys.exit(1)
 
     def check_api(self, url, service):
         self.logger.info("Trying '%s' on '%s'" % (service, url))
