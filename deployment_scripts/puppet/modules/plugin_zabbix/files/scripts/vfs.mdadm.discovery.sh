@@ -14,19 +14,19 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 #
+#Zabbix vfs.mdadm.discovery implementation
 
-echo "{"
-echo -e "\t\"data\":[\n"
+echo -e "{\n\t\"data\" : ["
 
 # we have to end each line with a comma except the last one (JSON SIC!)
 # so we have to manage the line separator manually in awk :/
-awk '
+awk -F: '
   BEGIN{ORS="";n=0}
-  /md?/{
+  $1 ~ /^md.?/ {
+    gsub(" *$","",$1);
     if (n++) print ",\n";
-    print "\t{ \"{#MDEVICE}\":\""$1"\" }"
+    print "\t{ \"{#MDEVICE}\" : \""$1"\" }"
   }
 ' /proc/mdstat
 
-echo -e "\n\n\t]"
-echo "}"
+echo -e "\n\t]\n}"
