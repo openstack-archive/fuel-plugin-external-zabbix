@@ -25,19 +25,9 @@ class plugin_zabbix::db::mysql(
     mode   => '0755',
   }
 
-  file { '/tmp/zabbix/parts':
-    ensure  => directory,
-    purge   => true,
-    force   => true,
-    recurse => true,
-    mode    => '0755',
-    source  => 'puppet:///modules/plugin_zabbix/sql',
-    require => File['/tmp/zabbix']
-  }
-
-  file { '/tmp/zabbix/parts/data_clean.sql':
+  file { '/tmp/zabbix/data_clean.sql':
     ensure  => present,
-    require => File['/tmp/zabbix/parts'],
+    require => File['/tmp/zabbix'],
     content => template('plugin_zabbix/data_clean.erb'),
   }
 
@@ -50,10 +40,10 @@ class plugin_zabbix::db::mysql(
   }
 
   exec { 'prepare-schema-2':
-    command     => 'cat /tmp/zabbix/parts/*.sql >> /tmp/zabbix/schema.sql',
+    command     => 'cat /tmp/zabbix/data_clean.sql >> /tmp/zabbix/schema.sql',
     path        => ['/usr/sbin', '/usr/bin', '/sbin', '/bin'],
     refreshonly => true,
-    require     => File['/tmp/zabbix/parts/data_clean.sql'],
+    require     => File['/tmp/zabbix/data_clean.sql'],
   }
 
   exec{ "${plugin_zabbix::params::db_name}-import":

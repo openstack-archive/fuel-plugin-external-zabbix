@@ -45,6 +45,15 @@ INSERT INTO `graph_theme` (`graphthemeid`, `description`, `theme`, `backgroundco
 INSERT INTO `graph_theme` (`graphthemeid`, `description`, `theme`, `backgroundcolor`, `graphcolor`, `graphbordercolor`, `gridcolor`, `maingridcolor`, `gridbordercolor`, `textcolor`, `highlightcolor`, `leftpercentilecolor`, `rightpercentilecolor`, `nonworktimecolor`, `gridview`, `legendview`) VALUES (4,'Classic','classic','F0F0F0','FFFFFF','333333','CCCCCC','AAAAAA','000000','222222','AA4444','11CC11','CC1111','E0E0E0',1,1);
 INSERT INTO `globalmacro` (`globalmacroid`, `macro`, `value`) VALUES (2,'{$SNMP_COMMUNITY}','public');
 INSERT INTO `sysmaps` (`sysmapid`, `name`, `width`, `height`, `backgroundid`, `label_type`, `label_location`, `highlight`, `expandproblem`, `markelements`, `show_unack`, `grid_size`, `grid_show`, `grid_align`, `label_format`, `label_type_host`, `label_type_hostgroup`, `label_type_trigger`, `label_type_map`, `label_type_image`, `label_string_host`, `label_string_hostgroup`, `label_string_trigger`, `label_string_map`, `label_string_image`, `iconmapid`, `expand_macros`) VALUES (1,'Local network',680,200,NULL,0,0,1,1,1,0,50,1,1,0,2,2,2,2,2,'','','','','',NULL,1);
+# Filesystems low level discovery
+INSERT INTO `regexps` (`regexpid`, `name`, `test_string`) VALUES (1,'File systems for discovery','ext3');
+INSERT INTO `expressions` (`expressionid`,`regexpid`,`expression`,`expression_type`,`exp_delimiter`,`case_sensitive`) values (1,1,'^(btrfs|ext2|ext3|ext4|jfs|reiser|xfs|ffs|ufs|jfs|jfs2|vxfs|hfs|ntfs|fat32|zfs)$',3,',',0);
+# Network interfaces low level discovery
 INSERT INTO `regexps` (`regexpid`, `name`, `test_string`) VALUES (2,'Network interfaces for discovery','eth0');
+INSERT INTO `expressions` (`expressionid`,`regexpid`,`expression`,`expression_type`,`exp_delimiter`,`case_sensitive`) values (2,2,'^lo$',4,',',0),(3,2,'^[a-z0-9]+$',4,',',0);
+# SNMP
 INSERT INTO `regexps` (`regexpid`, `name`, `test_string`) VALUES (3,'Storage devices for SNMP discovery','/boot');
+# Block devices low level discovery
+INSERT INTO `regexps` (`regexpid`,`name`,`test_string`) values (4,'Block devices for discovery','vda');
+INSERT INTO `expressions` (`expressionid`,`regexpid`,`expression`,`expression_type`,`exp_delimiter`,`case_sensitive`) values (4,4,'^(vd.|sd.)$',3,',',0);
 COMMIT;
