@@ -1,4 +1,10 @@
 attributes:
+  metadata:
+    restrictions:
+      - condition: "cluster:net_provider != 'neutron'"
+        action: "hide"
+        message: This plugin only supports neutron networking
+        strict: false
   username:
     value: "admin"
     label: "username"
