@@ -34,25 +34,33 @@ class plugin_zabbix::params {
 
   case $::operatingsystem {
     'Ubuntu', 'Debian': {
-      $agent_pkg                = 'zabbix-agent'
-      $server_pkg               = 'zabbix-server-mysql'
-      $frontend_pkg             = 'zabbix-frontend-php'
-      $sender_pkg               = 'zabbix-sender'
-      $get_pkg                  = 'zabbix-get'
+      $php_fpm_pkg               = 'php5-fpm'
+      $php_fpm_config            = '/etc/php5/fpm/pool.d/www.conf'
+      $php_fpm_service           = 'php5-fpm'
+      $php_common_pkg            = 'php5-common'
+      $apache_fcgi_pkg           = 'libapache2-mod-fastcgi'
+      $agent_pkg                 = 'zabbix-agent'
+      $server_pkg                = 'zabbix-server-mysql'
+      $frontend_pkg              = 'zabbix-frontend-php'
+      $sender_pkg                = 'zabbix-sender'
+      $get_pkg                   = 'zabbix-get'
 
-      $agent_service            = 'zabbix-agent'
-      $server_service           = 'zabbix-server'
+      $agent_service             = 'zabbix-agent'
+      $server_service            = 'zabbix-server'
 
-      $agent_log_file           = "${zabbix_base_log_dir}/zabbix_agentd.log"
-      $server_log_file          = "${zabbix_base_log_dir}/zabbix_server.log"
+      $agent_log_file            = "${zabbix_base_log_dir}/zabbix_agentd.log"
+      $server_log_file           = "${zabbix_base_log_dir}/zabbix_server.log"
 
-      $prepare_schema_cmd       = 'cat /usr/share/zabbix-server-mysql/schema.sql /usr/share/zabbix-server-mysql/images.sql > /tmp/zabbix/schema.sql'
+      $prepare_schema_cmd        = 'cat /usr/share/zabbix-server-mysql/schema.sql /usr/share/zabbix-server-mysql/images.sql > /tmp/zabbix/schema.sql'
 
-      $frontend_service         = 'apache2'
-      $frontend_service_config  = "${zabbix_base_conf_dir}/apache.conf"
-      $frontend_config          = "${zabbix_base_conf_dir}/web/zabbix.conf.php"
-      $php_config               = '/etc/php5/apache2/php.ini'
-      $php_mysql_pkg            = 'php5-mysql'
+      $frontend_service          = 'apache2'
+      $frontend_service_template = "${zabbix_base_conf_dir}/apache.conf"
+      $frontend_service_config   = '/etc/apache2/conf.d/zabbix.conf'
+      $frontend_service_tmp_cfg  = '/tmp/zabbix.conf'
+      $frontend_config           = "${zabbix_base_conf_dir}/web/zabbix.conf.php"
+      $php_config                = '/etc/php5/fpm/php.ini'
+      $php_mysql_pkg             = 'php5-mysql'
+      $zabbix_document_root      = '/usr/share/zabbix'
     }
     'CentOS', 'RedHat': {
 
