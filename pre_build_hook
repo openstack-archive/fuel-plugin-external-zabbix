@@ -2,6 +2,13 @@
 set -eux
 
 ROOT="$(dirname `readlink -f $0`)"
+
+. "${ROOT}"/functions.sh
+
+# Puppet manifests
+# Dependency for PHP-FPM
+PHPFPM_TARBALL_URL="https://forgeapi.puppetlabs.com/v3/files/Slashbunny-phpfpm-0.0.8.tar.gz"
+
 RPM_REPO="${ROOT}"/repositories/centos/
 DEB_REPO="${ROOT}"/repositories/ubuntu/
 mkdir -p $RPM_REPO
@@ -28,6 +35,8 @@ download deb http://repo.zabbix.com/zabbix/2.4/ubuntu/pool/main/z/zabbix/zabbix-
              http://repo.zabbix.com/zabbix/2.4/ubuntu/pool/main/z/zabbix/zabbix-sender_2.4.4-1+trusty_amd64.deb \
              http://repo.zabbix.com/zabbix/2.4/ubuntu/pool/main/z/zabbix/zabbix-get_2.4.4-1+trusty_amd64.deb \
              http://archive.ubuntu.com/ubuntu/pool/main/p/php5/php5-mysql_5.5.9+dfsg-1ubuntu4.14_amd64.deb \
+             http://archive.ubuntu.com/ubuntu/pool/main/p/php5/php5-common_5.5.9+dfsg-1ubuntu4.14_amd64.deb \
+             http://archive.ubuntu.com/ubuntu/pool/universe/p/php5/php5-fpm_5.5.9+dfsg-1ubuntu4.14_amd64.deb \
              http://archive.ubuntu.com/ubuntu/pool/universe/n/net-snmp/libsnmp-perl_5.7.2~dfsg-8.1ubuntu3.1_amd64.deb \
              http://archive.ubuntu.com/ubuntu/pool/universe/s/snmptt/snmptt_1.4-1_all.deb \
              http://archive.ubuntu.com/ubuntu/pool/universe/libs/libsmi/smistrip_0.4.8+dfsg2-8ubuntu2_all.deb \
@@ -43,3 +52,6 @@ download rpm http://repo.zabbix.com/zabbix/2.4/rhel/6/x86_64/zabbix-agent-2.4.4-
              http://repo.zabbix.com/zabbix/2.4/rhel/6/x86_64/zabbix-sender-2.4.4-1.el6.x86_64.rpm \
              http://repo.zabbix.com/zabbix/2.4/rhel/6/x86_64/zabbix-get-2.4.4-1.el6.x86_64.rpm \
              http://mirror.centos.org/centos/6/os/x86_64/Packages/iptstate-2.2.2-4.el6.x86_64.rpm
+
+# Install puppet manifests
+download_puppet_module "phpfpm" "$PHPFPM_TARBALL_URL"
