@@ -15,6 +15,7 @@
 #
 class plugin_zabbix::frontend {
 
+  include phpfpm
   include plugin_zabbix::params
 
   service { $plugin_zabbix::params::frontend_service:
@@ -28,8 +29,18 @@ class plugin_zabbix::frontend {
     ensure  => present,
     require => [
       File['/etc/dbconfig-common/zabbix-server-mysql.conf'],
-      Package[$plugin_zabbix::params::php_mysql_pkg]
+      Package[$plugin_zabbix::params::php_fpm_pkg],
+      Package[$plugin_zabbix::params::php_mysql_pkg],
+      Package[$plugin_zabbix::params::apache_fcgi_pkg]
     ],
+  }
+
+  package { $plugin_zabbix::params::php_common_pkg:
+    ensure => present
+  }
+
+  package { $plugin_zabbix::params::apache_fcgi_pkg:
+    ensure => present
   }
 
   package { $plugin_zabbix::params::php_mysql_pkg:
@@ -43,31 +54,9 @@ class plugin_zabbix::frontend {
     require => Package[$plugin_zabbix::params::frontend_pkg],
   }
 
-  file_line { 'php timezone':
-    path    => $plugin_zabbix::params::frontend_service_config,
-    line    => '    php_value date.timezone UTC',
-    match   => 'php_value date.timezone',
-    notify  => Service[$plugin_zabbix::params::frontend_service],
-    require => Package[$plugin_zabbix::params::frontend_pkg],
-  }
-
-  file_line { 'php memory_limit':
-    path    => $plugin_zabbix::params::frontend_service_config,
-    line    => '    php_value memory_limit 256M',
-    match   => 'php_value memory_limit',
-    notify  => Service[$plugin_zabbix::params::frontend_service],
-    require => Package[$plugin_zabbix::params::frontend_pkg],
-  }
-
-  file_line { 'set expose_php to off':
-    path    => $plugin_zabbix::params::php_config,
-    match   => 'expose_php =',
-    line    => 'expose_php = Off',
-    notify  => Service[$plugin_zabbix::params::frontend_service],
-    require => Package[$plugin_zabbix::params::frontend_pkg],
-  }
-
-  # disable worker MPM, use prefork MPM which is required by mod_php:
+  # do not use prefork as it is incompatible with MOS 8.0 / Liberty
+  # So need to enable a few more Apache modules to work with PHP-FPM
+  # and mod worker
   case $::osfamily {
     'RedHat': {
       # default line: "HTTPD=/usr/sbin/httpd.worker"
@@ -83,25 +72,59 @@ class plugin_zabbix::frontend {
       }
     }
     'Debian': {
-
-      exec { 'disable-apache-worker':
-        command => 'a2dismod worker',
+      # Activate all modules required by $frontend_service_template
+      exec { 'enable-apache-actions':
+        command => 'a2enmod actions',
         path    => ['/usr/sbin', '/usr/bin', '/sbin', '/bin'],
         notify  => Service[$plugin_zabbix::params::frontend_service],
         require => Package[$plugin_zabbix::params::frontend_pkg],
       }
 
-      exec { 'enable-apache-prefork':
-        command => 'a2enmod mpm_prefork',
+      exec { 'enable-apache-rewrite':
+        command => 'a2enmod rewrite',
         path    => ['/usr/sbin', '/usr/bin', '/sbin', '/bin'],
         notify  => Service[$plugin_zabbix::params::frontend_service],
         require => Package[$plugin_zabbix::params::frontend_pkg],
       }
 
-      exec { 'enable-apache-php5':
-        command => 'a2enmod php5',
+      exec { 'enable-apache-expires':
+        command => 'a2enmod expires',
         path    => ['/usr/sbin', '/usr/bin', '/sbin', '/bin'],
         notify  => Service[$plugin_zabbix::params::frontend_service],
+        require => Package[$plugin_zabbix::params::frontend_pkg],
+      }
+
+      exec { 'enable-apache-fastcgi':
+        command => 'a2enmod fastcgi',
+        path    => ['/usr/sbin', '/usr/bin', '/sbin', '/bin'],
+        notify  => Service[$plugin_zabbix::params::frontend_service],
+        require => Package[$plugin_zabbix::params::frontend_pkg],
+      }
+
+      # Cleanup existing default pools
+      phpfpm::pool { 'www':
+        ensure => 'absent',
+      }
+
+      # Create Zabbix TCP pool using 127.0.0.1, port 9000, upstream defaults
+      phpfpm::pool { 'zabbix':
+        listen    => '127.0.0.1:9000',
+        require   => Package[$plugin_zabbix::params::php_fpm_pkg],
+        notify    => Service[$plugin_zabbix::params::php_fpm_service],
+        php_value => {
+          'date.timezone'       => 'UTC',
+          'memory_limit'        => '256M',
+          'max_execution_time'  => '300',
+          'post_max_size'       => '16M',
+          'upload_max_filesize' => '2M',
+          'max_input_time'      => '300',
+        },
+      }
+
+      file_line { 'set expose_php to off':
+        path    => $plugin_zabbix::params::php_config,
+        match   => 'expose_php =',
+        line    => 'expose_php = Off',
         require => Package[$plugin_zabbix::params::frontend_pkg],
       }
     }
@@ -118,13 +141,17 @@ class plugin_zabbix::frontend {
         provider => 'shell',
         before   => Package[$plugin_zabbix::params::frontend_pkg],
       }
-      file { '/etc/apache2/conf.d/zabbix.conf':
-        ensure  => link,
-        target  => $plugin_zabbix::params::frontend_service_config,
+
+      # Apache configuration from template
+      file { $plugin_zabbix::params::frontend_service_config:
+        ensure  => present,
+        content => template($plugin_zabbix::params::frontend_service_template),
         notify  => Service[$plugin_zabbix::params::frontend_service],
         require => Package[$plugin_zabbix::params::frontend_pkg],
       }
     }
-    default: {}
+    default: {
+      fail("unsuported osfamily ${::osfamily}, currently Debian is the only supported platform")
+    }
   }
 }
