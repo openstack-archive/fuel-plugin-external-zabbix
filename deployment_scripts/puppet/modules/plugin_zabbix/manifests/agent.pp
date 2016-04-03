@@ -19,7 +19,10 @@ class plugin_zabbix::agent(
 
   include plugin_zabbix::params
 
-  $zabbix_agent_port = $plugin_zabbix::params::zabbix_ports['backend_agent'] ? { unset=>$plugin_zabbix::params::zabbix_ports['agent'], default=>$plugin_zabbix::params::zabbix_ports['backend_agent'] }
+  $zabbix_agent_port = $plugin_zabbix::params::zabbix_ports['backend_agent'] ? {
+    unset=>$plugin_zabbix::params::zabbix_ports['agent'],
+    default=>$plugin_zabbix::params::zabbix_ports['backend_agent'],
+  }
 
   firewall { '997 zabbix agent':
     port   => $zabbix_agent_port,

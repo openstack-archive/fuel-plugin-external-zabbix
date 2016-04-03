@@ -51,7 +51,10 @@ class plugin_zabbix::params {
       $agent_log_file            = "${zabbix_base_log_dir}/zabbix_agentd.log"
       $server_log_file           = "${zabbix_base_log_dir}/zabbix_server.log"
 
-      $prepare_schema_cmd        = 'cat /usr/share/zabbix-server-mysql/schema.sql /usr/share/zabbix-server-mysql/images.sql > /tmp/zabbix/schema.sql'
+      $prepare_schema_cmd        = join([
+        'cat /usr/share/zabbix-server-mysql/schema.sql',
+        ' /usr/share/zabbix-server-mysql/images.sql',
+        ' > /tmp/zabbix/schema.sql'], '')
 
       $frontend_service          = 'apache2'
       $frontend_service_template = 'plugin_zabbix/zabbix_apache.conf.erb'
@@ -77,7 +80,12 @@ class plugin_zabbix::params {
       $agent_log_file           = "${zabbix_base_log_dir}/zabbix_agentd.log"
       $server_log_file          = "${zabbix_base_log_dir}/zabbix_server.log"
 
-      $prepare_schema_cmd       = 'cat /usr/share/doc/zabbix-server-mysql-`zabbix_server -V | awk \'/v[0-9].[0-9].[0-9]/{print substr($3, 2)}\'`/create/schema.sql /usr/share/doc/zabbix-server-mysql-`zabbix_server -V | awk \'/v[0-9].[0-9].[0-9]/{print substr($3, 2)}\'`/create/images.sql > /tmp/zabbix/schema.sql'
+      $prepare_schema_cmd       = join([
+        'cat /usr/share/doc/zabbix-server-mysql-`zabbix_server -V',
+        ' | awk \'/v[0-9].[0-9].[0-9]/{print substr($3, 2)}\'',
+        '`/create/schema.sql /usr/share/doc/zabbix-server-mysql-`zabbix_server -V',
+        ' | awk \'/v[0-9].[0-9].[0-9]/{print substr($3, 2)}\'',
+        '`/create/images.sql > /tmp/zabbix/schema.sql'], '')
 
       $frontend_service         = 'httpd'
       $frontend_service_config  = '/etc/httpd/conf.d/zabbix.conf'
