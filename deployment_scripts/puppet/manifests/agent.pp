@@ -13,19 +13,20 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 #
-$nodes_hash = hiera('nodes')
+$network_metadata = hiera_hash('network_metadata')
 
-$primary_controller_nodes = filter_nodes($nodes_hash,'role','primary-controller')
-$controllers = concat($primary_controller_nodes, filter_nodes($nodes_hash,'role','controller'))
-$controller_internal_addresses = nodes_to_hash($controllers,'name','internal_address')
+$primary_controller_nodes = get_nodes_hash_by_roles($network_metadata, ['primary-controller'])
+$controllers = get_nodes_hash_by_roles($network_metadata, ['primary-controller', 'controller'])
+$controller_internal_addresses = get_node_to_ipaddr_map_by_network_role($controllers, 'management')
 $controller_nodes = ipsort(values($controller_internal_addresses))
 
-$node_data = filter_nodes($nodes_hash,'fqdn',$::fqdn)
-$internal_address = join(values(nodes_to_hash($node_data,'name','internal_address')))
-$public_address = join(values(nodes_to_hash($node_data,'name','public_address')))
-$swift_address = join(values(nodes_to_hash($node_data,'name','storage_address')))
+$hostinfo = $network_metadata['nodes'][$::hostname]
+$netinfo = $hostinfo['network_roles']
+$internal_address = $netinfo['management']
+$public_address = $netinfo['ex']
+$swift_address = $netinfo['storage']
 
 class { 'plugin_zabbix::monitoring':
   server_ips => $controller_nodes,
-  roles      => node_roles(hiera('nodes'), hiera('uid')),
+  roles      => node_roles(hiera_array('nodes'), hiera('uid')),
 }
