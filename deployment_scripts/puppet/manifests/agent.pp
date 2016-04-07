@@ -13,19 +13,36 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 #
-$nodes_hash = hiera('nodes')
+$fuel_version                  = 0 + hiera('fuel_version')
+$network_metadata              = hiera_hash('network_metadata')
+$primary_controller_nodes      = get_nodes_hash_by_roles($network_metadata, ['primary-controller'])
+$controllers                   = get_nodes_hash_by_roles($network_metadata, ['primary-controller', 'controller'])
+$controller_internal_addresses = get_node_to_ipaddr_map_by_network_role($controllers, 'management')
+$controller_nodes              = ipsort(values($controller_internal_addresses))
+$hostinfo                      = $network_metadata['nodes'][$::hostname]
+$netinfo                       = $hostinfo['network_roles']
+$internal_address              = $netinfo['management']
+$public_address                = $netinfo['ex']
+$swift_address                 = $netinfo['storage']
 
-$primary_controller_nodes = filter_nodes($nodes_hash,'role','primary-controller')
-$controllers = concat($primary_controller_nodes, filter_nodes($nodes_hash,'role','controller'))
-$controller_internal_addresses = nodes_to_hash($controllers,'name','internal_address')
-$controller_nodes = ipsort(values($controller_internal_addresses))
-
-$node_data = filter_nodes($nodes_hash,'fqdn',$::fqdn)
-$internal_address = join(values(nodes_to_hash($node_data,'name','internal_address')))
-$public_address = join(values(nodes_to_hash($node_data,'name','public_address')))
-$swift_address = join(values(nodes_to_hash($node_data,'name','storage_address')))
+if $fuel_version < 8.0 {
+  $cur_node_roles = node_roles(hiera_array('nodes'), hiera('uid'))
+  $is_base_os     = member($cur_node_roles, 'base-os')
+  $is_virt        = member($cur_node_roles, 'virt')
+  $is_controller  = member($cur_node_roles, 'controller') or
+                    member($cur_node_roles, 'primary-controller')
+  $roles_nb       = size($cur_node_roles)
+} else {
+  $is_base_os    = roles_include(['base-os'])
+  $is_virt       = roles_include(['virt'])
+  $is_controller = roles_include(['controller', 'primary-controller'])
+  $roles_nb      = size($network_metadata['nodes'][$::hostname]['node_roles'])
+}
 
 class { 'plugin_zabbix::monitoring':
-  server_ips => $controller_nodes,
-  roles      => node_roles(hiera('nodes'), hiera('uid')),
+  server_ips          => $controller_nodes,
+  roles_nb            => $roles_nb,
+  has_role_baseos     => $is_base_os,
+  has_role_virt       => $is_virt,
+  has_role_controller => $is_controller,
 }
