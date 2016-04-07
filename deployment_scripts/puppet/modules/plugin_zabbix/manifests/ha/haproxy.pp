@@ -24,11 +24,11 @@ class plugin_zabbix::ha::haproxy {
   $public_vip = hiera('public_vip')
   $ssl = hiera('public_ssl')
   $zabbix_vip = $plugin_zabbix::params::server_ip
-  $nodes_hash = hiera('nodes')
-  $primary_controller_nodes = filter_nodes($nodes_hash,'role','primary-controller')
-  $controllers = concat($primary_controller_nodes, filter_nodes($nodes_hash,'role','controller'))
-  $server_names = filter_hash($controllers, 'name')
-  $ipaddresses = filter_hash($controllers, 'internal_address')
+  $network_metadata  = hiera_hash('network_metadata')
+  $primary_controller_nodes = get_nodes_hash_by_roles($network_metadata, ['primary-controller'])
+  $controllers = get_nodes_hash_by_roles($network_metadata, ['primary-controller', 'controller'])
+  $server_names = keys($controllers)
+  $ipaddresses = values(get_node_to_ipaddr_map_by_network_role($controllers, 'management'))
   Plugin_zabbix::Ha::Haproxy_service {
     server_names        => $server_names,
     ipaddresses         => $ipaddresses,

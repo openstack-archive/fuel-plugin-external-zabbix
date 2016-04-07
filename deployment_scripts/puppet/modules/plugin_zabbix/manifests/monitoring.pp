@@ -15,18 +15,19 @@
 #
 class plugin_zabbix::monitoring(
   $server_ips  = undef,
-  $roles = [],
+  $roles_nb = 1,
+  $has_role_baseos = false,
+  $has_role_virt   = false,
+  $has_role_controller = false,
 ) {
 
   # This should evaluate to false on base-os or virt only nodes
   # and therefore Zabbix should not be installed neither configured in this case
-  $zabbix_agent_not_supported = (member($roles, 'base-os') or member($roles, 'virt')) and (size($roles) == 1)
+  $zabbix_agent_not_supported = ($has_role_baseos or $has_role_virt) and ($roles_nb == 1)
 
   if $zabbix_agent_not_supported {
     notice('Skipping Zabbix configuration for base-os or virt only host')
   } else {
-    validate_array($roles)
-
     include plugin_zabbix::params
 
     $api_hash = $plugin_zabbix::params::api_hash
@@ -96,14 +97,14 @@ class plugin_zabbix::monitoring(
       api      => $api_hash,
     }
 
-    if ! member($roles, 'controller') and ! member($roles, 'primary-controller') {
+    if ! $has_role_controller {
       # default way to check NTP binding
       plugin_zabbix_template_link { "${plugin_zabbix::params::host_name} Template NTP binding":
         host     => $plugin_zabbix::params::host_name,
         template => 'Template NTP binding',
         api      => $api_hash,
       }
-    }else{
+    } else {
       plugin_zabbix_template_link { "${plugin_zabbix::params::host_name} Template OS Controller":
         host     => $plugin_zabbix::params::host_name,
         template => 'Template OS Controller',
