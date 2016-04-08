@@ -13,6 +13,7 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 #
+require 'puppet'
 require 'json'
 require 'net/http'
 class Puppet::Provider::Plugin_zabbix < Puppet::Provider
@@ -48,8 +49,8 @@ class Puppet::Provider::Plugin_zabbix < Puppet::Provider
     request.add_field("Content-Type", "application/json-rpc")
     request.body = message_json(body)
     response = http.request(request)
-    puts "DEBUG request = #{request.body}"
-    puts "DEBUG response = #{response.body}"
+    Puppet::debug("request = #{request.body}")
+    Puppet::debug("response = #{response.body}")
     response.value
     result = JSON.parse(response.body)
     result
@@ -105,14 +106,14 @@ class Puppet::Provider::Plugin_zabbix < Puppet::Provider
   end
 
   def self.get_host(api, name)
-    puts "DEBUG gethost #{name}"
+    Puppet::debug("gethost #{name}")
     api_request(api,
                 {:method => "host.get",
                  :params => {:filter => {:name => [name]}}})
   end
 
   def self.get_hostgroup(api, name)
-    puts "DEBUG gethostgroup #{name}"
+    Puppet::debug("gethostgroup #{name}")
     api_request(api,
                 {:method => "hostgroup.get",
                  :params => {:filter => {:name => [name]}}})
