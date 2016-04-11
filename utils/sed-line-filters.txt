@@ -1,0 +1,24 @@
+^INSERT INTO `application_template`
+^INSERT INTO `applications`
+^INSERT INTO `actions`.*'Report not supported 
+^INSERT INTO `actions`.*'Report unknown triggers'
+^INSERT INTO `dchecks`
+^INSERT INTO `expressions` .*Physical memory
+^INSERT INTO `expressions` .*'\^Software Loopback Interface'
+^INSERT INTO `functions`
+^INSERT INTO `graphs
+^INSERT INTO `group_prototype`
+^INSERT INTO `groups` .*'Zabbix servers',
+^INSERT INTO `groups` .*'Virtual machines',
+^INSERT INTO `groups` .*'Hypervisors',
+^INSERT INTO `host
+^INSERT INTO `interface`
+^INSERT INTO `item
+^INSERT INTO `mappings`
+^INSERT INTO `opmessage_grp`
+^INSERT INTO `optemplate`
+^INSERT INTO `screens
+^INSERT INTO `scripts` .*'sudo /usr/bin/nmap 
+^INSERT INTO `sysmaps_elements`
+^INSERT INTO `trigger
+^INSERT INTO `valuemaps` .*'VMware 
