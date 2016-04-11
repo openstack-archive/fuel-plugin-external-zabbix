@@ -44,7 +44,10 @@ class plugin_zabbix::monitoring::ceph_mon {
     plugin_zabbix::agent::userparameter {
       'probe.ceph':
         key     => 'probe.ceph',
-        command => "/etc/zabbix/scripts/ceph.py ${plugin_zabbix::params::openstack::ceph_virtual_cluster_name} ${plugin_zabbix::params::server_ip}"
+        command => join([
+          '/etc/zabbix/scripts/ceph.py',
+          " ${plugin_zabbix::params::openstack::ceph_virtual_cluster_name}",
+          " ${plugin_zabbix::params::server_ip}"], '')
     }
   }
   if defined_in_state(Class['ceph::osds']) {

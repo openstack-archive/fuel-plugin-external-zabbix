@@ -55,7 +55,10 @@ class plugin_zabbix::controller {
 
   file { 'zabbix-server-ocf' :
     ensure => present,
-    path   => "${plugin_zabbix::params::ocf_scripts_dir}/${plugin_zabbix::params::ocf_scripts_provider}/${plugin_zabbix::params::server_service}",
+    path   => join([
+      $plugin_zabbix::params::ocf_scripts_dir,
+      "/${plugin_zabbix::params::ocf_scripts_provider}",
+      "/${plugin_zabbix::params::server_service}"], ''),
     mode   => '0755',
     owner  => 'root',
     group  => 'root',
@@ -77,7 +80,9 @@ class plugin_zabbix::controller {
   }
 
   if $zabbix_pcmk_managed == '' {
-    File['zabbix-server-ocf'] -> Service["${plugin_zabbix::params::server_service}-init-stopped"] -> Service["${plugin_zabbix::params::server_service}-started"]
+    File['zabbix-server-ocf'] ->
+    Service["${plugin_zabbix::params::server_service}-init-stopped"] ->
+    Service["${plugin_zabbix::params::server_service}-started"]
   } else {
     File['zabbix-server-ocf'] -> Service["${plugin_zabbix::params::server_service}-started"]
   }

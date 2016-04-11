@@ -137,7 +137,11 @@ class plugin_zabbix::frontend {
   case $::osfamily {
     'Debian': {
       exec { 'configure zabbix-frontend-php package':
-        command  => 'echo "zabbix-frontend-php zabbix-frontend-php/configure-apache boolean false\nzabbix-frontend-php zabbix-frontend-php/restart-webserver boolean false" | debconf-set-selections',
+        command  => join([
+          'echo "zabbix-frontend-php zabbix-frontend-php/configure-apache',
+          ' boolean false\nzabbix-frontend-php',
+          ' zabbix-frontend-php/restart-webserver boolean false"',
+          ' | debconf-set-selections'], ''),
         provider => 'shell',
         before   => Package[$plugin_zabbix::params::frontend_pkg],
       }
