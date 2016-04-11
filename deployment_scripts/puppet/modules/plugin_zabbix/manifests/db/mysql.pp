@@ -46,7 +46,7 @@ class plugin_zabbix::db::mysql(
     require     => File['/tmp/zabbix/data_clean.sql'],
   }
 
-  exec{ "${plugin_zabbix::params::db_name}-import":
+  exec { "${plugin_zabbix::params::db_name}-import":
     command     => "/usr/bin/mysql ${plugin_zabbix::params::db_name} < /tmp/zabbix/schema.sql",
     logoutput   => true,
     refreshonly => true,
