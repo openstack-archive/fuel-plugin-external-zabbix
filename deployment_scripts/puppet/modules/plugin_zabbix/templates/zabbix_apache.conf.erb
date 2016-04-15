@@ -9,7 +9,7 @@
   AddHandler fastcgi-php5-fpm .php php phar
   Action fastcgi-php5-fpm /fastcgi-php5-fpm virtual
   Alias /fastcgi-php5-fpm <%= scope.lookupvar('plugin_zabbix::params::zabbix_document_root') %>/fastcgi-php5-fpm
-  FastCgiExternalServer <%= scope.lookupvar('plugin_zabbix::params::zabbix_document_root') %>/fastcgi-php5-fpm  -host 127.0.0.1:9000 -idle-timeout 900 -pass-header Authorization -pass-header Range
+  FastCgiExternalServer <%= scope.lookupvar('plugin_zabbix::params::zabbix_document_root') %>/fastcgi-php5-fpm  -host 127.0.0.1:<%= scope.lookupvar('plugin_zabbix::params::zabbix_ports')['fcgi'] %> -idle-timeout 900 -pass-header Authorization -pass-header Range
 </IfModule>
 
 <Directory "<%= scope.lookupvar('plugin_zabbix::params::zabbix_document_root') %>">

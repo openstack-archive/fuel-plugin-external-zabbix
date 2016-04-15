@@ -30,6 +30,7 @@ class plugin_zabbix::params {
     server         => '10051',
     agent          => '10049',
     backend_agent  => '10050',
+    fcgi           => '9003',
   }
 
   case $::operatingsystem {
