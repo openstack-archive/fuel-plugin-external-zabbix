@@ -106,9 +106,9 @@ class plugin_zabbix::frontend {
         ensure => 'absent',
       }
 
-      # Create Zabbix TCP pool using 127.0.0.1, port 9000, upstream defaults
+      # Create Zabbix TCP pool using 127.0.0.1, port 9003 (default)
       phpfpm::pool { 'zabbix':
-        listen    => '127.0.0.1:9000',
+        listen    => sprintf('127.0.0.1:%s', $plugin_zabbix::params::zabbix_ports['fcgi']),
         require   => Package[$plugin_zabbix::params::php_fpm_pkg],
         notify    => Service[$plugin_zabbix::params::php_fpm_service],
         php_value => {
