@@ -86,7 +86,7 @@ class plugin_zabbix::controller {
     notify => Service["${plugin_zabbix::params::server_service}-started"],
   }
 
-  plugin_zabbix::db::mysql_db { $plugin_zabbix::params::db_name:
+  mysql::db { $plugin_zabbix::params::db_name:
     user     => $plugin_zabbix::params::db_user,
     password => $plugin_zabbix::params::db_password,
     host     => $host,
