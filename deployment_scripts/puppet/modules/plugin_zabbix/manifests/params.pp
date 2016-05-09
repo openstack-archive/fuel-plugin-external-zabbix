@@ -45,6 +45,7 @@ class plugin_zabbix::params {
       $frontend_pkg              = 'zabbix-frontend-php'
       $sender_pkg                = 'zabbix-sender'
       $get_pkg                   = 'zabbix-get'
+      $snmp_pkg                  = 'snmp'
 
       $agent_service             = 'zabbix-agent'
       $server_service            = 'zabbix-server'
