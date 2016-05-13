@@ -26,8 +26,8 @@ Product compatibility matrix
 +--------------------+-----------------+
 | Product            | Version/Comment |
 +====================+=================+
-| Mirantis OpenStack | 7.0 and 8.0     |
+| Mirantis OpenStack | 7.0, 8.0 and 9.0|
 +--------------------+-----------------+
-| Zabbix monitoring  | 2.5.0 or higher |
+| Zabbix monitoring  | 2.6.0           |
 +--------------------+-----------------+
 
