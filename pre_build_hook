@@ -34,12 +34,12 @@ download deb http://repo.zabbix.com/zabbix/2.4/ubuntu/pool/main/z/zabbix/zabbix-
              http://repo.zabbix.com/zabbix/2.4/ubuntu/pool/main/z/zabbix/zabbix-server-mysql_2.4.4-1+trusty_amd64.deb \
              http://repo.zabbix.com/zabbix/2.4/ubuntu/pool/main/z/zabbix/zabbix-sender_2.4.4-1+trusty_amd64.deb \
              http://repo.zabbix.com/zabbix/2.4/ubuntu/pool/main/z/zabbix/zabbix-get_2.4.4-1+trusty_amd64.deb \
-             http://archive.ubuntu.com/ubuntu/pool/main/p/php5/php5_5.5.9+dfsg-1ubuntu4.16_all.deb \
-             http://archive.ubuntu.com/ubuntu/pool/main/p/php5/php5-mysql_5.5.9+dfsg-1ubuntu4.16_amd64.deb \
-             http://archive.ubuntu.com/ubuntu/pool/main/p/php5/php5-common_5.5.9+dfsg-1ubuntu4.16_amd64.deb \
-             http://archive.ubuntu.com/ubuntu/pool/main/p/php5/php5-gd_5.5.9+dfsg-1ubuntu4.16_amd64.deb \
+             http://archive.ubuntu.com/ubuntu/pool/main/p/php5/php5_5.5.9+dfsg-1ubuntu4.17_all.deb \
+             http://archive.ubuntu.com/ubuntu/pool/main/p/php5/php5-mysql_5.5.9+dfsg-1ubuntu4.17_amd64.deb \
+             http://archive.ubuntu.com/ubuntu/pool/main/p/php5/php5-common_5.5.9+dfsg-1ubuntu4.17_amd64.deb \
+             http://archive.ubuntu.com/ubuntu/pool/main/p/php5/php5-gd_5.5.9+dfsg-1ubuntu4.17_amd64.deb \
              http://archive.ubuntu.com/ubuntu/pool/main/p/php-json/php5-json_1.3.2-2build1_amd64.deb \
-             http://archive.ubuntu.com/ubuntu/pool/universe/p/php5/php5-fpm_5.5.9+dfsg-1ubuntu4.16_amd64.deb \
+             http://archive.ubuntu.com/ubuntu/pool/universe/p/php5/php5-fpm_5.5.9+dfsg-1ubuntu4.17_amd64.deb \
              http://archive.ubuntu.com/ubuntu/pool/universe/n/net-snmp/libsnmp-perl_5.7.2~dfsg-8.1ubuntu3.1_amd64.deb \
              http://archive.ubuntu.com/ubuntu/pool/main/n/net-snmp/snmpd_5.7.2~dfsg-8.1ubuntu3.1_amd64.deb \
              http://archive.ubuntu.com/ubuntu/pool/main/n/net-snmp/snmp_5.7.2~dfsg-8.1ubuntu3.1_amd64.deb \
