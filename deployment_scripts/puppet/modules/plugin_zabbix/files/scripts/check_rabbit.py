@@ -56,28 +56,17 @@ class RabbitmqAPI(object):
             self.logger.error('No queue_totals in response')
 
     def get_missing_queues(self):
-        queues = 0
-        response = self.get_http('queues')
-        for queue in response:
-            queues += 1
+        queues = len(self.get_http('queues'))
         self.logger.critical(self.max_queues-queues)
 
     def get_queues_without_consumers(self):
-        queues_without_consumers = 0
-        response = self.get_http('queues')
-        for queue in response:
-            queues_without_consumers += 1
-            if ('consumers' in queue and
-                    queue['consumers'] > 0):
-                queues_without_consumers -= 1
+        queues_without_consumers = len([i for i in self.get_http('queues') \
+            if not i.get('consumers') > 0])
         self.logger.critical(queues_without_consumers)
 
     def get_missing_nodes(self):
-        missing_nodes = 0
-        response = self.get_http('nodes')
-        for node in response:
-            if not node['running']:
-                missing_nodes += 1
+        missing_nodes = len([i for i in self.get_http('nodes') \
+            if not i['running']])
         self.logger.critical(missing_nodes)
 
     def get_unmirror_queues(self):
@@ -87,14 +76,11 @@ class RabbitmqAPI(object):
             return
 
         response = self.get_http('queues')
-        unmirror_queues = 0
-        for queue in response:
-            if ('policy' in queue and
-                queue['policy'] == 'ha-all'):
-                unmirror_queues += 1
-                if ('synchronised_slave_nodes' in queue and
-                    len(queue['synchronised_slave_nodes']) > 0):
-                    unmirror_queues -= 1
+        ha_nodes = len([i for i in self.get_http('queues') \
+            if queue.get('policy') == 'ha-all'])
+        synchronised_slave_nodes = len([i for i in self.get_http('queues') \
+            if len(queue.get('synchronised_slave_nodes')) > 0])
+        unmirror_queues = ha_nodes - synchronised_slave_nodes
         self.logger.critical(unmirror_queues)
 
 def usage():
