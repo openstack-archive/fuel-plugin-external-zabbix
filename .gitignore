@@ -6,3 +6,4 @@ repositories/ubuntu/*.deb
 .bundle/
 Gemfile.lock
 .tox/
+*.pyc
