@@ -9,7 +9,7 @@ To uninstall Zabbix plugin, follow these steps:
 
    ::
 
-     # fuel plugins --remove zabbix_monitoring==2.5.0
+     # fuel plugins --remove zabbix_monitoring==2.6.0
 
 #. Check if the plugin was uninstalled successfully:
 

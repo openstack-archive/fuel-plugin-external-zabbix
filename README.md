@@ -14,7 +14,7 @@ Requirements
 
 | Requirement                      | Version/Comment |
 |:---------------------------------|:----------------|
-| Mirantis OpenStack compatibility | 7.0, 8.0        |
+| Mirantis OpenStack compatibility | 7.0, 8.0, 9.0   |
 
 Installation Guide
 ==================
@@ -43,7 +43,7 @@ To install Zabbix plugin, follow these steps:
         # fuel plugins
         id | name              | version | package_version
         ---|-------------------|---------|----------------
-        1  | zabbix_monitoring | 2.5.0   | 3.0.0
+        1  | zabbix_monitoring | 2.6.0   | 3.0.0
 
 For further details see the Zabbix Plugin Guide in the
 [Fuel Plugins Catalog](https://software.mirantis.com/fuel-plugins)

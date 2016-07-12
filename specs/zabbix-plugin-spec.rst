@@ -118,7 +118,7 @@ Work Items
 Dependencies
 ============
 
-* Fuel 7.0 and 8.0
+* Fuel 7.0, 8.0 and 9.0
 
 Testing
 =======
