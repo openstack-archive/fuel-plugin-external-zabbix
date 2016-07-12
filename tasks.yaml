@@ -1,3 +1,10 @@
+- role: '*'
+  stage: post_deployment/8099
+  type: puppet
+  parameters:
+    puppet_manifest: puppet/manifests/configure_apt.pp
+    puppet_modules: puppet/modules:/etc/puppet/modules
+    timeout: 300
 - role: ['primary-controller']
   stage: post_deployment/8100
   type: puppet
