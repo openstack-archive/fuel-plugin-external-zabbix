@@ -28,7 +28,7 @@ class plugin_zabbix::primary_controller {
     roles  => '_member_',
   }
 
-  class { 'plugin_zabbix::db':
+  class { 'plugin_zabbix::db::mysql':
     db_ip       => $plugin_zabbix::params::db_ip,
     db_password => $plugin_zabbix::params::db_password,
     require     => Package[$plugin_zabbix::params::server_pkg],
