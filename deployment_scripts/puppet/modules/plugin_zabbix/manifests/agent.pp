@@ -38,21 +38,18 @@ class plugin_zabbix::agent(
   } ->
   package { $plugin_zabbix::params::get_pkg:
     ensure => present
-  }
-  ->
+  } ->
   file { $plugin_zabbix::params::agent_include:
     ensure => directory,
     mode   => '0500',
     owner  => 'zabbix',
     group  => 'zabbix'
-  }
-  ->
+  } ->
   file { $plugin_zabbix::params::agent_config:
     ensure  => present,
     content => template($plugin_zabbix::params::agent_config_template),
     notify  => Service[$plugin_zabbix::params::agent_service]
-  }
-  ->
+  } ->
   service { $plugin_zabbix::params::agent_service:
     ensure => running,
     enable => true,
