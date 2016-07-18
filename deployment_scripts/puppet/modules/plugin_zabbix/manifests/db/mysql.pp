@@ -19,6 +19,22 @@ class plugin_zabbix::db::mysql(
 ) {
 
   include plugin_zabbix::params
+  $db_vip = hiera('database_vip')
+  $mysql_db = hiera('mysql')
+  $db_passwd = $mysql_db['root_password']
+
+  $fuel_version = 0 + hiera('fuel_version')
+
+  if $fuel_version < 9.0 {
+    $mysql_extras_args = ''
+    $next_require = Database[$plugin_zabbix::params::db_name]
+  } else {
+    # For some reason on MOS 9.0 the mysql command does not seem to be using
+    # the existing /root/.my.cnf file therefore credentials and host
+    # have to be specified
+    $mysql_extras_args = "-h${db_vip} -uroot -p${db_passwd}"
+    $next_require = Mysql::Db[$plugin_zabbix::params::db_name]
+  }
 
   file { '/tmp/zabbix':
     ensure => directory,
@@ -47,10 +63,10 @@ class plugin_zabbix::db::mysql(
   }
 
   exec{ "${plugin_zabbix::params::db_name}-import":
-    command     => "/usr/bin/mysql ${plugin_zabbix::params::db_name} < /tmp/zabbix/schema.sql",
+    command     => "/usr/bin/mysql ${mysql_extras_args} ${plugin_zabbix::params::db_name} < /tmp/zabbix/schema.sql",
     logoutput   => true,
     refreshonly => true,
-    subscribe   => Database[$plugin_zabbix::params::db_name],
+    subscribe   => $next_require,
     require     => Exec['prepare-schema-2'],
   }
 }
