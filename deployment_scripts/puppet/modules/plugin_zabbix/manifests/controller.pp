@@ -13,7 +13,15 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 #
+
+# This empty class is used further down to communicate properly with
+# local MySQL server using existing .my.cnf configuration unchanged
+class dummy::mysql::server {
+}
+
 class plugin_zabbix::controller {
+
+  $fuel_version = 0 + hiera('fuel_version')
 
   $zabbix_pcmk_managed = $::check_zabbix_pacemaker
 
@@ -91,7 +99,20 @@ class plugin_zabbix::controller {
     notify => Service["${plugin_zabbix::params::server_service}-started"],
   }
 
-  plugin_zabbix::db::mysql_db { $plugin_zabbix::params::db_name:
+  if $fuel_version < 9.0 {
+    class { '::mysql::server':
+      custom_setup_class => 'dummy::mysql::server',
+    }
+  } else {
+    # Class used to prevent the installation of a mysql-client-X.Y that may not be
+    # compatible with the mysql-client meta-package that is installed by
+    # mysql Puppet module.
+    class { '::mysql::client':
+      package_manage => false,
+    }
+  }
+
+  mysql::db { $plugin_zabbix::params::db_name:
     user     => $plugin_zabbix::params::db_user,
     password => $plugin_zabbix::params::db_password,
     host     => $host,

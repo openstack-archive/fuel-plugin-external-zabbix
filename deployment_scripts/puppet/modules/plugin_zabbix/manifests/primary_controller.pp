@@ -17,6 +17,8 @@ class plugin_zabbix::primary_controller {
 
   include plugin_zabbix::controller
 
+  $fuel_version = 0 + hiera('fuel_version')
+
   keystone_user { $plugin_zabbix::params::openstack::access_user:
     ensure   => 'present',
     enabled  => true,
@@ -28,39 +30,74 @@ class plugin_zabbix::primary_controller {
     roles  => '_member_',
   }
 
-  class { 'plugin_zabbix::db':
+  if $fuel_version < 9.0 {
+    $next_service = Cs_resource["p_${plugin_zabbix::params::server_service}"]
+  } else {
+    $next_service = Pacemaker::Service["p_${plugin_zabbix::params::server_service}"]
+  }
+  class { 'plugin_zabbix::db::mysql':
     db_ip       => $plugin_zabbix::params::db_ip,
     db_password => $plugin_zabbix::params::db_password,
     require     => Package[$plugin_zabbix::params::server_pkg],
-    before      => [ Class['plugin_zabbix::frontend'], Cs_resource["p_${plugin_zabbix::params::server_service}"] ],
-  }
+    before      => [ Class['plugin_zabbix::frontend'], $next_service ],
+    }
 
   $operations = {
     'monitor' => {'interval' => '5s', 'timeout' => '30s' },
     'start'   => {'interval' => '0', 'timeout' => '30s' }
   }
 
-  cs_resource { "p_${plugin_zabbix::params::server_service}":
-    before          => Cs_rsc_colocation['vip-with-zabbix'],
-    primitive_class => 'ocf',
-    provided_by     => $plugin_zabbix::params::ocf_scripts_provider,
-    primitive_type  => $plugin_zabbix::params::server_service,
-    operations      => $operations,
-    metadata        => {
-      'migration-threshold' => '3',
-      'failure-timeout'     => '120',
-    },
-  }
+  if $fuel_version < 9.0 {
+    cs_resource { "p_${plugin_zabbix::params::server_service}":
+      before          => Cs_rsc_colocation['vip-with-zabbix'],
+      primitive_class => 'ocf',
+      provided_by     => $plugin_zabbix::params::ocf_scripts_provider,
+      primitive_type  => $plugin_zabbix::params::server_service,
+      operations      => $operations,
+      metadata        => {
+        'migration-threshold' => '3',
+        'failure-timeout'     => '120',
+      },
+    }
 
-  cs_rsc_colocation { 'vip-with-zabbix':
-    ensure     => present,
-    score      => 'INFINITY',
-    primitives => ["vip__${plugin_zabbix::params::vip_name}", "p_${plugin_zabbix::params::server_service}"],
-  }
+    cs_rsc_colocation { 'vip-with-zabbix':
+      ensure     => present,
+      score      => 'INFINITY',
+      primitives => ["vip__${plugin_zabbix::params::vip_name}", "p_${plugin_zabbix::params::server_service}"],
+    }
 
-  File[$plugin_zabbix::params::server_config] -> File['zabbix-server-ocf'] -> Cs_resource["p_${plugin_zabbix::params::server_service}"]
-  if $plugin_zabbix::controller::zabbix_pcmk_managed == '' {
-    Service["${plugin_zabbix::params::server_service}-init-stopped"] -> Cs_resource["p_${plugin_zabbix::params::server_service}"]
+    File[$plugin_zabbix::params::server_config] -> File['zabbix-server-ocf'] -> Cs_resource["p_${plugin_zabbix::params::server_service}"]
+    if $plugin_zabbix::controller::zabbix_pcmk_managed == '' {
+      Service["${plugin_zabbix::params::server_service}-init-stopped"] -> Cs_resource["p_${plugin_zabbix::params::server_service}"]
+    }
+    Cs_rsc_colocation['vip-with-zabbix'] -> Service["${plugin_zabbix::params::server_service}-started"]
+  } else {
+    pacemaker::service { "p_${plugin_zabbix::params::server_service}":
+      before             => Pcmk_colocation['vip-with-zabbix'],
+      primitive_class    => 'ocf',
+      primitive_provider => $plugin_zabbix::params::ocf_scripts_provider,
+      primitive_type     => $plugin_zabbix::params::server_service,
+      operations         => $operations,
+      metadata           => {
+        'migration-threshold' => '3',
+        'failure-timeout'     => '120',
+      },
+      prefix             => false,
+      use_handler        => false,
+    }
+
+    pcmk_colocation { 'vip-with-zabbix':
+      ensure  => present,
+      score   => 'INFINITY',
+      first   => "vip__${plugin_zabbix::params::vip_name}",
+      second  => "p_${plugin_zabbix::params::server_service}",
+      require => Pacemaker::Service["p_${plugin_zabbix::params::server_service}"],
+    }
+
+    File[$plugin_zabbix::params::server_config] -> File['zabbix-server-ocf'] -> Pcmk_colocation['vip-with-zabbix']
+    if $plugin_zabbix::controller::zabbix_pcmk_managed == '' {
+      Service["${plugin_zabbix::params::server_service}-init-stopped"] -> Pcmk_colocation['vip-with-zabbix']
+    }
+    Pcmk_colocation['vip-with-zabbix'] -> Service["${plugin_zabbix::params::server_service}-started"]
   }
-  Cs_rsc_colocation['vip-with-zabbix'] -> Service["${plugin_zabbix::params::server_service}-started"]
 }
