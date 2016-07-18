@@ -1,1 +1,85 @@
-[]
+- id: zbx-configure-apt
+  type: puppet
+  version: 2.0.0
+  # We use upload_nodes_info as an anchor to order the post-deployment tasks executed
+  # by this plugin. The dependency chain is:
+  # Other plugins tasks -> upload_nodes_info -> (Zabbix tasks)
+  requires: [post_deployment_start]
+  required_for: [post_deployment_end]
+  role: '*'
+  parameters:
+    puppet_manifest: puppet/manifests/configure_apt.pp
+    puppet_modules: puppet/modules:/etc/puppet/modules
+    timeout: 120
+  reexecute_on:
+    - deploy_changes
+
+- id: zbx-primary-services
+  type: puppet
+  version: 2.0.0
+  requires: [post_deployment_start, zbx-configure-apt]
+  required_for: [post_deployment_end]
+  role: [primary-controller]
+  parameters:
+    puppet_manifest: puppet/manifests/primary_controller.pp
+    puppet_modules: puppet/modules:/etc/puppet/modules
+    timeout: 1200
+  reexecute_on:
+    - deploy_changes
+
+- id: zbx-controller-services
+  type: puppet
+  version: 2.0.0
+  requires: [post_deployment_start, zbx-primary-services]
+  required_for: [post_deployment_end]
+  role: [primary-controller, controller]
+  # The crontrollers configuration shouldn't start before primary is finished
+  # hence the cross-depends parameter that is required when running in
+  # a task-based deployment mode.
+  cross-depends:
+    - name: zbx-primary-services
+      role: [primary-controller, controller]
+  parameters:
+    puppet_manifest: puppet/manifests/controller.pp
+    puppet_modules: puppet/modules:/etc/puppet/modules
+    timeout: 1200
+  reexecute_on:
+    - deploy_changes
+
+- id: zbx-services
+  type: puppet
+  version: 2.0.0
+  requires: [post_deployment_start, zbx-controller-services]
+  required_for: [post_deployment_end]
+  role: [primary-controller]
+  # The Zabbix services configuration shouldn't start before primary is finished
+  # hence the cross-depends parameter that is required when running in
+  # a task-based deployment mode.
+  cross-depends:
+    - name: zbx-controller-services
+      role: [primary-controller, controller]
+  parameters:
+    puppet_manifest: puppet/manifests/zabbix_server_config.pp
+    puppet_modules: puppet/modules:/etc/puppet/modules
+    timeout: 600
+  reexecute_on:
+    - deploy_changes
+
+- id: zbx-agent-services
+  type: puppet
+  version: 2.0.0
+  requires: [post_deployment_start, zbx-services]
+  required_for: [post_deployment_end, update_hosts]
+  role: '*'
+  # The Zabbix services configuration shouldn't start before 
+  # hence the cross-depends parameter that is required when running in
+  # a task-based deployment mode.
+  cross-depends:
+    - name: zbx-services
+      role: '*'
+  parameters:
+    puppet_manifest: puppet/manifests/agent.pp
+    puppet_modules: puppet/modules:/etc/puppet/modules
+    timeout: 600
+  reexecute_on:
+    - deploy_changes
