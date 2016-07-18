@@ -44,7 +44,7 @@ Environment configuration
    /openstack/fuel/fuel-7.0/operations.html#using-networking-templates>`_.
 
 Zabbix frontend UI
-=========================
+==================
 
 #. After successful deployment you will see a green notification: “Deployment
    of environment 'test' is done. Access the OpenStack dashboard (Horizon) at
@@ -86,7 +86,7 @@ Zabbix frontend UI
    recorded by Zabbix.
 
 Pages
-=========================
+=====
 
 Below there are a few screenshots from Zabbix configuration pages to show how
 it should look after a successful environment deployment. Zabbix UI provides
