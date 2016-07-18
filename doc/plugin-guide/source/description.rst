@@ -19,7 +19,7 @@ Fuel                               7.0, 8.0 and 9.0
 Release Notes
 =============
 
-**2.6.0**
+**2.5.1**
 
 * Compatibility with MOS 7.0, 8.0 and 9.0
 
