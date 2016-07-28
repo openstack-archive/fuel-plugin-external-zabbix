@@ -28,7 +28,7 @@
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>proc.num[python,cinder,,cinder-volume]</key>
+                    <key>proc.num[,cinder,,bin/python.*bin/cinder-volume]</key>
                     <delay>30</delay>
                     <history>90</history>
                     <trends>365</trends>
@@ -73,7 +73,7 @@
     </templates>
     <triggers>
         <trigger>
-            <expression>{Template App OpenStack Cinder Volume:proc.num[python,cinder,,cinder-volume].last(0)}=0</expression>
+            <expression>{Template App OpenStack Cinder Volume:proc.num[,cinder,,bin/python.*bin/cinder-volume].last(0)}=0</expression>
             <name>Cinder Volume process is not running on {HOST.NAME}</name>
             <url/>
             <status>0</status>

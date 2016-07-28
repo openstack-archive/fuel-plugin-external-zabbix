@@ -28,7 +28,7 @@
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>proc.num[python,nova,,nova-cert]</key>
+                    <key>proc.num[,nova,,bin/python.*bin/nova-cert]</key>
                     <delay>30</delay>
                     <history>90</history>
                     <trends>365</trends>
@@ -70,7 +70,7 @@
     </templates>
     <triggers>
         <trigger>
-            <expression>{Template App OpenStack Nova Cert:proc.num[python,nova,,nova-cert].last(0)}=0</expression>
+            <expression>{Template App OpenStack Nova Cert:proc.num[,nova,,bin/python.*bin/nova-cert].last(0)}=0</expression>
             <name>Nova Cert process is not running on {HOST.NAME}</name>
             <url/>
             <status>0</status>

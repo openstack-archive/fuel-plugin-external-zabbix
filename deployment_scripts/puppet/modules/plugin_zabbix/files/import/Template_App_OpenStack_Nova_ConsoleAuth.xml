@@ -28,7 +28,7 @@
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>proc.num[python,nova,,nova-consoleauth]</key>
+                    <key>proc.num[,nova,,bin/python.*bin/nova-consoleauth]</key>
                     <delay>30</delay>
                     <history>90</history>
                     <trends>365</trends>
@@ -70,7 +70,7 @@
     </templates>
     <triggers>
         <trigger>
-            <expression>{Template App OpenStack Nova ConsoleAuth:proc.num[python,nova,,nova-consoleauth].last(0)}=0</expression>
+            <expression>{Template App OpenStack Nova ConsoleAuth:proc.num[,nova,,bin/python.*bin/nova-consoleauth].last(0)}=0</expression>
             <name>Nova ConsoleAuth process is not running on {HOST.NAME}</name>
             <url/>
             <status>0</status>

@@ -67,7 +67,7 @@
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>proc.num[python,swift,,swift-proxy-server]</key>
+                    <key>proc.num[,swift,,bin/python.*bin/swift-proxy-server]</key>
                     <delay>60</delay>
                     <history>90</history>
                     <trends>365</trends>
@@ -109,7 +109,7 @@
     </templates>
     <triggers>
         <trigger>
-            <expression>{Template App OpenStack Swift Proxy:proc.num[python,swift,,swift-proxy-server].last(0)}=0</expression>
+            <expression>{Template App OpenStack Swift Proxy:proc.num[,swift,,bin/python.*bin/swift-proxy-server].last(0)}=0</expression>
             <name>Swift Proxy Server process is not running on {HOST.NAME}</name>
             <url/>
             <status>0</status>

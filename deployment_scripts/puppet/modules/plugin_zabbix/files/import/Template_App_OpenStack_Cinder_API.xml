@@ -67,7 +67,7 @@
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>proc.num[python,cinder,,cinder-api]</key>
+                    <key>proc.num[,cinder,,bin/python.*bin/cinder-api]</key>
                     <delay>30</delay>
                     <history>90</history>
                     <trends>365</trends>
@@ -109,7 +109,7 @@
     </templates>
     <triggers>
         <trigger>
-            <expression>{Template App OpenStack Cinder API:proc.num[python,cinder,,cinder-api].last(0)}=0</expression>
+            <expression>{Template App OpenStack Cinder API:proc.num[,cinder,,bin/python.*bin/cinder-api].last(0)}=0</expression>
             <name>Cinder API Server process is not running on {HOST.NAME}</name>
             <url/>
             <status>0</status>

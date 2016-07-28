@@ -67,7 +67,7 @@
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>proc.num[python,glance,,glance-registry]</key>
+                    <key>proc.num[,glance,,bin/python.*bin/glance-registry]</key>
                     <delay>30</delay>
                     <history>90</history>
                     <trends>365</trends>
@@ -109,7 +109,7 @@
     </templates>
     <triggers>
         <trigger>
-            <expression>{Template App OpenStack Glance Registry:proc.num[python,glance,,glance-registry].last(0)}=0</expression>
+            <expression>{Template App OpenStack Glance Registry:proc.num[,glance,,bin/python.*bin/glance-registry].last(0)}=0</expression>
             <name>Glance Registry Server process is not running on {HOST.NAME}</name>
             <url/>
             <status>0</status>

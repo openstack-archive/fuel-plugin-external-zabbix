@@ -28,7 +28,7 @@
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>proc.num[python,ceilometer,,ceilometer-agent-compute]</key>
+                    <key>proc.num[,ceilometer,,bin/python.*bin/ceilometer-agent-compute]</key>
                     <delay>30</delay>
                     <history>90</history>
                     <trends>365</trends>
@@ -73,7 +73,7 @@
     </templates>
     <triggers>
         <trigger>
-            <expression>{Template App OpenStack Ceilometer Compute:proc.num[python,ceilometer,,ceilometer-agent-compute].last(0)}=0</expression>
+            <expression>{Template App OpenStack Ceilometer Compute:proc.num[,ceilometer,,bin/python.*bin/ceilometer-agent-compute].last(0)}=0</expression>
             <name>Ceilometer Agent Compute service is down on {HOST.NAME}</name>
             <url/>
             <status>0</status>

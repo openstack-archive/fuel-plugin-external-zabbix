@@ -28,7 +28,7 @@
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>proc.num[python,swift,,swift-object-replicator]</key>
+                    <key>proc.num[,swift,,bin/python.*bin/swift-object-replicator]</key>
                     <delay>30</delay>
                     <history>90</history>
                     <trends>365</trends>
@@ -106,7 +106,7 @@
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>proc.num[python,swift,,swift-object-server]</key>
+                    <key>proc.num[,swift,,bin/python.*bin/swift-object-server]</key>
                     <delay>30</delay>
                     <history>90</history>
                     <trends>365</trends>
@@ -148,7 +148,7 @@
     </templates>
     <triggers>
         <trigger>
-            <expression>{Template App OpenStack Swift Object:proc.num[python,swift,,swift-object-replicator].last(0)}=0</expression>
+            <expression>{Template App OpenStack Swift Object:proc.num[,swift,,bin/python.*bin/swift-object-replicator].last(0)}=0</expression>
             <name>Swift Object Replicator process is not running on {HOST.NAME}</name>
             <url/>
             <status>0</status>
@@ -158,7 +158,7 @@
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template App OpenStack Swift Object:proc.num[python,swift,,swift-object-server].last(0)}=0</expression>
+            <expression>{Template App OpenStack Swift Object:proc.num[,swift,,bin/python.*bin/swift-object-server].last(0)}=0</expression>
             <name>Swift Object Server process is not running on {HOST.NAME}</name>
             <url/>
             <status>0</status>

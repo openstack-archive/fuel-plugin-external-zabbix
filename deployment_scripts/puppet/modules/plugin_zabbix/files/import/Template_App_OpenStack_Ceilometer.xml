@@ -28,7 +28,7 @@
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>proc.num[python,ceilometer,,ceilometer-agent-central]</key>
+                    <key>proc.num[,ceilometer,,bin/python.*bin/ceilometer-agent-central]</key>
                     <delay>30</delay>
                     <history>90</history>
                     <trends>365</trends>
@@ -112,7 +112,7 @@
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>proc.num[python,ceilometer,,ceilometer-alarm-evaluator]</key>
+                    <key>proc.num[,ceilometer,,bin/python.*bin/ceilometer-alarm-evaluator]</key>
                     <delay>30</delay>
                     <history>90</history>
                     <trends>365</trends>
@@ -196,7 +196,7 @@
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>proc.num[python,ceilometer,,ceilometer-alarm-notifier]</key>
+                    <key>proc.num[,ceilometer,,bin/python.*bin/ceilometer-alarm-notifier]</key>
                     <delay>30</delay>
                     <history>90</history>
                     <trends>365</trends>
@@ -238,7 +238,7 @@
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>proc.num[python,ceilometer,,ceilometer-api]</key>
+                    <key>proc.num[,ceilometer,,bin/python.*bin/ceilometer-api]</key>
                     <delay>30</delay>
                     <history>90</history>
                     <trends>365</trends>
@@ -322,7 +322,7 @@
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>proc.num[python,ceilometer,,ceilometer-collector]</key>
+                    <key>proc.num[,ceilometer,,bin/python.*bin/ceilometer-collector]</key>
                     <delay>30</delay>
                     <history>90</history>
                     <trends>365</trends>
@@ -367,7 +367,7 @@
     </templates>
     <triggers>
         <trigger>
-            <expression>{Template App OpenStack Ceilometer:proc.num[python,ceilometer,,ceilometer-agent-central].last(0)}=0 &amp; {Template App OpenStack Ceilometer:crm.node.check[p_openstack-ceilometer-agent-central].last(0)}=1</expression>
+            <expression>{Template App OpenStack Ceilometer:proc.num[,ceilometer,,bin/python.*bin/ceilometer-agent-central].last(0)}=0 &amp; {Template App OpenStack Ceilometer:crm.node.check[p_openstack-ceilometer-agent-central].last(0)}=1</expression>
             <name>Ceilometer Alarm Agent Central service is down on {HOST.NAME}</name>
             <url/>
             <status>0</status>
@@ -377,7 +377,7 @@
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template App OpenStack Ceilometer:proc.num[python,ceilometer,,ceilometer-alarm-evaluator].last(0)}=0 &amp; {Template App OpenStack Ceilometer:crm.node.check[p_openstack-ceilometer-alarm-evaluator].last(0)}=1</expression>
+            <expression>{Template App OpenStack Ceilometer:proc.num[,ceilometer,,bin/python.*bin/ceilometer-alarm-evaluator].last(0)}=0 &amp; {Template App OpenStack Ceilometer:crm.node.check[p_openstack-ceilometer-alarm-evaluator].last(0)}=1</expression>
             <name>Ceilometer Alarm Alarm Evaluator service is down on {HOST.NAME}</name>
             <url/>
             <status>0</status>
@@ -387,7 +387,7 @@
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template App OpenStack Ceilometer:proc.num[python,ceilometer,,ceilometer-alarm-notifier].last(0)}=0</expression>
+            <expression>{Template App OpenStack Ceilometer:proc.num[,ceilometer,,bin/python.*bin/ceilometer-alarm-notifier].last(0)}=0</expression>
             <name>Ceilometer Alarm Notifier service is down on {HOST.NAME}</name>
             <url/>
             <status>0</status>
@@ -397,7 +397,7 @@
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template App OpenStack Ceilometer:proc.num[python,ceilometer,,ceilometer-api].last(0)}=0</expression>
+            <expression>{Template App OpenStack Ceilometer:proc.num[,ceilometer,,bin/python.*bin/ceilometer-api].last(0)}=0</expression>
             <name>Ceilometer API Server service is down on {HOST.NAME}</name>
             <url/>
             <status>0</status>
@@ -417,7 +417,7 @@
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template App OpenStack Ceilometer:proc.num[python,ceilometer,,ceilometer-collector].last(0)}=0</expression>
+            <expression>{Template App OpenStack Ceilometer:proc.num[,ceilometer,,bin/python.*bin/ceilometer-collector].last(0)}=0</expression>
             <name>Ceilometer Collector service is down on {HOST.NAME}</name>
             <url/>
             <status>0</status>
