@@ -17,8 +17,16 @@ class plugin_zabbix::monitoring::swift_mon {
 
   include plugin_zabbix::params
 
+  $fuel_version = 0 + hiera('fuel_version')
+
+  if $fuel_version < 8.0 {
+    $swift_class_name = 'openstack::swift::storage_node'
+  } else {
+    $swift_class_name = 'openstack_tasks::swift::parts::storage_node'
+  }
+
   #Swift
-  if defined_in_state(Class['openstack::swift::storage_node']) {
+  if defined_in_state(Class[$swift_class_name]) {
     plugin_zabbix_template_link { "${plugin_zabbix::params::host_name} Template App OpenStack Swift Account":
       host     => $plugin_zabbix::params::host_name,
       template => 'Template App OpenStack Swift Account',

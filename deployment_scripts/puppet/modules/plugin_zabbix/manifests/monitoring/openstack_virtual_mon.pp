@@ -17,7 +17,17 @@ class plugin_zabbix::monitoring::openstack_virtual_mon {
 
   include plugin_zabbix::params
 
-  if defined_in_state(Class['openstack::controller']) {
+  $fuel_version = 0 + hiera('fuel_version')
+
+  if $fuel_version < 8.0 {
+    $cur_node_roles = node_roles(hiera_array('nodes'), hiera('uid'))
+    $is_controller  = member($cur_node_roles, 'controller') or
+                      member($cur_node_roles, 'primary-controller')
+  } else {
+    $is_controller = roles_include(['controller', 'primary-controller'])
+  }
+
+  if $is_controller {
     plugin_zabbix::agent::userparameter {
       'db.token.count.query':
         command => '/etc/zabbix/scripts/query_db.py token_count';

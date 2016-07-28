@@ -18,7 +18,7 @@ class plugin_zabbix::monitoring::neutron_mon {
   include plugin_zabbix::params
 
   # Neutron server
-  if defined_in_state(Class['::neutron']) and !defined_in_state(Class['openstack::compute']) {
+  if defined_in_state(Class['::neutron']) and !defined_in_state(Class['nova::compute']) {
 
     plugin_zabbix_template_link { "${plugin_zabbix::params::host_name} Template App OpenStack Neutron Server":
       host     => $plugin_zabbix::params::host_name,

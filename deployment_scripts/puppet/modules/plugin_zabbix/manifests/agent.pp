@@ -19,6 +19,16 @@ class plugin_zabbix::agent(
 
   include plugin_zabbix::params
 
+  $fuel_version = 0 + hiera('fuel_version')
+
+  if $fuel_version < 8.0 {
+    $cur_node_roles = node_roles(hiera_array('nodes'), hiera('uid'))
+    $is_controller  = member($cur_node_roles, 'controller') or
+                      member($cur_node_roles, 'primary-controller')
+  } else {
+    $is_controller = roles_include(['controller', 'primary-controller'])
+  }
+
   $zabbix_agent_port = $plugin_zabbix::params::zabbix_ports['backend_agent'] ? {
     unset=>$plugin_zabbix::params::zabbix_ports['agent'],
     default=>$plugin_zabbix::params::zabbix_ports['backend_agent'],
@@ -55,9 +65,9 @@ class plugin_zabbix::agent(
     enable => true,
   }
 
-  if defined_in_state(Class['openstack::controller']){
+  if $is_controller {
     $groups = union($plugin_zabbix::params::host_groups_base, $plugin_zabbix::params::host_groups_controller)
-  } elsif defined_in_state(Class['openstack::compute']) {
+  } elsif defined_in_state(Class['nova::compute']) {
     $groups = union($plugin_zabbix::params::host_groups_base, $plugin_zabbix::params::host_groups_compute)
   } else {
     $groups = $plugin_zabbix::params::host_groups_base

@@ -17,8 +17,18 @@ class plugin_zabbix::monitoring::nova_mon {
 
   include plugin_zabbix::params
 
+  $fuel_version = 0 + hiera('fuel_version')
+
+  if $fuel_version < 8.0 {
+    $cur_node_roles = node_roles(hiera_array('nodes'), hiera('uid'))
+    $is_controller  = member($cur_node_roles, 'controller') or
+                      member($cur_node_roles, 'primary-controller')
+  } else {
+    $is_controller = roles_include(['controller', 'primary-controller'])
+  }
+
   # Nova (controller)
-  if defined_in_state(Class['openstack::controller']) {
+  if $is_controller {
 
     plugin_zabbix_template_link { "${plugin_zabbix::params::host_name} Template App OpenStack Nova API":
       host     => $plugin_zabbix::params::host_name,
@@ -38,10 +48,13 @@ class plugin_zabbix::monitoring::nova_mon {
       api      => $plugin_zabbix::monitoring::api_hash,
     }
 
-    plugin_zabbix_template_link { "${plugin_zabbix::params::host_name} Template App OpenStack Nova API EC2":
-      host     => $plugin_zabbix::params::host_name,
-      template => 'Template App OpenStack Nova API EC2',
-      api      => $plugin_zabbix::monitoring::api_hash,
+    # Removed in MOS 9.0
+    if $fuel_version < 8.0 {
+      plugin_zabbix_template_link { "${plugin_zabbix::params::host_name} Template App OpenStack Nova API EC2":
+        host     => $plugin_zabbix::params::host_name,
+        template => 'Template App OpenStack Nova API EC2',
+        api      => $plugin_zabbix::monitoring::api_hash,
+      }
     }
 
     plugin_zabbix_template_link { "${plugin_zabbix::params::host_name} Template App OpenStack Nova Cert":
@@ -57,7 +70,7 @@ class plugin_zabbix::monitoring::nova_mon {
   }
 
   #Nova (compute)
-  if defined_in_state(Class['openstack::compute']) {
+  if defined_in_state(Class['nova::compute']) {
 
     if ! hiera('quantum',false) {
       plugin_zabbix_template_link { "${plugin_zabbix::params::host_name} Template App OpenStack Nova API Metadata":
