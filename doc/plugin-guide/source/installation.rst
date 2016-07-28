@@ -7,6 +7,8 @@ Zabbix plugin installation
 
 To install Zabbix plugin, follow these steps:
 
+.. highlight:: none
+
 #. Download the plugin from the
    `Fuel Plugins Catalog <https://www.mirantis.com/products/
    openstack-drivers-and-plugins/fuel-plugins/>`_.

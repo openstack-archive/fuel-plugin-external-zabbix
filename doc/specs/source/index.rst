@@ -106,6 +106,8 @@ Assignee(s)
 | Piotr Misiak <pmisiak@mirantis.com> (developer)
 | Szymon Bańka <sbanka@mirantis.com> (developer)
 | Alexander Zatserklyany <azatserklyany@mirantis.com> (QA engineer)
+| Swann Croiset <scroiset@mirantis.com> (developer)
+| Olivier Bourdon <obourdon@mirantis.com> (developer)
 
 Work Items
 ----------

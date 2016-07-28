@@ -1,11 +1,11 @@
-==================
+========
 Appendix
-==================
+========
 
 .. _tuning:
 
 Zabbix configuration tuning
-============================
+===========================
 
 *New in version 2.5.0*
 
@@ -51,29 +51,48 @@ The plugin also configures the maximum shared memory to 1GB (sysctl kernel.shmma
 
 Refer to the `How to configure shared memory <https://www.zabbix.org/wiki/How_to/configure_shared_memory>`_ for further details.
 
+.. _links:
+
 Links
-=========================
+=====
 
 - `Zabbix Official site <http://www.zabbix.com>`_
+- `Zabbix 2.4 documentation <https://www.zabbix.com/documentation/2.4/start>`_
 - `Zabbix 2.4 documentation - SNMP traps <https://www.zabbix.com/documentation
   /2.4/manual/config/items/itemtypes/snmptrap>`_
 - `Fuel Plugins CLI guide <https://docs.mirantis.com/openstack/fuel/fuel-7.0
   /user-guide.html#fuel-plugins-cli>`_
 
+.. _licenses:
+
 Components licenses
-=========================
+===================
 
-deb packages::
+deb packages
+------------
 
-  zabbix-frontend-php: GPL-2.0
-  zabbix-server-mysql: GPL-2.0
-  zabbix-agent: GPL-2.0
-  zabbix-sender: GPL-2.0
+=================== =======
+Name                License
+=================== =======
+zabbix-agent        GPL-2.0
+zabbix-frontend-php GPL-2.0
+zabbix-get          GPL-2.0
+zabbix-sender       GPL-2.0
+zabbix-server-mysql GPL-2.0
+=================== =======
 
-rpm packages::
+rpm packages
+------------
 
-  zabbix-agent: GPLv2+
-  zabbix-server: GPLv2+
-  zabbix-server-mysql: GPLv2+
-  zabbix-web: GPLv2+
-  zabbix-web-mysql: GPLv2+
+=================== =======
+Name                License
+=================== =======
+zabbix-agent        GPLv2+
+zabbix-get          GPLv2+
+zabbix-sender       GPLv2+
+zabbix-server       GPLv2+
+zabbix-server-mysql GPLv2+
+zabbix-web          GPLv2+
+zabbix-web-mysql    GPLv2+
+=================== =======
+
