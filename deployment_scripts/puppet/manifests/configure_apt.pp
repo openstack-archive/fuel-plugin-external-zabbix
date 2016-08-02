@@ -29,3 +29,28 @@ case $::osfamily {
         # Currently only Debian like distributions need specific configuration.
     }
 }
+
+$fuel_version = 0 + hiera('fuel_version')
+if $fuel_version < 8.0 {
+  $cur_node_roles = node_roles(hiera_array('nodes'), hiera('uid'))
+  $is_controller = member($cur_node_roles, 'controller') or
+                    member($cur_node_roles, 'primary-controller')
+} else {
+  $is_controller = roles_include(['controller', 'primary-controller'])
+}
+
+if $is_controller {
+  # The OCF script should exist before any node tries to configure the
+  # Zabbix with Pacemaker. This is why it is shipped by this manifest.
+  file { 'zabbix-server-ocf' :
+    ensure => present,
+    path   => join([
+      $plugin_zabbix::params::ocf_scripts_dir,
+      "/${plugin_zabbix::params::ocf_scripts_provider}",
+      "/${plugin_zabbix::params::server_service}"], ''),
+    mode   => '0755',
+    owner  => 'root',
+    group  => 'root',
+    source => 'puppet:///modules/plugin_zabbix/zabbix-server.ocf',
+  }
+}
