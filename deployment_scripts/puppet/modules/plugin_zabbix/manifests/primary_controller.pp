@@ -90,8 +90,8 @@ class plugin_zabbix::primary_controller {
     pcmk_colocation { 'vip-with-zabbix':
       ensure  => present,
       score   => 'INFINITY',
-      first   => "vip__${plugin_zabbix::params::vip_name}",
-      second  => "p_${plugin_zabbix::params::server_service}",
+      second  => "vip__${plugin_zabbix::params::vip_name}",
+      first   => "p_${plugin_zabbix::params::server_service}",
       require => Pacemaker::Service["p_${plugin_zabbix::params::server_service}"],
     }
 
