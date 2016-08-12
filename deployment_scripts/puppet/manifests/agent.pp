@@ -19,11 +19,9 @@ $primary_controller_nodes      = get_nodes_hash_by_roles($network_metadata, ['pr
 $controllers                   = get_nodes_hash_by_roles($network_metadata, ['primary-controller', 'controller'])
 $controller_internal_addresses = get_node_to_ipaddr_map_by_network_role($controllers, 'management')
 $controller_nodes              = ipsort(values($controller_internal_addresses))
-$hostinfo                      = $network_metadata['nodes'][$::hostname]
-$netinfo                       = $hostinfo['network_roles']
-$internal_address              = $netinfo['management']
-$public_address                = $netinfo['ex']
-$swift_address                 = $netinfo['storage']
+$internal_address              = $::ipaddress_br_mgmt
+$public_address                = $::ipaddress_br_ex
+$swift_address                 = $::ipaddress_br_storage
 
 if $fuel_version < 8.0 {
   $cur_node_roles = node_roles(hiera_array('nodes'), hiera('uid'))
