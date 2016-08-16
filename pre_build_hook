@@ -29,17 +29,20 @@ function download {
     done
 }
 
-download deb http://repo.zabbix.com/zabbix/2.4/ubuntu/pool/main/z/zabbix/zabbix-agent_2.4.8-1+trusty_amd64.deb \
-             http://repo.zabbix.com/zabbix/2.4/ubuntu/pool/main/z/zabbix/zabbix-frontend-php_2.4.8-1+trusty_all.deb \
-             http://repo.zabbix.com/zabbix/2.4/ubuntu/pool/main/z/zabbix/zabbix-server-mysql_2.4.8-1+trusty_amd64.deb \
-             http://repo.zabbix.com/zabbix/2.4/ubuntu/pool/main/z/zabbix/zabbix-sender_2.4.8-1+trusty_amd64.deb \
-             http://repo.zabbix.com/zabbix/2.4/ubuntu/pool/main/z/zabbix/zabbix-get_2.4.8-1+trusty_amd64.deb \
-             http://archive.ubuntu.com/ubuntu/pool/main/p/php5/php5_5.5.9+dfsg-1ubuntu4.17_all.deb \
-             http://archive.ubuntu.com/ubuntu/pool/main/p/php5/php5-mysql_5.5.9+dfsg-1ubuntu4.17_amd64.deb \
-             http://archive.ubuntu.com/ubuntu/pool/main/p/php5/php5-common_5.5.9+dfsg-1ubuntu4.17_amd64.deb \
-             http://archive.ubuntu.com/ubuntu/pool/main/p/php5/php5-gd_5.5.9+dfsg-1ubuntu4.17_amd64.deb \
+PHP5_VERSION="5.5.9+dfsg-1ubuntu4.19"
+ZBX_VERSION="2.4.8-1+trusty"
+
+download deb http://repo.zabbix.com/zabbix/2.4/ubuntu/pool/main/z/zabbix/zabbix-agent_${ZBX_VERSION}_amd64.deb \
+             http://repo.zabbix.com/zabbix/2.4/ubuntu/pool/main/z/zabbix/zabbix-frontend-php_${ZBX_VERSION}_all.deb \
+             http://repo.zabbix.com/zabbix/2.4/ubuntu/pool/main/z/zabbix/zabbix-server-mysql_${ZBX_VERSION}_amd64.deb \
+             http://repo.zabbix.com/zabbix/2.4/ubuntu/pool/main/z/zabbix/zabbix-sender_${ZBX_VERSION}_amd64.deb \
+             http://repo.zabbix.com/zabbix/2.4/ubuntu/pool/main/z/zabbix/zabbix-get_${ZBX_VERSION}_amd64.deb \
+             http://archive.ubuntu.com/ubuntu/pool/main/p/php5/php5_${PHP5_VERSION}_all.deb \
+             http://archive.ubuntu.com/ubuntu/pool/main/p/php5/php5-mysql_${PHP5_VERSION}_amd64.deb \
+             http://archive.ubuntu.com/ubuntu/pool/main/p/php5/php5-common_${PHP5_VERSION}_amd64.deb \
+             http://archive.ubuntu.com/ubuntu/pool/main/p/php5/php5-gd_${PHP5_VERSION}_amd64.deb \
              http://archive.ubuntu.com/ubuntu/pool/main/p/php-json/php5-json_1.3.2-2build1_amd64.deb \
-             http://archive.ubuntu.com/ubuntu/pool/universe/p/php5/php5-fpm_5.5.9+dfsg-1ubuntu4.17_amd64.deb \
+             http://archive.ubuntu.com/ubuntu/pool/universe/p/php5/php5-fpm_${PHP5_VERSION}_amd64.deb \
              http://archive.ubuntu.com/ubuntu/pool/main/libc/libconfig-inifiles-perl/libconfig-inifiles-perl_2.82-1_all.deb \
              http://archive.ubuntu.com/ubuntu/pool/universe/libs/libsmi/smistrip_0.4.8+dfsg2-8ubuntu2_all.deb \
              http://archive.ubuntu.com/ubuntu/pool/multiverse/s/snmp-mibs-downloader/snmp-mibs-downloader_1.1_all.deb \
