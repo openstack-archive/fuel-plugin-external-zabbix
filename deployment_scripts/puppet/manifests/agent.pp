@@ -19,7 +19,8 @@ $primary_controller_nodes      = get_nodes_hash_by_roles($network_metadata, ['pr
 $controllers                   = get_nodes_hash_by_roles($network_metadata, ['primary-controller', 'controller'])
 $controller_internal_addresses = get_node_to_ipaddr_map_by_network_role($controllers, 'management')
 $controller_nodes              = ipsort(values($controller_internal_addresses))
-$hostinfo                      = $network_metadata['nodes'][$::hostname]
+$hostnode                      = get_node_key_name($::hostname)
+$hostinfo                      = $network_metadata['nodes'][$hostnode]
 $netinfo                       = $hostinfo['network_roles']
 $internal_address              = $netinfo['management']
 $public_address                = $netinfo['ex']
@@ -36,7 +37,7 @@ if $fuel_version < 8.0 {
   $is_base_os    = roles_include(['base-os'])
   $is_virt       = roles_include(['virt'])
   $is_controller = roles_include(['controller', 'primary-controller'])
-  $roles_nb      = size($network_metadata['nodes'][$::hostname]['node_roles'])
+  $roles_nb      = size($network_metadata['nodes'][$hostnode]['node_roles'])
 }
 
 class { 'plugin_zabbix::monitoring':
