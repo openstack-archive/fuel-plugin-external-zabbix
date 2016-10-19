@@ -41,6 +41,8 @@ Known problems
   therefore and in the exact same manner than `1531834 <https://bugs.launchpad.net/fuel-plugins/+bug/1531834>`_ can impact disk space,
   this can have a significant CPU and/or memory usage on controller nodes for large deployment.
 
+- Error when deploying on MOS 9.0 env with modified hostnames (see bug `1633701 <https://bugs.launchpad.net/fuel/+bug/1633701>`_).
+
 Environment configuration
 =========================
 
