@@ -12,9 +12,9 @@ and OpenStack services and APIs.
 Requirements
 ------------
 
-| Requirement                      | Version/Comment |
-|:---------------------------------|:----------------|
-| Mirantis OpenStack compatibility | 7.0, 8.0, 9.0   |
+| Requirement                      | Version/Comment    |
+|:---------------------------------|:-------------------|
+| Mirantis OpenStack compatibility | 7.0, 8.0, 9.0, 9.1 |
 
 Installation Guide
 ==================
