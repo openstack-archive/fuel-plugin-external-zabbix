@@ -3,9 +3,9 @@
 
  http://www.apache.org/licenses/LICENSE-2.0
 
-=============================
+==================
 Zabbix Fuel plugin
-=============================
+==================
 
 Zabbix plugin for Fuel extends Mirantis OpenStack functionality
 by installing Zabbix monitoring system.
@@ -120,7 +120,7 @@ Work Items
 Dependencies
 ============
 
-* Fuel 7.0, 8.0, 9.0 and 9.1
+* Fuel 7.0, 8.0, 9.0, 9.1, 9.2 and 10.0
 
 Testing
 =======
