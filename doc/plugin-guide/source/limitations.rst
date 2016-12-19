@@ -19,7 +19,7 @@ Reduced footprint
 The Zabbix plugin does not support reduced footprint deployment for Fuel 7.0
 and Fuel 8.0. `LP1610217 <https://bugs.launchpad.net/fuel/+bug/1610217>`_
 
-The Zabbix plugin version 2.5.2 supports the reduced footprint deployment
+The Zabbix plugin version 2.5.3 supports the reduced footprint deployment
 starting with Fuel 9.x **only**. To deploy a corresponding OpenStack environment:
 
 #. Enable the `reduced footprint <https://docs.mirantis.com/openstack/fuel/fuel-master/operations/reduced-footprint-ops.html>`_
