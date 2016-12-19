@@ -1,6 +1,10 @@
 Release notes / Changelog
 =========================
 
+**2.5.2**
+
+* Compatibility with MOS 7.0, 8.0, 9.0, 9.1 and 10.0
+
 **2.5.1**
 
 * Compatibility with MOS 7.0, 8.0, 9.0 and 9.1
