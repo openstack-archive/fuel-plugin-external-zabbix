@@ -120,7 +120,7 @@ Work Items
 Dependencies
 ============
 
-* Fuel 7.0, 8.0, 9.0, 9.1 and 9.2
+* Fuel 7.0, 8.0, 9.0, 9.1, 9.2 and 10.0
 
 Testing
 =======
