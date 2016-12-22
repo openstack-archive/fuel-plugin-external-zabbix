@@ -1,7 +1,21 @@
 #!/bin/bash
+# Copyright 2017 Mirantis, Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 set -eux
 
-ROOT="$(dirname `readlink -f $0`)"
+ROOT="$(dirname "$(readlink -f "$0")")"
 
 . "${ROOT}"/functions.sh
 
@@ -10,47 +24,55 @@ ROOT="$(dirname `readlink -f $0`)"
 PHPFPM_TARBALL_URL="https://forgeapi.puppetlabs.com/v3/files/Slashbunny-phpfpm-0.0.8.tar.gz"
 
 RPM_REPO="${ROOT}"/repositories/centos/
-DEB_REPO="${ROOT}"/repositories/ubuntu/
-mkdir -p $RPM_REPO
-mkdir -p $DEB_REPO
+DEB_TRUSTY_REPO="${ROOT}"/repositories/ubuntu/trusty
+DEB_XENIAL_REPO="${ROOT}"/repositories/ubuntu/xenial
+mkdir -p $RPM_REPO $DEB_TRUSTY_REPO $DEB_XENIAL_REPO
 
-# Downloads needed RPM or DEB packages
-function download {
-    case "$1" in
-        deb) REPO=$DEB_REPO;;
-        rpm) REPO=$RPM_REPO;;
-    esac
-    shift
-
-    while [ $# -gt 0 ]; do
-        FILE=$(basename "$1")
-        wget -qO - $1 > "$REPO/$FILE"
-        shift
-    done
-}
-
-PHP5_VERSION="5.5.9+dfsg-1ubuntu4.20"
+PHP5_TRUSTY_VERSION="5.5.9+dfsg-1ubuntu4.20"
+PHP5_XENIAL_VERSION="5.6.4+dfsg-4ubuntu6.4"
 ZBX_VERSION="2.4.8-1+trusty"
 
-download deb http://repo.zabbix.com/zabbix/2.4/ubuntu/pool/main/z/zabbix/zabbix-agent_${ZBX_VERSION}_amd64.deb \
-             http://repo.zabbix.com/zabbix/2.4/ubuntu/pool/main/z/zabbix/zabbix-frontend-php_${ZBX_VERSION}_all.deb \
-             http://repo.zabbix.com/zabbix/2.4/ubuntu/pool/main/z/zabbix/zabbix-server-mysql_${ZBX_VERSION}_amd64.deb \
-             http://repo.zabbix.com/zabbix/2.4/ubuntu/pool/main/z/zabbix/zabbix-sender_${ZBX_VERSION}_amd64.deb \
-             http://repo.zabbix.com/zabbix/2.4/ubuntu/pool/main/z/zabbix/zabbix-get_${ZBX_VERSION}_amd64.deb \
-             http://archive.ubuntu.com/ubuntu/pool/main/p/php5/php5_${PHP5_VERSION}_all.deb \
-             http://archive.ubuntu.com/ubuntu/pool/main/p/php5/php5-mysql_${PHP5_VERSION}_amd64.deb \
-             http://archive.ubuntu.com/ubuntu/pool/main/p/php5/php5-common_${PHP5_VERSION}_amd64.deb \
-             http://archive.ubuntu.com/ubuntu/pool/main/p/php5/php5-gd_${PHP5_VERSION}_amd64.deb \
-             http://archive.ubuntu.com/ubuntu/pool/main/p/php-json/php5-json_1.3.2-2build1_amd64.deb \
-             http://archive.ubuntu.com/ubuntu/pool/universe/p/php5/php5-fpm_${PHP5_VERSION}_amd64.deb \
-             http://archive.ubuntu.com/ubuntu/pool/main/libc/libconfig-inifiles-perl/libconfig-inifiles-perl_2.82-1_all.deb \
-             http://archive.ubuntu.com/ubuntu/pool/universe/libs/libsmi/smistrip_0.4.8+dfsg2-8ubuntu2_all.deb \
-             http://archive.ubuntu.com/ubuntu/pool/multiverse/s/snmp-mibs-downloader/snmp-mibs-downloader_1.1_all.deb \
-             http://archive.ubuntu.com/ubuntu/pool/universe/i/iptstate/iptstate_2.2.5-1_amd64.deb \
-             http://archive.ubuntu.com/ubuntu/pool/universe/libi/libiksemel/libiksemel3_1.2-4.2_amd64.deb \
-             http://archive.ubuntu.com/ubuntu/pool/main/f/fonts-dejavu/fonts-dejavu_2.34-1ubuntu1_all.deb \
-             http://archive.ubuntu.com/ubuntu/pool/main/f/fonts-dejavu/ttf-dejavu-core_2.34-1ubuntu1_all.deb \
-             http://archive.ubuntu.com/ubuntu/pool/main/f/fonts-dejavu/fonts-dejavu-extra_2.34-1ubuntu1_all.deb
+ZABBIX_PACKAGES="http://repo.zabbix.com/zabbix/2.4/ubuntu/pool/main/z/zabbix/zabbix-agent_${ZBX_VERSION}_amd64.deb \
+                 http://repo.zabbix.com/zabbix/2.4/ubuntu/pool/main/z/zabbix/zabbix-frontend-php_${ZBX_VERSION}_all.deb \
+                 http://repo.zabbix.com/zabbix/2.4/ubuntu/pool/main/z/zabbix/zabbix-server-mysql_${ZBX_VERSION}_amd64.deb \
+                 http://repo.zabbix.com/zabbix/2.4/ubuntu/pool/main/z/zabbix/zabbix-sender_${ZBX_VERSION}_amd64.deb \
+                 http://repo.zabbix.com/zabbix/2.4/ubuntu/pool/main/z/zabbix/zabbix-get_${ZBX_VERSION}_amd64.deb"
+
+COMMON_PACKAGES="http://archive.ubuntu.com/ubuntu/pool/main/libc/libconfig-inifiles-perl/libconfig-inifiles-perl_2.82-1_all.deb \
+                 http://archive.ubuntu.com/ubuntu/pool/universe/libs/libsmi/smistrip_0.4.8+dfsg2-8ubuntu2_all.deb \
+                 http://archive.ubuntu.com/ubuntu/pool/multiverse/s/snmp-mibs-downloader/snmp-mibs-downloader_1.1_all.deb \
+                 http://archive.ubuntu.com/ubuntu/pool/universe/i/iptstate/iptstate_2.2.5-1_amd64.deb \
+                 http://archive.ubuntu.com/ubuntu/pool/universe/libi/libiksemel/libiksemel3_1.2-4.2_amd64.deb \
+                 http://archive.ubuntu.com/ubuntu/pool/main/f/fonts-dejavu/fonts-dejavu_2.34-1ubuntu1_all.deb \
+                 http://archive.ubuntu.com/ubuntu/pool/main/f/fonts-dejavu/ttf-dejavu-core_2.34-1ubuntu1_all.deb \
+                 http://archive.ubuntu.com/ubuntu/pool/main/f/fonts-dejavu/fonts-dejavu-extra_2.34-1ubuntu1_all.deb"
+
+PHP5_TRUSTY_PACKAGES="http://archive.ubuntu.com/ubuntu/pool/main/p/php5/php5_${PHP5_TRUSTY_VERSION}_all.deb \
+                      http://archive.ubuntu.com/ubuntu/pool/main/p/php5/php5-mysql_${PHP5_TRUSTY_VERSION}_amd64.deb \
+                      http://archive.ubuntu.com/ubuntu/pool/main/p/php5/php5-common_${PHP5_TRUSTY_VERSION}_amd64.deb \
+                      http://archive.ubuntu.com/ubuntu/pool/main/p/php5/php5-gd_${PHP5_TRUSTY_VERSION}_amd64.deb \
+                      http://archive.ubuntu.com/ubuntu/pool/universe/p/php5/php5-fpm_${PHP5_TRUSTY_VERSION}_amd64.deb \
+                      http://archive.ubuntu.com/ubuntu/pool/main/p/php-json/php5-json_1.3.2-2build1_amd64.deb"
+             
+download_package "$DEB_TRUSTY_REPO" $ZABBIX_PACKAGES \
+             $PHP5_TRUSTY_PACKAGES \
+             $COMMON_PACKAGES
+
+PHP5_XENIAL_PACKAGES="http://archive.ubuntu.com/ubuntu/pool/main/p/php5/php5_${PHP5_XENIAL_VERSION}_all.deb \
+                      http://archive.ubuntu.com/ubuntu/pool/main/p/php5/php5-mysql_${PHP5_XENIAL_VERSION}_amd64.deb \
+                      http://archive.ubuntu.com/ubuntu/pool/main/p/php5/php5-common_${PHP5_XENIAL_VERSION}_amd64.deb \
+                      http://archive.ubuntu.com/ubuntu/pool/main/p/php5/php5-gd_${PHP5_XENIAL_VERSION}_amd64.deb \
+                      http://archive.ubuntu.com/ubuntu/pool/main/p/php5/php5-cli_${PHP5_XENIAL_VERSION}_amd64.deb \
+                      http://archive.ubuntu.com/ubuntu/pool/universe/p/php5/php5-fpm_${PHP5_XENIAL_VERSION}_amd64.deb \
+                      http://archive.ubuntu.com/ubuntu/pool/main/p/php-json/php5-json_1.3.6-1build1_amd64.deb"
+
+download_package "$DEB_XENIAL_REPO" $ZABBIX_PACKAGES \
+             $PHP5_XENIAL_PACKAGES \
+             $COMMON_PACKAGES \
+             http://archive.ubuntu.com/ubuntu/pool/main/m/mysql-5.5/libmysqlclient18_5.5.54-0ubuntu0.14.04.1_amd64.deb \
+             http://archive.ubuntu.com/ubuntu/pool/main/libg/libgcrypt11/libgcrypt11_1.5.3-2ubuntu4.4_amd64.deb \
+             http://archive.ubuntu.com/ubuntu/pool/main/g/gnutls26/libgnutls26_2.12.23-12ubuntu2.6_amd64.deb \
+             http://archive.ubuntu.com/ubuntu/pool/main/s/systemd/libsystemd-daemon0_204-5ubuntu20.24_amd64.deb
 
 # Install puppet manifests
 download_puppet_module "phpfpm" "$PHPFPM_TARBALL_URL"
