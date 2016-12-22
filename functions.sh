@@ -17,22 +17,14 @@ set -eux
 
 ROOT="$(dirname "$(readlink -f "$0")")"
 MODULES_DIR="${ROOT}"/deployment_scripts/puppet/modules
-RPM_REPO="${ROOT}"/repositories/centos/
-DEB_REPO="${ROOT}"/repositories/ubuntu/
 
 # Download RPM or DEB packages and store them in the local repository directory
 function download_package {
+    REPO="$1"
+    shift
     while [ $# -gt 0 ]; do
-        if [[ "$1" == *.deb ]]; then
-            REPO=$DEB_REPO
-        elif [[ "$1" == *.rpm ]]; then
-            REPO=$RPM_REPO
-        else
-            echo "Invalid URL for download_package(): $1"
-        fi
-
         FILE=$(basename "$1")
-        wget -qO - "$1" > "$REPO"/"$FILE"
+        wget -qO "$REPO"/"$FILE" "$1"
         shift
     done
 }
@@ -43,4 +35,3 @@ function download_puppet_module {
     mkdir -p "${MODULES_DIR}"/"$1"
     wget -qO- "$2" | tar -C "${MODULES_DIR}/$1" --strip-components=1 -xz
 }
-
