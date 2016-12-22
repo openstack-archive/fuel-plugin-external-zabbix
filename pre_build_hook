@@ -29,7 +29,7 @@ function download {
     done
 }
 
-PHP5_VERSION="5.5.9+dfsg-1ubuntu4.20"
+PHP5_VERSION="5.6.4+dfsg-4ubuntu6.4"
 ZBX_VERSION="2.4.8-1+trusty"
 
 download deb http://repo.zabbix.com/zabbix/2.4/ubuntu/pool/main/z/zabbix/zabbix-agent_${ZBX_VERSION}_amd64.deb \
@@ -41,13 +41,18 @@ download deb http://repo.zabbix.com/zabbix/2.4/ubuntu/pool/main/z/zabbix/zabbix-
              http://archive.ubuntu.com/ubuntu/pool/main/p/php5/php5-mysql_${PHP5_VERSION}_amd64.deb \
              http://archive.ubuntu.com/ubuntu/pool/main/p/php5/php5-common_${PHP5_VERSION}_amd64.deb \
              http://archive.ubuntu.com/ubuntu/pool/main/p/php5/php5-gd_${PHP5_VERSION}_amd64.deb \
-             http://archive.ubuntu.com/ubuntu/pool/main/p/php-json/php5-json_1.3.2-2build1_amd64.deb \
+             http://archive.ubuntu.com/ubuntu/pool/main/p/php5/php5-cli_${PHP5_VERSION}_amd64.deb \
+             http://archive.ubuntu.com/ubuntu/pool/main/p/php-json/php5-json_1.3.6-1build1_amd64.deb \
              http://archive.ubuntu.com/ubuntu/pool/universe/p/php5/php5-fpm_${PHP5_VERSION}_amd64.deb \
              http://archive.ubuntu.com/ubuntu/pool/main/libc/libconfig-inifiles-perl/libconfig-inifiles-perl_2.82-1_all.deb \
              http://archive.ubuntu.com/ubuntu/pool/universe/libs/libsmi/smistrip_0.4.8+dfsg2-8ubuntu2_all.deb \
              http://archive.ubuntu.com/ubuntu/pool/multiverse/s/snmp-mibs-downloader/snmp-mibs-downloader_1.1_all.deb \
              http://archive.ubuntu.com/ubuntu/pool/universe/i/iptstate/iptstate_2.2.5-1_amd64.deb \
              http://archive.ubuntu.com/ubuntu/pool/universe/libi/libiksemel/libiksemel3_1.2-4.2_amd64.deb \
+             http://archive.ubuntu.com/ubuntu/pool/main/m/mysql-5.5/libmysqlclient18_5.5.53-0ubuntu0.14.04.1_amd64.deb \
+             http://archive.ubuntu.com/ubuntu/pool/main/libg/libgcrypt11/libgcrypt11_1.5.3-2ubuntu4.4_amd64.deb \
+             http://archive.ubuntu.com/ubuntu/pool/main/g/gnutls26/libgnutls26_2.12.23-12ubuntu2.5_amd64.deb \
+             http://archive.ubuntu.com/ubuntu/pool/main/s/systemd/libsystemd-daemon0_204-5ubuntu20.20_amd64.deb \
              http://archive.ubuntu.com/ubuntu/pool/main/f/fonts-dejavu/fonts-dejavu_2.34-1ubuntu1_all.deb \
              http://archive.ubuntu.com/ubuntu/pool/main/f/fonts-dejavu/ttf-dejavu-core_2.34-1ubuntu1_all.deb \
              http://archive.ubuntu.com/ubuntu/pool/main/f/fonts-dejavu/fonts-dejavu-extra_2.34-1ubuntu1_all.deb
