@@ -1,6 +1,15 @@
 Release notes / Changelog
 =========================
 
+**2.5.2**
+
+* Compatibility with MOS 7.0, 8.0, 9.0, 9.1 and 9.2
+* VIP becomes unavailable after its Controller reboot if Zabbix with OVS bridges are used (bug 1644821_)
+* Error when deploying on MOS 9.0 env with modified hostnames (bug 1633701_)
+
+.. _1644821: https://bugs.launchpad.net/fuel-plugins/+bug/1644821
+.. _1633701: https://bugs.launchpad.net/fuel-plugins/+bug/1633701
+
 **2.5.1**
 
 * Compatibility with MOS 7.0, 8.0, 9.0 and 9.1

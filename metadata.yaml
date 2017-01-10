@@ -2,7 +2,7 @@
 name: zabbix_monitoring
 title: Zabbix for Fuel
 # Plugin version
-version: 2.5.1
+version: 2.5.2
 # Description
 description: Enables Zabbix Monitoring. For information how to access Zabbix UI refer to Zabbix plugin User Guide. Zabbix URL schema is http://<VIP>/zabbix
 # Required fuel version

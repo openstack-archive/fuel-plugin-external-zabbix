@@ -32,7 +32,7 @@ Finding the management VIP
 
 On the returned node from the command above for a given environment, you might also want to know what is the Zabbix VIP address, so run the following command on Fuel master node::
 
-  # ssh -q node-4 ip netns exec haproxy ifconfig b_zbx_vip_mgmt | \
+  # ssh -q node-4 ip netns exec zabbix ifconfig b_zbx_vip_mgmt | \
       grep 'inet addr:' | sed -e 's/[^:]*://' -e 's/ .*//'
   192.168.0.3
   # ssh -q node-4 awk '/zbx_vip_mgmt/ {n=1} n==1 && /ipaddr/ {print;exit}' \
