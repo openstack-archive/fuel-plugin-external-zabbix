@@ -45,7 +45,7 @@ SERVICE_NAME="Zabbix-server"
 
 OCF_RESKEY_binary_default="/usr/sbin/zabbix_server"
 OCF_RESKEY_pid_default="/var/run/zabbix/zabbix_server.pid"
-OCF_RESKEY_namespace_default="haproxy"
+OCF_RESKEY_namespace_default="zabbix"
 
 : ${OCF_RESKEY_binary=${OCF_RESKEY_binary_default}}
 : ${OCF_RESKEY_pid=${OCF_RESKEY_pid_default}}
