@@ -18,6 +18,23 @@ class plugin_zabbix::frontend {
   include phpfpm
   include plugin_zabbix::params
 
+  $fuel_version = 0 + hiera('fuel_version')
+
+  $php_conf_hash = {
+    'date.timezone'       => 'UTC',
+    'memory_limit'        => '256M',
+    'max_execution_time'  => '300',
+    'post_max_size'       => '16M',
+    'upload_max_filesize' => '2M',
+    'max_input_time'      => '300',
+  }
+  if $fuel_version >= 10.0 {
+    # PHP 5.6.x version which is used on Xenial deprecates this variable
+    # and the recommended value is -1
+    # See http://php.net/manual/en/ini.core.php#ini.always-populate-raw-post-data
+    $php_conf_hash['always_populate_raw_post_data'] = -1
+  }
+
   service { $plugin_zabbix::params::frontend_service:
     ensure     => 'running',
     enable     => true,
@@ -111,14 +128,7 @@ class plugin_zabbix::frontend {
         listen    => sprintf('127.0.0.1:%s', $plugin_zabbix::params::zabbix_ports['fcgi']),
         require   => Package[$plugin_zabbix::params::php_fpm_pkg],
         notify    => Service[$plugin_zabbix::params::php_fpm_service],
-        php_value => {
-          'date.timezone'       => 'UTC',
-          'memory_limit'        => '256M',
-          'max_execution_time'  => '300',
-          'post_max_size'       => '16M',
-          'upload_max_filesize' => '2M',
-          'max_input_time'      => '300',
-        },
+        php_value => $php_conf_hash,
       }
 
       file_line { 'set expose_php to off':
