@@ -70,6 +70,7 @@ class CephMonPlugin(base.ZabbixSender):
             'replay': 0,
             'splitting': 0,
             'scrubbing': 0,
+            'deep': 0,
             'degraded': 0,
             'inconsistent': 0,
             'peering': 0,
@@ -99,7 +100,7 @@ class CephMonPlugin(base.ZabbixSender):
                 if s in pg_states:
                     pg_states[s] += state['count']
                 else:
-                    self.logger.warnings("PG state not known {}".format(s))
+                    self.logger.warning("PG state not known {}".format(s))
 
         for n, num in pg_states.iteritems():
             yield {
