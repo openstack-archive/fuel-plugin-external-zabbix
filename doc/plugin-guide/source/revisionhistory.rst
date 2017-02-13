@@ -54,7 +54,7 @@ Version Revision date Editor                       Comment
 2.5.2   01.10.2017    Olivier Bourdon              Added MOS 9.2 support 
                       (obourdon@mirantis.com)      Bug Fixes             
 ------- ------------- ---------------------------- ----------------------
-2.5.3   01.12.2017    Olivier Bourdon              Added MOS 10.0 support
+2.5.3   02.20.2017    Olivier Bourdon              Added MOS 10.0 support
                       (obourdon@mirantis.com)                            
 ======= ============= ============================ ======================
 

@@ -106,7 +106,7 @@
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>proc.num[,,,epmd -daemon]</key>
+                    <key>proc.num[,,,epmd -(daemon|systemd)]</key>
                     <delay>30</delay>
                     <history>90</history>
                     <trends>365</trends>
@@ -451,7 +451,7 @@
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template App OpenStack HA RabbitMQ:proc.num[,,,epmd -daemon].last(0)}=0</expression>
+            <expression>{Template App OpenStack HA RabbitMQ:proc.num[,,,epmd -(daemon|systemd)].last(0)}=0</expression>
             <name>RabbitMQ EPMD process is not running on {HOST.NAME}</name>
             <url/>
             <status>0</status>
