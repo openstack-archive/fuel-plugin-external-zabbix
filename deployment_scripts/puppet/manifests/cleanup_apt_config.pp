@@ -12,7 +12,7 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-notice('fuel-plugin-lma-collector: cleanup_apt_config.pp')
+notice('fuel-plugin-external-zabbix: cleanup_apt_config.pp')
 
 case $::osfamily {
     'Debian': {

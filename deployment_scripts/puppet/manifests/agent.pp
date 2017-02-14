@@ -13,6 +13,8 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 #
+notice('fuel-plugin-external-zabbix: agent.pp')
+
 $fuel_version                  = 0 + hiera('fuel_version')
 $network_metadata              = hiera_hash('network_metadata')
 $primary_controller_nodes      = get_nodes_hash_by_roles($network_metadata, ['primary-controller'])
