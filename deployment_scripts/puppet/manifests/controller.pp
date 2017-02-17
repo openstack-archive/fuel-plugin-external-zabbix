@@ -13,4 +13,6 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 #
+notice('fuel-plugin-external-zabbix: controller.pp')
+
 include plugin_zabbix::controller
