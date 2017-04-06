@@ -310,7 +310,7 @@
                     <publickey/>
                     <privatekey/>
                     <port/>
-                    <description>The time the CPU has spent running users' proccess that have been niced.</description>
+                    <description>The time the CPU has spent running users' process that have been niced.</description>
                     <inventory_link>0</inventory_link>
                     <applications>
                         <application>
