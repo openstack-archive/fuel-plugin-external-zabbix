@@ -40,7 +40,7 @@ The following parameters are set up:
 * StartAgents = 10 (number of processes used to collect data, default 3)
 * Timeout = 30 (default 3 seconds)
 
-Refer to the `Zabbix agent <https://www.zabbix.com/documentation/2.4/manual/appendix/config/zabbix_agentd>`_ official documentation for futher details.
+Refer to the `Zabbix agent <https://www.zabbix.com/documentation/2.4/manual/appendix/config/zabbix_agentd>`_ official documentation for further details.
 
 Kernel
 ------
