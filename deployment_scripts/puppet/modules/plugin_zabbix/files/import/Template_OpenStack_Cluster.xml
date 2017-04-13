@@ -768,7 +768,7 @@
     </templates>
     <triggers>
         <trigger>
-            <expression>{Template OpenStack Cluster:db.services.offline.nova.query.last(0)}>0</expression>
+            <expression>{Template OpenStack Cluster:db.services.offline.nova.query.last(0)}&gt;0</expression>
             <name>Nova service status offline test failed</name>
             <url/>
             <status>0</status>
@@ -778,7 +778,7 @@
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template OpenStack Cluster:db.services.offline.cinder.query.last(0)}>0</expression>
+            <expression>{Template OpenStack Cluster:db.services.offline.cinder.query.last(0)}&gt;0</expression>
             <name>Cinder service status offline test failed</name>
             <url/>
             <status>0</status>
@@ -788,7 +788,7 @@
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template OpenStack Cluster:db.services.offline.neutron.query.last(0)}>0</expression>
+            <expression>{Template OpenStack Cluster:db.services.offline.neutron.query.last(0)}&gt;0</expression>
             <name>Neutron service status offline test failed</name>
             <url/>
             <status>0</status>
