@@ -762,7 +762,7 @@ It requires user parameter mysql.status[*], which is defined in userparameter_my
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template App MySQL:db.wsrep.connected.query.last(0)}&lt;&gt;1</expression>
+            <expression>{Template App MySQL:db.wsrep.connected.query.last(0)}<%= scope.lookupvar('plugin_zabbix::params::zabbix_trigger_exp_not_equal') %>1</expression>
             <name>MySQL is not connected to the cluster</name>
             <url/>
             <status>0</status>
@@ -772,7 +772,7 @@ It requires user parameter mysql.status[*], which is defined in userparameter_my
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template App MySQL:db.wsrep.ready.query.last(0)}&lt;&gt;1</expression>
+            <expression>{Template App MySQL:db.wsrep.ready.query.last(0)}<%= scope.lookupvar('plugin_zabbix::params::zabbix_trigger_exp_not_equal') %>1</expression>
             <name>MySQL is not ready to rejoin cluster</name>
             <url/>
             <status>0</status>
