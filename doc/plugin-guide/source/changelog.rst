@@ -4,6 +4,9 @@ Release notes / Changelog
 **2.5.3**
 
 * Compatibility with MOS 7.0, 8.0, 9.0, 9.1, 9.2 and 10.0
+* typo in ceph check script and missing PG state (bug 1661505_)
+
+.. _1661505: https://bugs.launchpad.net/fuel-plugins/+bug/1661505
 
 **2.5.2**
 
