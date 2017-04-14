@@ -18,6 +18,7 @@ class plugin_zabbix::params {
   include plugin_zabbix::params::openstack
 
   $zabbix_version = $::check_zabbix_version
+  notice("Zabbix version=${zabbix_version}")
   $zabbix_hash = hiera('zabbix_monitoring')
   $network_metadata = hiera('network_metadata')
   $ssl = hiera('public_ssl')
@@ -29,9 +30,13 @@ class plugin_zabbix::params {
 
   if versioncmp($zabbix_version, '2.4') < 0 {
     $zabbix_includes = $zabbix_extra_conf_dir
+    $zabbix_trigger_exp_not_equal = '#'
   } else {
     $zabbix_includes = "${zabbix_extra_conf_dir}/*.conf"
+    $zabbix_trigger_exp_not_equal = '&lt;&gt;'
   }
+  notice("Zabbix include=${zabbix_includes}")
+  notice("Zabbix <>=${zabbix_trigger_exp_not_equal}")
 
   $zabbix_ports = {
     server         => '10051',
