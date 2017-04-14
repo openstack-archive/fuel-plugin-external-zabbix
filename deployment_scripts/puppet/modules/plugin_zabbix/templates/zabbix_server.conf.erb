@@ -89,7 +89,7 @@ DebugLevel=3
 Timeout=5
 
 # Optional SNMP & others Zabbix extra modules specific configuration
-Include=<%= scope.lookupvar('plugin_zabbix::params::zabbix_extra_conf_dir') %>/*.conf
+Include=<%= scope.lookupvar('plugin_zabbix::params::zabbix_includes') %>
 
 # Specifies how many seconds trapper may spend processing new data
 # Must be between 1 and 30
