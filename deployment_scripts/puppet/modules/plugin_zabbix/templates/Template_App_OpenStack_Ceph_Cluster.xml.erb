@@ -1719,7 +1719,7 @@
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template App OpenStack Ceph Cluster:probe.ceph.last()}&lt;&gt;0</expression>
+            <expression>{Template App OpenStack Ceph Cluster:probe.ceph.last()}<%= scope.lookupvar('plugin_zabbix::params::zabbix_trigger_exp_not_equal') %>0</expression>
             <name>Cannot retrieve Ceph metrics form {HOST.NAME1} node</name>
             <url/>
             <status>0</status>
