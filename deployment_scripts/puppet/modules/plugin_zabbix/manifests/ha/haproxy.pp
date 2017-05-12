@@ -24,6 +24,7 @@ class plugin_zabbix::ha::haproxy {
   $public_vip = hiera('public_vip')
   $ssl = hiera('public_ssl')
   $zabbix_vip = $plugin_zabbix::params::server_ip
+  $mgmt_vip = $plugin_zabbix::params::mgmt_vip
   $network_metadata  = hiera_hash('network_metadata')
   $primary_controller_nodes = get_nodes_hash_by_roles($network_metadata, ['primary-controller'])
   $controllers = get_nodes_hash_by_roles($network_metadata, ['primary-controller', 'controller'])
@@ -76,6 +77,13 @@ class plugin_zabbix::ha::haproxy {
         line   => "  bind ${zabbix_vip}:443 ssl crt /var/lib/astute/haproxy/public_haproxy.pem",
         notify => Exec['haproxy-restart']
       }
+      ->
+      file_line { 'add binding to management VIP for horizon and zabbix via ssl':
+        path   => '/etc/haproxy/conf.d/017-horizon-ssl.cfg',
+        after  => 'listen horizon-ssl',
+        line   => "  bind ${mgmt_vip}:443 ssl crt /var/lib/astute/haproxy/public_haproxy.pem",
+        notify => Exec['haproxy-restart']
+      }
     }else{
       openstack::ha::haproxy_service { 'zabbix-ui':
         order                  => '211',
@@ -111,6 +119,13 @@ class plugin_zabbix::ha::haproxy {
         path   => '/etc/haproxy/conf.d/212-zabbix-ui-ssl.cfg',
         after  => 'listen zabbix-ui-ssl',
         line   => "  bind ${zabbix_vip}:443 ssl crt /var/lib/astute/haproxy/public_haproxy.pem",
+        notify => Exec['haproxy-restart'],
+      }
+      ->
+      file_line { 'add binding to management VIP for zabbix via ssl':
+        path   => '/etc/haproxy/conf.d/212-zabbix-ui-ssl.cfg',
+        after  => 'listen zabbix-ui-ssl',
+        line   => "  bind ${mgmt_vip}:443 ssl crt /var/lib/astute/haproxy/public_haproxy.pem",
         notify => Exec['haproxy-restart'],
       }
     }
