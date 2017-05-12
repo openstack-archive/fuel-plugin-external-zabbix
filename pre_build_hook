@@ -21,7 +21,7 @@ ROOT="$(dirname "$(readlink -f "$0")")"
 
 # Puppet manifests
 # Dependency for PHP-FPM
-PHPFPM_TARBALL_URL="https://forgeapi.puppetlabs.com/v3/files/Slashbunny-phpfpm-0.0.8.tar.gz"
+PHPFPM_TARBALL_URL="https://forgeapi.puppetlabs.com/v3/files/Slashbunny-phpfpm-0.0.13.tar.gz"
 
 RPM_REPO="${ROOT}"/repositories/centos/
 DEB_TRUSTY_REPO="${ROOT}"/repositories/ubuntu/trusty
@@ -30,13 +30,35 @@ mkdir -p $RPM_REPO $DEB_TRUSTY_REPO $DEB_XENIAL_REPO
 
 PHP5_TRUSTY_VERSION="5.5.9+dfsg-1ubuntu4.21"
 PHP5_XENIAL_VERSION="5.6.4+dfsg-4ubuntu6.4"
-ZBX_VERSION="2.4.8-1+trusty"
 
-ZABBIX_PACKAGES="http://repo.zabbix.com/zabbix/2.4/ubuntu/pool/main/z/zabbix/zabbix-agent_${ZBX_VERSION}_amd64.deb \
-                 http://repo.zabbix.com/zabbix/2.4/ubuntu/pool/main/z/zabbix/zabbix-frontend-php_${ZBX_VERSION}_all.deb \
-                 http://repo.zabbix.com/zabbix/2.4/ubuntu/pool/main/z/zabbix/zabbix-server-mysql_${ZBX_VERSION}_amd64.deb \
-                 http://repo.zabbix.com/zabbix/2.4/ubuntu/pool/main/z/zabbix/zabbix-sender_${ZBX_VERSION}_amd64.deb \
-                 http://repo.zabbix.com/zabbix/2.4/ubuntu/pool/main/z/zabbix/zabbix-get_${ZBX_VERSION}_amd64.deb"
+ZABBIX_VERSION=${ZABBIX_VERSION:-2.2}
+case $ZABBIX_VERSION in
+	2.2)
+		ZBX_MAJOR_VERSION="2.2"
+		ZBX_TRUSTY_VERSION=${ZBX_MAJOR_VERSION}".17-1+trusty"
+		ZBX_XENIAL_VERSION=${ZBX_MAJOR_VERSION}".17-1+trusty"
+		;;
+	2.4)
+		ZBX_MAJOR_VERSION="2.4"
+		ZBX_TRUSTY_VERSION=${ZBX_MAJOR_VERSION}".8-1+trusty"
+		ZBX_XENIAL_VERSION=${ZBX_MAJOR_VERSION}".8-1+trusty"
+		;;
+	*)
+		echo "Unsupported version $ZABBIX_VERSION"
+		exit 1
+esac
+
+ZABBIX_TRUSTY_PACKAGES="http://repo.zabbix.com/zabbix/$ZBX_MAJOR_VERSION/ubuntu/pool/main/z/zabbix/zabbix-agent_${ZBX_TRUSTY_VERSION}_amd64.deb \
+                 http://repo.zabbix.com/zabbix/$ZBX_MAJOR_VERSION/ubuntu/pool/main/z/zabbix/zabbix-frontend-php_${ZBX_TRUSTY_VERSION}_all.deb \
+                 http://repo.zabbix.com/zabbix/$ZBX_MAJOR_VERSION/ubuntu/pool/main/z/zabbix/zabbix-server-mysql_${ZBX_TRUSTY_VERSION}_amd64.deb \
+                 http://repo.zabbix.com/zabbix/$ZBX_MAJOR_VERSION/ubuntu/pool/main/z/zabbix/zabbix-sender_${ZBX_TRUSTY_VERSION}_amd64.deb \
+                 http://repo.zabbix.com/zabbix/$ZBX_MAJOR_VERSION/ubuntu/pool/main/z/zabbix/zabbix-get_${ZBX_TRUSTY_VERSION}_amd64.deb"
+
+ZABBIX_XENIAL_PACKAGES="http://repo.zabbix.com/zabbix/$ZBX_MAJOR_VERSION/ubuntu/pool/main/z/zabbix/zabbix-agent_${ZBX_XENIAL_VERSION}_amd64.deb \
+                 http://repo.zabbix.com/zabbix/$ZBX_MAJOR_VERSION/ubuntu/pool/main/z/zabbix/zabbix-frontend-php_${ZBX_XENIAL_VERSION}_all.deb \
+                 http://repo.zabbix.com/zabbix/$ZBX_MAJOR_VERSION/ubuntu/pool/main/z/zabbix/zabbix-server-mysql_${ZBX_XENIAL_VERSION}_amd64.deb \
+                 http://repo.zabbix.com/zabbix/$ZBX_MAJOR_VERSION/ubuntu/pool/main/z/zabbix/zabbix-sender_${ZBX_XENIAL_VERSION}_amd64.deb \
+                 http://repo.zabbix.com/zabbix/$ZBX_MAJOR_VERSION/ubuntu/pool/main/z/zabbix/zabbix-get_${ZBX_XENIAL_VERSION}_amd64.deb"
 
 COMMON_PACKAGES="http://archive.ubuntu.com/ubuntu/pool/main/libc/libconfig-inifiles-perl/libconfig-inifiles-perl_2.82-1_all.deb \
                  http://archive.ubuntu.com/ubuntu/pool/universe/libs/libsmi/smistrip_0.4.8+dfsg2-8ubuntu2_all.deb \
@@ -54,7 +76,7 @@ PHP5_TRUSTY_PACKAGES="http://archive.ubuntu.com/ubuntu/pool/main/p/php5/php5_${P
                       http://archive.ubuntu.com/ubuntu/pool/universe/p/php5/php5-fpm_${PHP5_TRUSTY_VERSION}_amd64.deb \
                       http://archive.ubuntu.com/ubuntu/pool/main/p/php-json/php5-json_1.3.2-2build1_amd64.deb"
              
-download_package "$DEB_TRUSTY_REPO" $ZABBIX_PACKAGES \
+download_package "$DEB_TRUSTY_REPO" $ZABBIX_TRUSTY_PACKAGES \
              $PHP5_TRUSTY_PACKAGES \
              $COMMON_PACKAGES
 
@@ -66,7 +88,7 @@ PHP5_XENIAL_PACKAGES="http://archive.ubuntu.com/ubuntu/pool/main/p/php5/php5_${P
                       http://archive.ubuntu.com/ubuntu/pool/universe/p/php5/php5-fpm_${PHP5_XENIAL_VERSION}_amd64.deb \
                       http://archive.ubuntu.com/ubuntu/pool/main/p/php-json/php5-json_1.3.6-1build1_amd64.deb"
 
-download_package "$DEB_XENIAL_REPO" $ZABBIX_PACKAGES \
+download_package "$DEB_XENIAL_REPO" $ZABBIX_XENIAL_PACKAGES \
              $PHP5_XENIAL_PACKAGES \
              $COMMON_PACKAGES \
              http://archive.ubuntu.com/ubuntu/pool/main/m/mysql-5.5/libmysqlclient18_5.5.54-0ubuntu0.14.04.1_amd64.deb \
