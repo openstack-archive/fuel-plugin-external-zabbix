@@ -34,6 +34,18 @@ class plugin_zabbix::server::config {
     source  => 'puppet:///modules/plugin_zabbix/import'
   }
 
+  file { '/etc/zabbix/import/Template_App_MySQL.xml':
+    ensure  => present,
+    require => File['/etc/zabbix/import'],
+    content => template('plugin_zabbix/Template_App_MySQL.xml.erb'),
+  }
+
+  file { '/etc/zabbix/import/Template_App_OpenStack_Ceph_Cluster.xml':
+    ensure  => present,
+    require => File['/etc/zabbix/import'],
+    content => template('plugin_zabbix/Template_App_OpenStack_Ceph_Cluster.xml.erb'),
+  }
+
   Plugin_zabbix_configuration_import {
     require => File['/etc/zabbix/import'],
   }

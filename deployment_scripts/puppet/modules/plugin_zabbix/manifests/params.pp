@@ -29,8 +29,10 @@ class plugin_zabbix::params {
 
   if versioncmp($zabbix_version, '2.4') < 0 {
     $zabbix_includes = $zabbix_extra_conf_dir
+    $zabbix_trigger_exp_not_equal = '#'
   } else {
     $zabbix_includes = "${zabbix_extra_conf_dir}/*.conf"
+    $zabbix_trigger_exp_not_equal = '&lt;&gt;'
   }
 
   $zabbix_ports = {
