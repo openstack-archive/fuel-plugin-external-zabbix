@@ -69,7 +69,7 @@ PHP5_XENIAL_PACKAGES="http://archive.ubuntu.com/ubuntu/pool/main/p/php5/php5_${P
 download_package "$DEB_XENIAL_REPO" $ZABBIX_PACKAGES \
              $PHP5_XENIAL_PACKAGES \
              $COMMON_PACKAGES \
-             http://archive.ubuntu.com/ubuntu/pool/main/m/mysql-5.5/libmysqlclient18_5.5.54-0ubuntu0.14.04.1_amd64.deb \
+             http://archive.ubuntu.com/ubuntu/pool/main/m/mysql-5.5/libmysqlclient18_5.5.55-0ubuntu0.14.04.1_amd64.deb \
              http://archive.ubuntu.com/ubuntu/pool/main/libg/libgcrypt11/libgcrypt11_1.5.3-2ubuntu4.4_amd64.deb \
              http://archive.ubuntu.com/ubuntu/pool/main/g/gnutls26/libgnutls26_2.12.23-12ubuntu2.7_amd64.deb \
              http://archive.ubuntu.com/ubuntu/pool/main/s/systemd/libsystemd-daemon0_204-5ubuntu20.24_amd64.deb
