@@ -421,7 +421,7 @@
     </templates>
     <triggers>
         <trigger>
-            <expression>{Template App OpenStack HA RabbitMQ:rabbitmq.unmirror.queues.last(0)}>0</expression>
+            <expression>{Template App OpenStack HA RabbitMQ:rabbitmq.unmirror.queues.last(0)}&gt;0</expression>
             <name>RabbitMQ queues are not mirrored</name>
             <url/>
             <status>0</status>
@@ -431,7 +431,7 @@
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template App OpenStack HA RabbitMQ:rabbitmq.missing.nodes.last(0)}>0</expression>
+            <expression>{Template App OpenStack HA RabbitMQ:rabbitmq.missing.nodes.last(0)}&gt;0</expression>
             <name>RabbitMQ nodes missing from cluster</name>
             <url/>
             <status>0</status>
