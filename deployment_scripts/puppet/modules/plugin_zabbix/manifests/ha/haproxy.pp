@@ -100,6 +100,7 @@ class plugin_zabbix::ha::haproxy {
         listen_port            => 443,
         balancermember_port    => 80,
         public_ssl             => true,
+        public_ssl_path        => '/var/lib/astute/haproxy/public_haproxy.pem',
         haproxy_config_options => {
           'option'      => ['forwardfor', 'httpchk', 'httpclose', 'httplog'],
           'stick-table' => 'type ip size 200k expire 30m',

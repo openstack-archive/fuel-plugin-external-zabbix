@@ -182,7 +182,8 @@ class plugin_zabbix::params {
   $zabbix_admin_password_md5         = md5($zabbix_hash['password'])
 
   #api
-  if $ssl[horizon] == true {
+  $use_ssl = $ssl[horizon] or $ssl[services]
+  if $use_ssl {
     $api_url = "https://${mgmt_vip}${frontend_base}/api_jsonrpc.php"
   }else{
     $api_url = "http://${mgmt_vip}${frontend_base}/api_jsonrpc.php"
