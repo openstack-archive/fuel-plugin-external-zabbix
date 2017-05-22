@@ -19,7 +19,7 @@ class plugin_zabbix::params {
 
   $zabbix_version = $::check_zabbix_version
   $zabbix_hash = hiera('zabbix_monitoring')
-  $network_metadata = hiera('network_metadata')
+  $network_metadata = hiera_hash('network_metadata')
   $ssl = hiera('public_ssl')
   $zabbix_base_conf_dir = '/etc/zabbix'
   $zabbix_extra_conf_subdir = 'conf.d'
