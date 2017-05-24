@@ -1,0 +1,9 @@
+Code-Review+1: Fuel TPI CI <pi-ci@mirantis.com>
+Code-Review+2: Olivier Bourdon <obourdon@mirantis.com>
+Workflow+1: Olivier Bourdon <obourdon@mirantis.com>
+Verified+2: Jenkins
+Submitted-by: Jenkins
+Submitted-at: Wed, 24 May 2017 08:20:59 +0000
+Reviewed-on: https://review.openstack.org/466733
+Project: openstack/fuel-plugin-external-zabbix
+Branch: refs/heads/master
