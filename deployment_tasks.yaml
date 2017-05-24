@@ -100,3 +100,15 @@
     timeout: 300
   reexecute_on:
     - deploy_changes
+
+- id: zbx-override-configuration
+  type: puppet
+  version: 2.0.0
+  # Zabbix deployment start at post_deploy stage only
+  requires: [upload_configuration]
+  required_for: [globals]
+  role: '*'
+  parameters:
+    puppet_manifest: puppet/manifests/override_configuration.pp
+    puppet_modules: puppet/modules:/etc/puppet/modules
+    timeout: 120
