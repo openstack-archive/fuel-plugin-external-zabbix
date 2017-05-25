@@ -15,9 +15,15 @@
 - id: zbx-primary-services
   type: puppet
   version: 2.0.0
-  requires: [post_deployment_start, zbx-configure-apt]
+  requires: [post_deployment_start, zbx-configure-apt, cluster-haproxy]
   required_for: [post_deployment_end]
   role: [primary-controller]
+  # The primary crontroller configuration shouldn't start before haproxy is finished
+  # hence the cross-depends parameter that is required when running in
+  # a task-based deployment mode.
+  cross-depends:
+    - name: cluster-haproxy
+      role: [primary-controller]
   parameters:
     puppet_manifest: puppet/manifests/primary_controller.pp
     puppet_modules: puppet/modules:/etc/puppet/modules

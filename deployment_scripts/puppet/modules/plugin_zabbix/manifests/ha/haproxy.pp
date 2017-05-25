@@ -70,21 +70,38 @@ class plugin_zabbix::ha::haproxy {
 
   if $use_ssl {
     if $horizon_is_here {
-      # Update Horizon configuration to be able to use HTTPS port
-      file_line { 'add binding to Zabbix VIP for horizon and zabbix via ssl':
-        path   => '/etc/haproxy/conf.d/017-horizon-ssl.cfg',
-        after  => 'listen horizon-ssl',
-        line   => "  bind ${zabbix_vip}:443 ssl crt /var/lib/astute/haproxy/public_haproxy.pem",
-        notify => Exec['haproxy-restart']
+      if $ssl[horizon] {
+        # Update Horizon configuration to be able to use HTTPS port
+        file_line { 'add binding to Zabbix VIP for horizon and zabbix via ssl':
+          path   => '/etc/haproxy/conf.d/017-horizon-ssl.cfg',
+          after  => 'listen horizon-ssl',
+          line   => "  bind ${zabbix_vip}:443 ssl crt /var/lib/astute/haproxy/public_haproxy.pem",
+          notify => Exec['haproxy-restart']
+        }
+        ->
+        file_line { 'add binding to management VIP for horizon and zabbix via ssl':
+          path   => '/etc/haproxy/conf.d/017-horizon-ssl.cfg',
+          after  => 'listen horizon-ssl',
+          line   => "  bind ${mgmt_vip}:443 ssl crt /var/lib/astute/haproxy/public_haproxy.pem",
+          notify => Exec['haproxy-restart']
+        }
+      } else {
+        # Update Horizon configuration to be able to use HTTP port
+        file_line { 'add binding to Zabbix VIP for horizon and zabbix':
+          path   => '/etc/haproxy/conf.d/015-horizon.cfg',
+          after  => 'listen horizon',
+          line   => "  bind ${zabbix_vip}:80",
+          notify => Exec['haproxy-restart']
+        }
+        ->
+        file_line { 'add binding to management VIP for horizon and zabbix':
+          path   => '/etc/haproxy/conf.d/015-horizon.cfg',
+          after  => 'listen horizon',
+          line   => "  bind ${mgmt_vip}:80",
+          notify => Exec['haproxy-restart']
+        }
       }
-      ->
-      file_line { 'add binding to management VIP for horizon and zabbix via ssl':
-        path   => '/etc/haproxy/conf.d/017-horizon-ssl.cfg',
-        after  => 'listen horizon-ssl',
-        line   => "  bind ${mgmt_vip}:443 ssl crt /var/lib/astute/haproxy/public_haproxy.pem",
-        notify => Exec['haproxy-restart']
-      }
-    }else{
+    } else {
       openstack::ha::haproxy_service { 'zabbix-ui':
         order                  => '211',
         listen_port            => 80,
@@ -94,7 +111,6 @@ class plugin_zabbix::ha::haproxy {
           'redirect' => 'scheme https if !{ ssl_fc }'
         },
       }
-
       openstack::ha::haproxy_service { 'zabbix-ui-ssl':
         order                  => '212',
         listen_port            => 443,
@@ -130,7 +146,7 @@ class plugin_zabbix::ha::haproxy {
         notify => Exec['haproxy-restart'],
       }
     }
-  }else{
+  } else {
     if $horizon_is_here {
       # Update Horizon configuration to be able to use HTTP port
       file_line { 'add binding to Zabbix VIP for horizon and zabbix':
@@ -139,7 +155,7 @@ class plugin_zabbix::ha::haproxy {
         line   => "  bind ${zabbix_vip}:80",
         notify => Exec['haproxy-restart']
       }
-    }else{
+    } else {
       openstack::ha::haproxy_service { 'zabbix-ui':
         order                  => '211',
         listen_port            => 80,
