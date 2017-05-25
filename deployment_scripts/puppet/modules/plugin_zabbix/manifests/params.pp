@@ -125,6 +125,7 @@ class plugin_zabbix::params {
   #server parameters
   $vip_name                          = 'zbx_vip_mgmt'
   $server_ip                         = $network_metadata['vips'][$vip_name]['ipaddr']
+  $server_public_ip                  = $network_metadata['vips']['public']['ipaddr']
   $mgmt_vip                          = $network_metadata['vips']['management']['ipaddr']
   $server_config                     = "${zabbix_base_conf_dir}/zabbix_server.conf"
   $server_config_template            = 'plugin_zabbix/zabbix_server.conf.erb'
@@ -184,9 +185,13 @@ class plugin_zabbix::params {
   #api
   $use_ssl = $ssl[horizon] or $ssl[services]
   if $use_ssl {
-    $api_url = "https://${mgmt_vip}${frontend_base}/api_jsonrpc.php"
-  }else{
-    $api_url = "http://${mgmt_vip}${frontend_base}/api_jsonrpc.php"
+    if $ssl[horizon] {
+      $api_url = "https://${server_public_ip}${frontend_base}/api_jsonrpc.php"
+    } else {
+      $api_url = "http://${server_public_ip}${frontend_base}/api_jsonrpc.php"
+    }
+  } else {
+    $api_url = "http://${server_public_ip}${frontend_base}/api_jsonrpc.php"
   }
 
   $api_hash = { endpoint => $api_url,
