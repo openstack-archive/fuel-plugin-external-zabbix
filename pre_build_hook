@@ -35,8 +35,8 @@ ZABBIX_VERSION=${ZABBIX_VERSION:-2.2}
 case $ZABBIX_VERSION in
 	2.2)
 		ZBX_MAJOR_VERSION="2.2"
-		ZBX_TRUSTY_VERSION=${ZBX_MAJOR_VERSION}".17-1+trusty"
-		ZBX_XENIAL_VERSION=${ZBX_MAJOR_VERSION}".17-1+trusty"
+		ZBX_TRUSTY_VERSION=${ZBX_MAJOR_VERSION}".19-1+trusty"
+		ZBX_XENIAL_VERSION=${ZBX_MAJOR_VERSION}".19-1+trusty"
 		;;
 	2.4)
 		ZBX_MAJOR_VERSION="2.4"
@@ -91,9 +91,9 @@ PHP5_XENIAL_PACKAGES="http://archive.ubuntu.com/ubuntu/pool/main/p/php5/php5_${P
 download_package "$DEB_XENIAL_REPO" $ZABBIX_XENIAL_PACKAGES \
              $PHP5_XENIAL_PACKAGES \
              $COMMON_PACKAGES \
-             http://archive.ubuntu.com/ubuntu/pool/main/m/mysql-5.5/libmysqlclient18_5.5.55-0ubuntu0.14.04.1_amd64.deb \
-             http://archive.ubuntu.com/ubuntu/pool/main/libg/libgcrypt11/libgcrypt11_1.5.3-2ubuntu4.4_amd64.deb \
-             http://archive.ubuntu.com/ubuntu/pool/main/g/gnutls26/libgnutls26_2.12.23-12ubuntu2.7_amd64.deb \
+             http://archive.ubuntu.com/ubuntu/pool/main/m/mysql-5.5/libmysqlclient18_5.5.57-0ubuntu0.14.04.1_amd64.deb \
+             http://archive.ubuntu.com/ubuntu/pool/main/libg/libgcrypt11/libgcrypt11_1.5.3-2ubuntu4.5_amd64.deb \
+             http://archive.ubuntu.com/ubuntu/pool/main/g/gnutls26/libgnutls26_2.12.23-12ubuntu2.8_amd64.deb \
              http://archive.ubuntu.com/ubuntu/pool/main/s/systemd/libsystemd-daemon0_204-5ubuntu20.24_amd64.deb
 
 # Install puppet manifests
