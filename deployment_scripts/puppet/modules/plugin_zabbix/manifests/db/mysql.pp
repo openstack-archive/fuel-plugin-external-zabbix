@@ -69,4 +69,11 @@ class plugin_zabbix::db::mysql(
     subscribe   => $next_require,
     require     => Exec['prepare-schema-2'],
   }
+
+  exec{ 'purge-tmp-dir':
+    command     => 'rm -rf /tmp/zabbix',
+    logoutput   => true,
+    refreshonly => true,
+    subscribe   => Exec["${plugin_zabbix::params::db_name}-import"],
+  }
 }
