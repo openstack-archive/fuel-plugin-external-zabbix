@@ -62,11 +62,19 @@ class plugin_zabbix::db::mysql(
     require     => File['/tmp/zabbix/data_clean.sql'],
   }
 
-  exec{ "${plugin_zabbix::params::db_name}-import":
+  exec { "${plugin_zabbix::params::db_name}-import":
     command     => "/usr/bin/mysql ${mysql_extras_args} ${plugin_zabbix::params::db_name} < /tmp/zabbix/schema.sql",
     logoutput   => true,
     refreshonly => true,
     subscribe   => $next_require,
     require     => Exec['prepare-schema-2'],
+  }
+
+  exec { 'purge-tmp-dir':
+    command     => 'rm -rf /tmp/zabbix',
+    path        => ['/usr/sbin', '/usr/bin', '/sbin', '/bin'],
+    logoutput   => true,
+    refreshonly => true,
+    subscribe   => Exec["${plugin_zabbix::params::db_name}-import"],
   }
 }
