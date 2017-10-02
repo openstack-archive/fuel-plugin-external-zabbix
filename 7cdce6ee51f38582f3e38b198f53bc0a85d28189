@@ -1,0 +1,8 @@
+Code-Review+2: Olivier Bourdon <obourdon@mirantis.com>
+Workflow+1: Olivier Bourdon <obourdon@mirantis.com>
+Verified+2: Zuul
+Submitted-by: Zuul
+Submitted-at: Mon, 02 Oct 2017 09:22:58 +0000
+Reviewed-on: https://review.openstack.org/508831
+Project: openstack/fuel-plugin-external-zabbix
+Branch: refs/heads/master
