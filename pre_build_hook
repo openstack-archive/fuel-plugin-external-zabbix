@@ -28,8 +28,8 @@ DEB_TRUSTY_REPO="${ROOT}"/repositories/ubuntu/trusty
 DEB_XENIAL_REPO="${ROOT}"/repositories/ubuntu/xenial
 mkdir -p $RPM_REPO $DEB_TRUSTY_REPO $DEB_XENIAL_REPO
 
-PHP5_TRUSTY_VERSION="5.5.9+dfsg-1ubuntu4.22"
-PHP5_XENIAL_VERSION="5.6.4+dfsg-4ubuntu6.4"
+PHP5_TRUSTY_VERSION="5.5.9+dfsg-1ubuntu4.25"
+PHP5_XENIAL_VERSION="5.5.9+dfsg-1ubuntu4.25"
 
 ZABBIX_VERSION=${ZABBIX_VERSION:-2.2}
 case $ZABBIX_VERSION in
@@ -86,15 +86,15 @@ PHP5_XENIAL_PACKAGES="http://archive.ubuntu.com/ubuntu/pool/main/p/php5/php5_${P
                       http://archive.ubuntu.com/ubuntu/pool/main/p/php5/php5-gd_${PHP5_XENIAL_VERSION}_amd64.deb \
                       http://archive.ubuntu.com/ubuntu/pool/main/p/php5/php5-cli_${PHP5_XENIAL_VERSION}_amd64.deb \
                       http://archive.ubuntu.com/ubuntu/pool/universe/p/php5/php5-fpm_${PHP5_XENIAL_VERSION}_amd64.deb \
-                      http://archive.ubuntu.com/ubuntu/pool/main/p/php-json/php5-json_1.3.6-1build1_amd64.deb"
+                      http://archive.ubuntu.com/ubuntu/pool/main/p/php-json/php5-json_1.3.2-2build1_amd64.deb"
 
 download_package "$DEB_XENIAL_REPO" $ZABBIX_XENIAL_PACKAGES \
              $PHP5_XENIAL_PACKAGES \
              $COMMON_PACKAGES \
-             http://archive.ubuntu.com/ubuntu/pool/main/m/mysql-5.5/libmysqlclient18_5.5.57-0ubuntu0.14.04.1_amd64.deb \
-             http://archive.ubuntu.com/ubuntu/pool/main/libg/libgcrypt11/libgcrypt11_1.5.3-2ubuntu4.5_amd64.deb \
+             http://archive.ubuntu.com/ubuntu/pool/main/m/mysql-5.5/libmysqlclient18_5.5.60-0ubuntu0.14.04.1_amd64.deb \
+             http://archive.ubuntu.com/ubuntu/pool/main/libg/libgcrypt11/libgcrypt11_1.5.3-2ubuntu4.6_amd64.deb \
              http://archive.ubuntu.com/ubuntu/pool/main/g/gnutls26/libgnutls26_2.12.23-12ubuntu2.8_amd64.deb \
-             http://archive.ubuntu.com/ubuntu/pool/main/s/systemd/libsystemd-daemon0_204-5ubuntu20.24_amd64.deb
+             http://archive.ubuntu.com/ubuntu/pool/main/s/systemd/libsystemd-daemon0_204-5ubuntu20.28_amd64.deb
 
 # Install puppet manifests
 download_puppet_module "phpfpm" "$PHPFPM_TARBALL_URL"
