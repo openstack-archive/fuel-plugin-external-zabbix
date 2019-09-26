@@ -1,2 +1,0 @@
-Sphinx
-fuel-plugin-builder>=2.0.4
